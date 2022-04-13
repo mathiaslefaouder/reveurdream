@@ -6,6 +6,9 @@ dependencies:
     php:
         composer/composer: "^2"
 
+relationships:
+    database: "database:postgresql"
+
 runtime:
     extensions:
         - apcu
@@ -15,6 +18,7 @@ runtime:
         - mbstring
         - sodium
         - xsl
+        - pdo_pgsql
         
 
 variables:

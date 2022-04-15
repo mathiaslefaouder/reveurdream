@@ -52,7 +52,6 @@ hooks:
         symfony-build
         yarn install
         yarn encore production
-
     deploy: |
         set -x -e
 

@@ -28,9 +28,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $usernamÃe;
-
-    #[ORM\Column(type: 'string', length: 255)]
     private $username;
 
     #[ORM\Column(type: 'boolean')]
@@ -104,18 +101,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getUsernamÃe(): ?string
-    {
-        return $this->usernamÃe;
-    }
-
-    public function setUsernamÃe(string $usernamÃe): self
-    {
-        $this->usernamÃe = $usernamÃe;
-
-        return $this;
     }
 
     public function getUsername(): ?string

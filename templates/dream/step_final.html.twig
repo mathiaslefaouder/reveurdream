@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Je partage mon rêve - Mon compte{% endblock %}
+
+{% block body %}
+    <section class="page postyourdream">
+        <div class="wrapper">
+            <div class="dream-phase" id="dream-step-no-account">
+                <h2>Contez votre rêve</h2>
+                <p>Confirmation</p>
+                <h3>Merci d’avoir partagé<br/>ce moment !</h3>
+                <p>Retrouvez votre rêve sur la Terre, et voyez si d’autres personnes ont eu des rêves similaires.</p>
+                <div class="next-step-buttons">
+                    <a class="blue-button" href="{{ url('app_index') }}">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

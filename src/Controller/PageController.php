@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Entity\Theme;
+use App\Repository\ThemeRepository;
+use App\Service\LunaryPhase;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    final public function index(): Response
+    final public function index(EntityManagerInterface $entityManager): Response
     {
         return $this->render( 'pages/index.html.twig');
     }

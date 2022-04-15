@@ -62,6 +62,99 @@
 
     </script>
 
+    <script>
+        /* Compteur dans les textarea */
+        function textCounter(field,field2,maxlimit)
+        {
+            var countfield = document.getElementById(field2);
+            if ( field.value.length > maxlimit ) {
+                field.value = field.value.substring( 0, maxlimit );
+                return false;
+            } else {
+                countfield.value = maxlimit - field.value.length;
+            }
+        }
+    </script>
+    <script>
+        /* Close popup */
+        $( ".close-popup" ).click(function() {
+            $( ".popup-dream" ).hide(250);
+        });
+
+        /* Ouvrir filtres */
+        $( ".filters-column" ).click(function() {
+            $( ".filters" ).toggle(250);
+        });
+
+        /* Affichage d'une popup rêve : temporaire tant que pas fonctionnel */
+        $( ".globe" ).click(function() {
+            $( ".popup-dream" ).show(250);
+        });
+
+
+        /* Nav steps 3*/
+        $( "#to-step-2" ).click(function() {
+            $( "#dream-step1" ).hide();
+            $( "#dream-step2" ).show();
+        });
+
+        /* Nav steps 3 */
+        $( "#to-step-3" ).click(function() {
+            $( "#dream-step2" ).hide();
+            $( "#dream-step3" ).show();
+        });
+
+        /* Nav vers step 4 */
+        $( "#to-step-4" ).click(function() {
+            $( "#dream-step3" ).hide();
+            $( "#dream-step4" ).show();
+        });
+
+        /* Nav vers 5 création de compte ? */
+        $( "#to-step-account" ).click(function() {
+            $( "#dream-step-4" ).hide();
+            $( "#dream-step-account" ).show();
+        });
+
+        /* Nav steps vers 6 oui - création de compte */
+        $( "#to-step-account-creation" ).click(function() {
+            $( "#dream-step-account" ).hide();
+            $( "#dream-step-account-creation" ).show();
+        });
+        /* Nav steps vers 7 - formulaire compte */
+        $( "#account-submit" ).click(function() {
+            $( "#dream-step-account-creation" ).hide();
+            $( "#dream-step-account-validation" ).show();
+        });
+        /* Nav steps vers 7 - formulaire compte */
+        $( "#account-submit" ).click(function() {
+            $( "#dream-step-account-creation" ).hide();
+            $( "#dream-step-account-validation" ).show();
+        });
+
+        /* Nav steps vers 6 - non création de compte*/
+        $( "#dream-step-account" ).click(function() {
+            $( "#to-end-no-account" ).hide();
+            $( "#dream-step-account-creation" ).show();
+        });
+
+        /* Nav retour page prec */
+        $( "#back-to-step-2" ).click(function() {
+            $( "#dream-step3" ).hide();
+            $( "#dream-step2" ).show();
+        });
+        $( "#back-to-step-3" ).click(function() {
+            $( "#dream-step4" ).hide();
+            $( "#dream-step3" ).show();
+        });
+        $( "#back-to-step-4" ).click(function() {
+            $( "#dream-step-account" ).hide();
+            $( "#dream-step4").show();
+        });
+
+
+    </script>
+
 {% endblock %}
 </body>
 </html>

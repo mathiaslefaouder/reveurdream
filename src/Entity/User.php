@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -32,6 +34,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Dream::class)]
+    private $dreams;
+
+    #[ORM\ManyToMany(targetEntity: Dream::class, mappedBy: 'likedBy')]
+    private $likedDreams;
+
+    public function __construct()
+    {
+        $this->dreams = new ArrayCollection();
+        $this->likedDreams = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,6 +137,63 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Dream>
+     */
+    public function getDreams(): Collection
+    {
+        return $this->dreams;
+    }
+
+    public function addDream(Dream $dream): self
+    {
+        if (!$this->dreams->contains($dream)) {
+            $this->dreams[] = $dream;
+            $dream->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDream(Dream $dream): self
+    {
+        if ($this->dreams->removeElement($dream)) {
+            // set the owning side to null (unless already changed)
+            if ($dream->getAuthor() === $this) {
+                $dream->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Dream>
+     */
+    public function getLikedDreams(): Collection
+    {
+        return $this->likedDreams;
+    }
+
+    public function addLikedDream(Dream $likedDream): self
+    {
+        if (!$this->likedDreams->contains($likedDream)) {
+            $this->likedDreams[] = $likedDream;
+            $likedDream->addLikedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedDream(Dream $likedDream): self
+    {
+        if ($this->likedDreams->removeElement($likedDream)) {
+            $likedDream->removeLikedBy($this);
+        }
 
         return $this;
     }

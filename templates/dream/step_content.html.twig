@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Je partage mon rêve - Mon compte{% endblock %}
+
+{% block body %}
+    <section class="page postyourdream">
+        <div class="wrapper">
+            <!-- Step 4 -->
+            <div class="dream-phase" id="dream-step4">
+                <h2>Contez votre rêve</h2>
+                <p>Phase 4/4</p>
+                <h3>Racontez...</h3>
+                <form action="{{ path('app_dream_content', {'id' : dream.id}) }}" method="post">
+                    <input type="text" name="dream_title" id="dream_title" class="blue-button"
+                           placeholder="Titre de mon rêve">
+                    <div class="dream_text">
+                        <textarea id="dream_story" class="blue-button" name="dream_story"
+                                  placeholder="Le rêve en lui même... (500 caractères max.)" maxlength="500"
+                                  onkeyup="textCounter(this,'counter',500);"></textarea>
+                        <p><input disabled maxlength="3" size="3" value="500" id="counter"> caractères restants</p>
+                    </div>
+                    <div class="next-step-buttons">
+                        <a class="blue-button" id="back-to-step-2" href="{{ url('app_dream_theme', {'id': dream.id}) }}">Précédent</a>
+                        {% if app.user %}<a class="blue-button" id="back-to-step-2" href="{{ url('app_user')}}">Enregistrer</a>{% endif %}
+                        <input class="blue-button"  type="submit" value="Publier">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

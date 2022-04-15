@@ -4,13 +4,17 @@
     <section id="home">
         <div class="wrapper">
             <div class="left-col">
-                <p class="date">29 mars 2022 <img src="{{ asset('build/phase.png') }}"> dans l’Hémisphère Nord</p>
+                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}<img
+                            src="{{ asset('build/phase.png') }}"> dans l’Hémisphère Nord</p>
                 <div id="left-col-home">
                     <h1>Contez<br/> votre rêve</h1>
                     <p class="sub-h1">et découvrez les songes similaires.</p>
-                    <a href="https://dev.ographik.fr/reveurdream/mydream.php" class="blue-button">commencer</a>
-                    <p class="account-connection">Vous avez déjà un compte ? <a
-                                href="{{ url('app_login') }}">Connectez-vous</a></p>
+                    <a href="{{ url('app_dream_category') }}" class="blue-button">commencer</a>
+                    {% if not app.user %}
+                        <p class="account-connection">
+                            Vous avez déjà un compte ? <a href="{{ url('app_login') }}">Connectez-vous</a>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
 

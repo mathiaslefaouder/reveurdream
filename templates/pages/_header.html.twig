@@ -4,8 +4,12 @@
         <nav class="nav-bar">
             <ul>
                 <li><a href="{{ url('app_why') }}">Pourquoi publier son rêve ?</a></li>
+                {% if not app.user %}
                 <li><a href="{{ url('app_register') }}">Inscription</a></li>
                 <li><a href="{{ url('app_login') }}">Connexion</a></li>
+                {% else %}
+                    <li><a href="{{ url('app_logout') }}">Se déconnecter</a></li>
+                {% endif %}
             </ul>
             <div class="lang-switch">FR</div>
         </nav>

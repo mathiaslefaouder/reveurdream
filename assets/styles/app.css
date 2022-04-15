@@ -1196,7 +1196,7 @@ footer>p{
     margin: 0 auto;
 }
 
-#dream-step-account-creation form>input{
+#dream-step-account-creation form>div>div>input{
     width: 500px;
 }
 
@@ -1467,7 +1467,7 @@ input:checked + .slider:before {
     margin: 0.5em 0 0.25em 0;
 }
 
-#dream-step-account-creation form>input {
+#dream-step-account-creation form>div>div>input {
     width: 500px;
     padding: 1em 2em;
 }
@@ -1490,7 +1490,7 @@ input:checked + .slider:before {
     margin-top: 20px;
 }
 @media screen and (max-width: 768px){
-    #dream-step-account-creation form>input{
+    #dream-step-account-creation form>div>div>input{
         width: 100%;
     }
 

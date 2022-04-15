@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Me connecter à mon compte{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <section class="postyourdream">
+
+        <div class="wrapper">
+            <!-- Step inscription compte 6b -->
+            <div class="dream-phase" id="dream-step-account-creation">
+
+                <h2>Contez votre rêve</h2>
+                <p>Inscription et publication</p>
+                <h1>Inscrivez-vous</h1>
+                {{ form_start(registrationForm) }}
+
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.password) }}
+                <div class="next-step-buttons">
+                    <a class="blue-button" href="{{ url('app_index') }}">Précédent</a>
+                    <input type="submit" name="submit" id="account-submit" class="blue-button" value="Valider">
+                </div>
+
+                {{ form_end(registrationForm) }}
+            </div>
+            <!-- Validation compte 7 -->
+            <div class="dream-phase" id="dream-step-account-validation">
+                <h2>Contez votre rêve</h2>
+                <p>Confirmation d'inscription</p>
+                <h3>Votre inscription<br/>est validée !</h3>
+                <div class="next-step-buttons">
+                    <a class="blue-button" href="https://dev.ographik.fr/reveurdream">Retour à l'accueil</a>
+                    <div class="blue-button" href="https://dev.ographik.fr/reveurdream/connection.php">Me connecter</div>
+                </div>
+            </div>
+            <!-- Step Fin avec compte 8 -->
+        </div>
+    </section>
+{% endblock %}

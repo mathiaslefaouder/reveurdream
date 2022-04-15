@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rêveur Dream - {% block title %}Je partage mon rêve{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rêveur Dream - Je partage mon rêve"/>
+    <meta property="og:title" content="Rêveur Dream - Je partage mon rêve"/>
+    <meta property="og:url" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:description" content="Rêveur Dream - Je partage mon rêve"/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="Rêveur Dream - Je partage mon rêve"/>
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" href="favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Adobe fonts-->
+    <link rel="stylesheet" href="https://use.typekit.net/auw3sxg.css">
+
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+
+
+<body>
+{% include "pages/_header.html.twig" %}
+
+<main>
+    {% block body %}{% endblock %}
+</main>
+
+{% include "pages/_footer.html.twig" %}
+
+{{ encore_entry_script_tags('app') }}
+
+{% block javascripts %}
+    <script>
+        /* Connexion */
+        $( "#connexion-submit" ).click(function() {
+            $( "#left-col-home" ).show();
+            $( "#left-col-connexion" ).hide();
+        });
+
+
+        /* Close popup */
+        $( ".close-popup" ).click(function() {
+            $( ".popup-dream" ).hide(250);
+        });
+
+        /* Ouvrir filtres */
+        $( ".filters-column" ).click(function() {
+            $( ".filters" ).toggle(250);
+        });
+
+        /* Affichage d'une popup rêve : temporaire tant que pas fonctionnel */
+        $( ".globe" ).click(function() {
+            $( ".popup-dream" ).show(250);
+        });
+
+    </script>
+
+{% endblock %}
+</body>
+</html>

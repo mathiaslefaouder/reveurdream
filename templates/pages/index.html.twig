@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section id="home">
+        <div class="wrapper">
+            <div class="left-col">
+                <p class="date">29 mars 2022 <img src="{{ asset('build/phase.png') }}"> dans l’Hémisphère Nord</p>
+                <div id="left-col-home">
+                    <h1>Contez<br/> votre rêve</h1>
+                    <p class="sub-h1">et découvrez les songes similaires.</p>
+                    <a href="https://dev.ographik.fr/reveurdream/mydream.php" class="blue-button">commencer</a>
+                    <p class="account-connection">Vous avez déjà un compte ? <a
+                                href="https://dev.ographik.fr/reveurdream/connection.php">Connectez-vous</a></p>
+                </div>
+            </div>
+
+            <div class="right-col">
+                {% include "pages/_globe.html.twig" %}
+            </div>   <!-- right column -->
+        </div>
+    </section>
+
+{% endblock %}

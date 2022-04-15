@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Me connecter à mon compte{% endblock %}
+
+{% block body %}
+    <section class="postyourdream">
+        <div class="wrapper">
+            <!-- Validation compte 7 -->
+            <div class="dream-phase" id="dream-step-account-validation">
+                <h2>Contez votre rêve</h2>
+                <p>Confirmation d'inscription</p>
+                <h3>Votre inscription<br/>est validée !</h3>
+                <div class="next-step-buttons">
+                    <a class="blue-button" href="{{ url('app_index') }}">Retour à l'accueil</a>
+                    <a class="blue-button" href="{{ url('app_login') }}">Me connecter</a>
+                </div>
+            </div>
+            <!-- Step Fin avec compte 8 -->
+        </div>
+    </section>
+{% endblock %}

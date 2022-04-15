@@ -1,20 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Je partage mon rêve - Mon compte{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <section class="page">
+        <div class="wrapper">
+            <h1>Bienvenue, {{ app.user.username }}</h1>
+            <div class="edit-user-data">
+                <h3>Modifier mes infos</h3>
+                {{ form_start(form) }}
+                {{ form(form) }}
+                {{ form_end(form) }}
+            </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <div class="my-dreams">
+                <h3>Mes rêves</h3>
+                <div class="dreams">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/mathias/PhpstormProjects/reveur-dream/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/mathias/PhpstormProjects/reveur-dream/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
-</div>
+                    {% for dream in dreams %}
+                    <div class="dream">
+                        <img class="phase" src="{{ asset('build/phase.png') }}">
+                        <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
+                        <span class="dream_categories"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 383.95 383.95">{{ dream.category.ico|raw }}</svg></span>
+                        <span class="dream_title">{{ dream.title }}u</span>
+                        <span class="dream_invisible">{% if dream.isDraft %} invisible {% endif %}</span>
+                        <span class="dream_views"> | {{ dream.numberView }} vues</span>
+                        <a class="dream_edit" href="https://dev.ographik.fr/reveurdream/edit-dream.php">Editer le
+                            rêve</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        /* Connexion */
+        $(".account-connection").click(function () {
+            $("#left-col-home").hide();
+            $("#left-col-connexion").toggle();
+            $("#left-col-pourquoi").hide();
+        });
+
+        $("#connexion-submit").click(function () {
+            $("#left-col-home").show();
+            $("#left-col-connexion").hide();
+        });
+
+        /* Menu */
+        $("#menu-connexion").click(function () {
+            $("#left-col-home").hide();
+            $("#left-col-connexion").show();
+        });
+        $("#menu-pourquoi").click(function () {
+            $("#left-col-home").hide();
+            $("#left-col-pourquoi").show();
+        });
+    </script>
+
+
 {% endblock %}

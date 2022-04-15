@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Me connecter à mon compte{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <section class="postyourdream">
+
+        <div class="wrapper">
+            <div class="dream-phase" id="dream-step-account-publication">
+                <h2>Contez votre rêve</h2>
+                <p>Confirmation</p>
+                <p>Vous aller recevoir un email afin de confirmer votre inscription. Vous pourrez ensuite utiliser votre compte.</p>
+                <p>Si vous ne recevez pas d’email de confirmation, merci de vérifier dans vos spam ou <a href="{{ url('app_contact') }}">contactez-nous</a>.</p>
+                <div class="next-step-buttons">
+                    <a class="blue-button" href="{{ url('app_index') }}">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

@@ -38,31 +38,6 @@
 
 {% block javascripts %}
     <script>
-        /* Connexion */
-        $( "#connexion-submit" ).click(function() {
-            $( "#left-col-home" ).show();
-            $( "#left-col-connexion" ).hide();
-        });
-
-
-        /* Close popup */
-        $( ".close-popup" ).click(function() {
-            $( ".popup-dream" ).hide(250);
-        });
-
-        /* Ouvrir filtres */
-        $( ".filters-column" ).click(function() {
-            $( ".filters" ).toggle(250);
-        });
-
-        /* Affichage d'une popup rêve : temporaire tant que pas fonctionnel */
-        $( ".globe" ).click(function() {
-            $( ".popup-dream" ).show(250);
-        });
-
-    </script>
-
-    <script>
         /* Compteur dans les textarea */
         function textCounter(field,field2,maxlimit)
         {

@@ -169,6 +169,29 @@ input[type=submit]{
 input[type=submit]:hover{
     background: #0abff3!important;
 }
+form button{
+    text-transform: uppercase;
+    font-family: poppins,sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1em;
+    color: white;
+    display: block;
+    border: 2px solid #0abff3;
+    padding: 0.5em 2em;
+    border-radius: 30px;
+    line-height: 1em;
+    background: transparent;
+    margin-bottom: 1em;
+    min-height: 45px;
+}
+button[type=submit]{
+    cursor: pointer;
+    text-transform: uppercase;
+}
+button[type=submit]:hover{
+    background: #0abff3!important;
+}
 
 @media screen and (max-width: 768px){
     .page h1{

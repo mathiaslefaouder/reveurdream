@@ -8,7 +8,8 @@
                 <li><a href="{{ url('app_register') }}">Inscription</a></li>
                 <li><a href="{{ url('app_login') }}">Connexion</a></li>
                 {% else %}
-                    <li><a href="{{ url('app_logout') }}">Se déconnecter</a></li>
+                    <li><a href="{{ url('app_user') }}">Mon compte</a></li>
+                    <li><a href="{{ url('app_logout') }}">Déconnexion</a></li>
                 {% endif %}
             </ul>
             <div class="lang-switch">FR</div>

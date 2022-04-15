@@ -1,23 +1,30 @@
-{# templates/login/index.html.twig #}
 {% extends 'base.html.twig' %}
-
-{# ... #}
 
 {% block body %}
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}"/>
+    <section id="home">
+        <div class="wrapper">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password"/>
+            <div class="left-col" id="left-col-connexion">
+                <h1>Connexion</h1>
+                <form action="{{ path('app_login') }}" method="post">
+                    <input type="text" name="_username" id="user_login" class="blue-button" value="{{ last_username }}"size="20" autocapitalize="off" placeholder="Adresse mail" />
+                    <input type="password" name="_password" id="user_pass" class="blue-button" value="" size="20" placeholder="Mot de passe" />
 
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"/> #}
+                    <input type="submit" value="Se connecter">
+                </form>
+                <p class="account-password-lost">Mot de passe oublié&nbsp;? <a href="">Cliquez ici</a></p>
+            </div>
 
-        <button type="submit">login</button>
-    </form>
+            <div class="right-col">
+                {% include "pages/_globe.html.twig" %}
+
+            </div><!-- Right col -->
+    </section>
+
+
+
 {% endblock %}

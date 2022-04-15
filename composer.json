@@ -32,7 +32,8 @@
         "symfonycasts/verify-email-bundle": "^1.10",
         "symfonycorp/platformsh-meta": "^1.0",
         "twig/extra-bundle": "^3.3",
-        "twig/intl-extra": "^3.3"
+        "twig/intl-extra": "^3.3",
+      "ext-cassandra": "*"
     },
     "config": {
         "allow-plugins": {

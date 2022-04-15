@@ -18,6 +18,9 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[ORM\Column(type: 'text')]
+    private $ico;
+
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Dream::class)]
     private $dreams;
 
@@ -39,6 +42,18 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getIco(): ?string
+    {
+        return $this->ico;
+    }
+
+    public function setIco(string $ico): self
+    {
+        $this->ico = $ico;
 
         return $this;
     }

@@ -19,19 +19,31 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/mydream')]
 class DreamController extends AbstractController
 {
+    /**
+     * @throws \JsonException
+     */
     #[Route('/step-1/{id}', name: 'app_dream_category')]
-    final public function stepCategory(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, DreamRepository $dreamRepository, Dream $id = null): Response
+    final public function stepCategory(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, Dream $id = null): Response
     {
         $dream = !$id ? new Dream() : $id;
 
         if ($request->get('category')) {
+            $ip = $request->server->get('REMOTE_ADDR');
+            $ip_data = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip), false, 512, JSON_THROW_ON_ERROR);
+
             $dream->setCategory($categoryRepository->find($request->get('category')))
                 ->setCreatedAt((new \DateTimeImmutable()))
                 ->setIsDraft(true)
-                ->setNumberView(0);
+                ->setNumberView(0)
+            ->setGps([
+                'lat' => $ip_data-> geoplugin_latitude,
+                'log' => $ip_data->geoplugin_longitude
+            ]);
+
             if ($this->getUser()) {
                 $dream->setAuthor($this->getUser());
             }
+
             $entityManager->persist($dream);
             $entityManager->flush();
 

@@ -5,6 +5,8 @@ type: php:8.1
 dependencies:
     php:
         composer/composer: "^2"
+    nodejs:
+        yarn: "1.22.17"
 
 relationships:
     database: "database:postgresql"
@@ -48,6 +50,8 @@ hooks:
         curl -fs https://get.symfony.com/cloud/configurator | bash
         
         symfony-build
+        yarn install
+        yarn encore production
 
     deploy: |
         set -x -e

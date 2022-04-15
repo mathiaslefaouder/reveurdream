@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <section id="home">
+        <div class="wrapper">
+            <div class="left-col">
+                <p class="date">29 mars 2022 <img src="{{ asset('build/phase.png') }}"><span>dans l’Hémisphère Nord</span></p>
+                <div class="left-col" id="left-col-pourquoi">
+                    <h1>Pourquoi&nbsp;?</h1>
+                    <p>Circa hos dies Lollianus primae lanuginis adulescens, Lampadi filius ex praefecto, exploratius causam Maximino spectante, convictus codicem noxiarum artium nondum per aetatem firmato consilio D
+                        Descripsisse, exulque mittendus, ut sperabatur, patris inpulsu provocavit ad principem, et iussus ad eius comitatum duci, de fumo, ut aiunt, in flammam traditus.
+                        hendant meum consilium, cum ego idem antea multa decreverim, que magis ad hominis dignitatem quam ad rei publicae necessitatem pertinerent? Supplicationem quindecim dierum decrevi sententia mea. Rei publicae satis erat tot dierum quot C. Mario ; dis immortalibus non erat exigua eadem gratulatio qu</p>
+                    <a href="https://dev.ographik.fr/reveurdream/mydream.php" class="blue-button">commencer</a>
+                    <p class="account-connection">Vous avez déjà un compte ? <a href="https://dev.ographik.fr/reveurdream/connection.php">Connectez-vous</a></p>
+                </div>
+            </div>
+
+            <div class="right-col">
+                {% include "pages/_globe.html.twig" %}
+            </div>   <!-- right column -->
+        </div>
+    </section>
+
+{% endblock %}

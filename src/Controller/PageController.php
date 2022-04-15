@@ -25,4 +25,10 @@ class PageController extends AbstractController
     {
         return $this->render( 'pages/contact.html.twig');
     }
+
+    #[Route('/why', name: 'app_why')]
+    final public function why(): Response
+    {
+        return $this->render( 'pages/why.html.twig');
+    }
 }

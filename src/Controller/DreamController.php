@@ -109,4 +109,13 @@ class DreamController extends AbstractController
             "dream" => $dream
         ]);
     }
+
+    #[Route('/edit/{id}', name: 'app_dream_edit')]
+    final public function edit(Request $request, EntityManagerInterface $entityManager, Dream $dream): Response
+    {
+
+        return $this->render('dream/edit.html.twig', [
+            "dream" => $dream
+        ]);
+    }
 }

@@ -18,16 +18,17 @@
                 <div class="dreams">
 
                     {% for dream in dreams %}
-                    <div class="dream">
-                        <img class="phase" src="{{ asset('build/phase.png') }}">
-                        <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
-                        <span class="dream_categories"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 383.95 383.95">{{ dream.category.ico|raw }}</svg></span>
-                        <span class="dream_title">{{ dream.title }}u</span>
-                        <span class="dream_invisible">{% if dream.isDraft %} invisible {% endif %}</span>
-                        <span class="dream_views"> | {{ dream.numberView }} vues</span>
-                        <a class="dream_edit" href="https://dev.ographik.fr/reveurdream/edit-dream.php">Editer le
-                            rêve</a>
-                    </div>
+                        <div class="dream">
+                            <img class="phase" src="{{ asset('build/phase.png') }}">
+                            <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
+                            <span class="dream_categories"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 383.95 383.95">{{ dream.category.ico|raw }}</svg></span>
+                            <span class="dream_title">{{ dream.title }}u</span>
+                            <span class="dream_invisible">{% if dream.isDraft %} invisible {% endif %}</span>
+                            <span class="dream_views"> | {{ dream.numberView }} vues</span>
+                            <a class="dream_edit" href="{{ url('app_dream_edit', {'id' : dream.id}) }}">Editer le
+                                rêve</a>
+                        </div>
                     {% endfor %}
                 </div>
             </div>

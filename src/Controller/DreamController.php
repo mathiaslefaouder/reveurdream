@@ -25,7 +25,7 @@ class DreamController extends AbstractController
     /**
      * @throws \JsonException
      */
-    #[Route('/', name: 'app_dream')]
+    #[Route('', name: 'app_dream')]
     final public function index(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, SessionInterface $session, ThemeRepository $themeRepository): Response
     {
 

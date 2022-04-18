@@ -11,12 +11,12 @@
             <div class="left-col" id="left-col-connexion">
                 <h1>Connexion</h1>
                 <form action="{{ path('app_login') }}" method="post">
-                    <input type="text" name="_username" id="user_login" class="blue-button" value="{{ last_username }}"size="20" autocapitalize="off" placeholder="Adresse mail" />
+                    <input type="email" name="_username" id="user_login" class="blue-button" value="{{ last_username }}"size="20" autocapitalize="off" placeholder="Adresse mail" />
                     <input type="password" name="_password" id="user_pass" class="blue-button" value="" size="20" placeholder="Mot de passe" />
 
                     <input type="submit" value="Se connecter">
                 </form>
-                <p class="account-password-lost">Mot de passe oublié&nbsp;? <a href="">Cliquez ici</a></p>
+                <p class="account-password-lost">Mot de passe oublié&nbsp;? <a href="{{ url('app_forgot_password_request') }}">Cliquez ici</a></p>
             </div>
 
             <div class="right-col">

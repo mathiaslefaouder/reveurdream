@@ -79,7 +79,7 @@ class SecurityController extends AbstractController
         $user = $userRepository->find($id);
 
         if (null === $user) {
-            return $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('app_confirm');
         }
 
         // validate email confirmation link, sets User::isVerified=true and persists

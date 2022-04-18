@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Theme;
+use App\Repository\CategoryRepository;
+use App\Repository\DreamRepository;
 use App\Repository\ThemeRepository;
 use App\Service\LunaryPhase;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,9 +17,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageController extends AbstractController
 {
     #[Route('/', name: 'app_index')]
-    final public function index(): Response
+    final public function index(DreamRepository $dreamRepository, CategoryRepository $categoryRepository, ThemeRepository $themeRepository): Response
     {
-        return $this->render( 'pages/index.html.twig');
+        return $this->render( 'pages/index.html.twig',[
+            'dreams' => $dreamRepository->findAll(),
+            'categories' => $categoryRepository->findAll(),
+            'themes' => $themeRepository->findAll(),
+        ]);
     }
 
     #[Route('/mentions', name: 'app_mentions')]

@@ -10,19 +10,19 @@
                 <h2>Contez votre rêve</h2>
                 <p>Phase 4/4</p>
                 <h3>Racontez...</h3>
-                <form action="{{ path('app_dream_content', {'id' : dream.id}) }}" method="post">
+                <form action="{{ path('app_dream') }}" method="post">
                     <input type="text" name="dream_title" id="dream_title" class="blue-button"
-                           placeholder="Titre de mon rêve">
+                           placeholder="Titre de mon rêve" value="{{ dream.title }}">
                     <div class="dream_text">
                         <textarea id="dream_story" class="blue-button" name="dream_story"
                                   placeholder="Le rêve en lui même... (500 caractères max.)" maxlength="500"
-                                  onkeyup="textCounter(this,'counter',500);"></textarea>
+                                  onkeyup="textCounter(this,'counter',500);"> {{ dream.description }}</textarea>
                         <p><input disabled maxlength="3" size="3" value="500" id="counter"> caractères restants</p>
                     </div>
                     <div class="next-step-buttons">
-                        <a class="blue-button" id="back-to-step-2" href="{{ url('app_dream_theme', {'id': dream.id}) }}">Précédent</a>
+                        <a class="blue-button" id="back-to-step-2" href="{{ url('app_dream') }}">Précédent</a>
                         {% if app.user %}<a class="blue-button" id="back-to-step-2" href="{{ url('app_user')}}">Enregistrer</a>{% endif %}
-                        <input class="blue-button"  type="submit" value="Publier">
+                        <input class="blue-button"  type="submit" value="Publier" style="width: 200px; display: inline">
                     </div>
                 </form>
             </div>

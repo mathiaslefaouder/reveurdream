@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Je partage mon rêve - Mon compte{% endblock %}
+
+{% block body %}
+    <section class="page postyourdream">
+        <div class="wrapper">
+            <!-- Step 4 -->
+            <form action="{{ path('app_dream') }}" method="post">
+                <input type="hidden" name="publish" value="true">
+
+                <div class="dream-phase" id="dream-step-account">
+
+                    <h2>Contez votre rêve</h2>
+                    <p>Publication et inscription</p>
+                    <h3>Une petite minute !</h3>
+                    <p>Votre rêve restera visible 24h sur la Terre avant d’être caché pour le public.<br/>
+                        Si vous le souhaitez, <b>vous pouvez vous inscrire avant de publier.</b></p>
+
+                    <p class="step5-text">Que pouvez-vous faire avec votre compte ?</p>
+                    <p>Modifier votre rêve si besoin<br/>
+                        Garder une trace de votre rêve (au delà des 24h)<br/>
+                        Liker les rêves des autres<br/>
+                        Voir les rêves similaires</p>
+                    <div class="next-step-buttons">
+                        <div class="blue-button" ><a onclick="this.closest('form').submit();return false;">Publier sans s'inscrire</a></div>
+                        <div class="blue-button" onclick="location.href='{{ url('app_register') }}'" > Publier
+                                en s'inscrivant</div>
+                    </div>
+                    <div class="next-step-buttons">
+                        <a class="blue-button" id="back-to-step-4"
+                           href="{{ url('app_dream') }}">Précédent</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}

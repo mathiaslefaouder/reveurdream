@@ -36,16 +36,15 @@ class Dream
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'dreams')]
     private $author;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'dreams')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $category;
-
     #[ORM\ManyToOne(targetEntity: Theme::class, inversedBy: 'dreams')]
     #[ORM\JoinColumn(nullable: true)]
     private $theme;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likedDreams')]
     private $likedBy;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, cascade:['persist'] ,inversedBy: 'dreams')]
+    private $category;
 
     public function __construct()
     {
@@ -141,18 +140,6 @@ class Dream
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getTheme(): ?Theme
     {
         return $this->theme;
@@ -185,6 +172,18 @@ class Dream
     public function removeLikedBy(User $likedBy): self
     {
         $this->likedBy->removeElement($likedBy);
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

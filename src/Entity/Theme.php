@@ -21,6 +21,9 @@ class Theme
     #[ORM\OneToMany(mappedBy: 'theme', targetEntity: Dream::class)]
     private $dreams;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $ico;
+
     public function __construct()
     {
         $this->dreams = new ArrayCollection();
@@ -69,6 +72,18 @@ class Theme
                 $dream->setTheme(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIco(): ?string
+    {
+        return $this->ico;
+    }
+
+    public function setIco(?string $ico): self
+    {
+        $this->ico = $ico;
 
         return $this;
     }

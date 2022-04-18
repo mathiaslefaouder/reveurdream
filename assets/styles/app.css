@@ -1114,16 +1114,7 @@ footer>p{
     width: 100%;
 }
 
-.dream-options .filter-box#reve:after{
-    content: "rêve";
-}
-.dream-options .filter-box#reve:hover:after{
-    display: block;
-}
-.dream-options .filter-box#cauchemar:after{
-    content: "cauchemar";
-}
-.dream-options .filter-box#cauchemar:hover:after{
+.dream-options .filter-box.dream-cat:hover:after{
     display: block;
 }
 

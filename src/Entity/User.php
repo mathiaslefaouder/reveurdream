@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Dream::class, mappedBy: 'likedBy')]
     private $likedDreams;
 
+    #[ORM\Column(type: 'bigint', nullable: true)]
+    private $facebookId;
+
     public function __construct()
     {
         $this->dreams = new ArrayCollection();
@@ -194,6 +197,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->likedDreams->removeElement($likedDream)) {
             $likedDream->removeLikedBy($this);
         }
+
+        return $this;
+    }
+
+    public function getFacebookId(): ?int
+    {
+        return $this->facebookId;
+    }
+
+    public function setFacebookId(?int $facebookId): self
+    {
+        $this->facebookId = $facebookId;
 
         return $this;
     }

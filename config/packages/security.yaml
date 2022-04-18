@@ -22,6 +22,8 @@ security:
             provider: app_user_provider
             custom_authenticators:
                 - App\Security\FacebookAuthenticator
+            logout:
+                path: app_logout
 
         main:
             lazy: true

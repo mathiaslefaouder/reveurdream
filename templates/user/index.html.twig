@@ -23,7 +23,7 @@
                             <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
                             <span class="dream_categories">{{ dream.category.ico|raw }}</span>
                             <span class="dream_title">{{ dream.title }}u</span>
-                            <span class="dream_invisible">{% if dream.isDraft %} invisible {% endif %}</span>
+                            <span class="dream_invisible">{% if dream.isDraft %} invisible {%else%} visible {% endif %}</span>
                             <span class="dream_views"> | {{ dream.numberView }} vues</span>
                             <a class="dream_edit" href="{{ url('app_dream_edit', {'id' : dream.id}) }}">Editer le
                                 rêve</a>

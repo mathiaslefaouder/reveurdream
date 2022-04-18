@@ -20,7 +20,7 @@ class PageController extends AbstractController
     final public function index(DreamRepository $dreamRepository, CategoryRepository $categoryRepository, ThemeRepository $themeRepository): Response
     {
         return $this->render( 'pages/index.html.twig',[
-            'dreams' => $dreamRepository->findAll(),
+            'dreams' => $dreamRepository->findAllNotDraft(),
             'categories' => $categoryRepository->findAll(),
             'themes' => $themeRepository->findAll(),
         ]);

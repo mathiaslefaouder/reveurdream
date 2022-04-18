@@ -113,6 +113,11 @@ class DreamController extends AbstractController
                     $entityManager->flush();
                     $session->set('step', null);
                     $session->set('dream', null);
+
+                    $lastDream = $dreamRepository->findPreLast($this->getUser(), $dream);
+                    $lastDream?->setIsDraft(true);
+
+                    $entityManager->flush();
                     return $this->render('dream/step_final.html.twig', [
                         'dream' => $dream,
                     ]);

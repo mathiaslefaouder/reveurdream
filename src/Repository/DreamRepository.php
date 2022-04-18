@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Dream;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -62,15 +63,31 @@ class DreamRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Dream
+
+    /**
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findPreLast(User $user, Dream $dream): ?Dream
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
+            ->orderBy('d.id', 'DESC')
+            ->where('d.author = :user')
+            ->andWhere('d.id != :dream')
+            ->setParameter('user', $user)
+            ->setParameter('dream', $dream)
             ->getQuery()
+            ->setMaxResults(1)
             ->getOneOrNullResult()
         ;
     }
-    */
+
+    public function findAllNotDraft(): array
+    {
+        return $this->createQueryBuilder('d')
+            ->orderBy('d.id', 'DESC')
+            ->where('d.isDraft = false')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

@@ -21,7 +21,7 @@ class Category
     #[ORM\Column(type: 'text')]
     private $ico;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Dream::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Dream::class, cascade: ['persist'])]
     private $dreams;
 
     public function __construct()

@@ -34,7 +34,7 @@
 
                                 <label class="labl">
                                     <input type="radio" name="category"
-                                           value="{{ category.id }}" {% if dream.category is not null and dream.category.id == category.id %} checked="checked"{% endif %}>
+                                           value="{{ category.id }}" {% if dream is not null and dream.category is not null and dream.category.id == category.id %} checked="checked"{% endif %}>
                                     <div class="filter-box dream-cat" id="cat-{{ category.id }}">
                                         {{ category.ico |raw }}
                                     </div>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="next-step-buttons">
-                        <a class="blue-button" href="{{ url('app_index') }}">Annuler</a>
+                        <input class="blue-button" type="submit"  name="cancel" value="Annuler">
                         <input class="blue-button" type="submit" value="suivant">
                     </div>
                 </form>

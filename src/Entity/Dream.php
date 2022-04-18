@@ -43,7 +43,7 @@ class Dream
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likedDreams')]
     private $likedBy;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, cascade:['persist'] ,inversedBy: 'dreams')]
+    #[ORM\ManyToOne(targetEntity: Category::class ,inversedBy: 'dreams')]
     private $category;
 
     public function __construct()

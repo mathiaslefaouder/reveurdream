@@ -2,21 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
 use App\Entity\Dream;
-use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Repository\DreamRepository;
 use App\Repository\ThemeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\RouterInterface;
 
 #[Route('/mydream')]
 class DreamController extends AbstractController
@@ -26,11 +21,15 @@ class DreamController extends AbstractController
      * @throws \JsonException
      */
     #[Route('', name: 'app_dream')]
-    final public function index(Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository, SessionInterface $session, ThemeRepository $themeRepository): Response
+    final public function index(Request $request, EntityManagerInterface $entityManager, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, SessionInterface $session, ThemeRepository $themeRepository): Response
     {
-
+        if ($request->get('cancel')) {
+            $session->set('step', null);
+            $session->set('dream', null);
+            return $this->redirectToRoute('app_index');
+        }
         if ($session->get('dream')) {
-            $dream = $session->get('dream');
+            $dream = $dreamRepository->find($session->get('dream')->getId());
         } else {
             $dream = new Dream();
             $ip = $request->server->get('REMOTE_ADDR');
@@ -43,40 +42,36 @@ class DreamController extends AbstractController
                     'lat' => $ip_data->geoplugin_latitude,
                     'log' => $ip_data->geoplugin_longitude
                 ]);
-        }
-        // category
-        if ($request->get('category')) {
-               $dream->setCategory($categoryRepository->find($request->get('category')));
-
             if ($this->getUser()) {
                 $dream->setAuthor($this->getUser());
             }
-
-            $session->set('step', 'category');
         }
-        //theme
+
+        // category
+        if ($request->get('category')) {
+            $cat = $categoryRepository->find($request->get('category'));
+            $dream->setCategory($cat);
+            $session->set('step', 'category');
+        } //theme
         elseif ($request->get('theme')) {
             $dream->setTheme($themeRepository->find($request->get('theme')));
             $session->set('step', 'theme');
-        }
-        //content
+        } //content
         elseif ($request->get('dream_title') && $request->get('dream_story')) {
             $dream->setTitle($request->get('dream_title'))
                 ->setDescription($request->get('dream_story'));
             $session->set('step', 'content');
 
-        }
-        //publish
+        } //publish
         elseif ($request->get('publish')) {
             $dream->setIsDraft(false);
             $session->set('step', null);
             $session->set('dream', null);
             return $this->redirectToRoute('app_index');
-        }
-        else{
+        } else {
             switch ($session->get('step')) {
                 case 'category':
-                    $session->set('step', 'null');
+                    $session->set('step', null);
                     return $this->render('dream/step_category.html.twig', [
                         'dream' => $dream,
                         'categories' => $categoryRepository->findBy([], ['name' => 'DESC'])
@@ -94,10 +89,10 @@ class DreamController extends AbstractController
                     ]);
             }
         }
-
-        if (!$dream->getId()){
+        if (empty($dream->getId())) {
             $entityManager->persist($dream);
-        }else{
+            $entityManager->flush();
+        } else {
             $entityManager->flush();
         }
 
@@ -115,6 +110,9 @@ class DreamController extends AbstractController
             case 'content':
                 if ($this->getUser()) {
                     $dream->setIsDraft(false);
+                    $entityManager->flush();
+                    $session->set('step', null);
+                    $session->set('dream', null);
                     return $this->render('dream/step_final.html.twig', [
                         'dream' => $dream,
                     ]);
@@ -124,6 +122,7 @@ class DreamController extends AbstractController
                     'dream' => $dream,
                 ]);
         }
+
         return $this->render('dream/step_category.html.twig', [
             'dream' => $dream,
             'categories' => $categoryRepository->findBy([], ['name' => 'DESC'])

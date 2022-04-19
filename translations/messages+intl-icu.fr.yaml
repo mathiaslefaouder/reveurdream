@@ -4,3 +4,6 @@ header:
   login: Connexion
   account: 'Mon compte'
   logout: Déconnexion
+
+head:
+  title: 'Je partage mon rêve'

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rêveur Dream - {% block title %}Je partage mon rêve{% endblock %}</title>
+    <title>Rêveur Dream - {% block title %}{{ 'head.title'|trans }}{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Rêveur Dream - Je partage mon rêve"/>
-    <meta property="og:title" content="Rêveur Dream - Je partage mon rêve"/>
+    <meta name="description" content="Rêveur Dream - {{ 'head.title'|trans }}"/>
+    <meta property="og:title" content="Rêveur Dream - {{ 'head.title'|trans }}"/>
     <meta property="og:url" content=""/>
     <meta property="og:type" content="website"/>
-    <meta property="og:description" content="Rêveur Dream - Je partage mon rêve"/>
+    <meta property="og:description" content="Rêveur Dream - {{ 'head.title'|trans }}"/>
     <meta property="og:image" content=""/>
-    <meta property="og:site_name" content="Rêveur Dream - Je partage mon rêve"/>
+    <meta property="og:site_name" content="Rêveur Dream - {{ 'head.title'|trans }}"/>
     <meta name="robots" content="index, follow">
 
     <link rel="icon" href="{{ asset('build/favicon.ico') }}">

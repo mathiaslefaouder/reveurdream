@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/mydream')]
+#[Route('/{_locale<%app.supported_locales%>}/mydream')]
 class DreamController extends AbstractController
 {
 

@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
+#[Route('/{_locale<%app.supported_locales%>}')]
 class SecurityController extends AbstractController
 {
     private EmailVerifier $emailVerifier;

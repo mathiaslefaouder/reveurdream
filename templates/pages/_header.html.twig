@@ -1,29 +1,38 @@
 <header class="header">
     <div class="header-top">
-        <a href="{{ url('app_index') }}"><img class="main-logo" src="{{ asset('build/logo.png') }}" alt="Logo Rêveur Dream"></a>
+        <a href="{{ url('app_index') }}"><img class="main-logo" src="{{ asset('build/logo.png') }}"
+                                              alt="Logo Rêveur Dream"></a>
         <nav class="nav-bar">
             <ul>
-                <li><a href="{{ url('app_why') }}">Pourquoi publier son rêve ?</a></li>
+                <li><a href="{{ url('app_why') }}">{{ 'header.why'|trans }}</a></li>
                 {% if not app.user %}
-                <li><a href="{{ url('app_register') }}">Inscription</a></li>
-                <li><a href="{{ url('app_login') }}">Connexion</a></li>
+                    <li><a href="{{ url('app_register') }}">{{ 'header.registration'|trans }}</a></li>
+                    <li><a href="{{ url('app_login') }}">{{ 'header.login'|trans }}</a></li>
                 {% else %}
-                    <li><a href="{{ url('app_user') }}">Mon compte</a></li>
-                    <li><a href="{{ url('app_logout') }}">Déconnexion</a></li>
+                    <li><a href="{{ url('app_user') }}">{{ 'header.account'|trans }}</a></li>
+                    <li><a href="{{ url('app_logout') }}">{{ 'header.logout'|trans }}</a></li>
                 {% endif %}
             </ul>
-            <div class="lang-switch">FR</div>
+            <div class="lang-switch">{{ app.request.locale|upper }}</div>
         </nav>
         <nav class="menu-mobile">
             <div class="menu-mobile-switch">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 112"><path d="M112,6H12a12,12,0,0,0,0,24H112a12,12,0,0,0,0-24Z" transform="translate(0 -6)"/><path d="M112,50H12a12,12,0,0,0,0,24H112a12,12,0,0,0,0-24Z" transform="translate(0 -6)"/><path d="M112,94H12a12,12,0,0,0,0,24H112a12,12,0,0,0,0-24Z" transform="translate(0 -6)"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 112">
+                    <path d="M112,6H12a12,12,0,0,0,0,24H112a12,12,0,0,0,0-24Z" transform="translate(0 -6)"/>
+                    <path d="M112,50H12a12,12,0,0,0,0,24H112a12,12,0,0,0,0-24Z" transform="translate(0 -6)"/>
+                    <path d="M112,94H12a12,12,0,0,0,0,24H112a12,12,0,0,0,0-24Z" transform="translate(0 -6)"/>
+                </svg>
             </div>
             <div class="menu-panel">
                 <nav class="nav-bar-mobile">
                     <ul>
-                        <li><a href="https://dev.ographik.fr/reveurdream/why.php">Pourquoi publier son rêve ?</a></li>
-                        <li><a href="https://dev.ographik.fr/reveurdream/signin.php">Inscription</a></li>
-                        <li><a href="https://dev.ographik.fr/reveurdream/connection.php">Connexion</a></li>
+                        {% if not app.user %}
+                            <li><a href="{{ url('app_register') }}">{{ 'header.registration'|trans }}</a></li>
+                            <li><a href="{{ url('app_login') }}">{{ 'header.login'|trans }}</a></li>
+                        {% else %}
+                            <li><a href="{{ url('app_user') }}">{{ 'header.account'|trans }}</a></li>
+                            <li><a href="{{ url('app_logout') }}">{{ 'header.logout'|trans }}</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
             </div>

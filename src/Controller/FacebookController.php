@@ -8,12 +8,13 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/{_locale<%app.supported_locales%>}')]
 class FacebookController extends AbstractController
 {
     /**
      * Link to this controller to start the "connect" process
      *
-     * @Route("/connect/facebook", name="connect_facebook_start")
+     * @Route("//connect/facebook", name="connect_facebook_start")
      */
     public function connectAction(ClientRegistry $clientRegistry)
     {

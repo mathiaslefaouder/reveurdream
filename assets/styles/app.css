@@ -356,7 +356,7 @@ header .nav-bar>ul>li>*:hover{
 /**********************************************************************************************************/
 
 main{
-    min-height: calc(100% - 190px);
+    min-height: calc(100vh - 194px);
 }
 
 
@@ -1267,15 +1267,15 @@ footer>p{
     transform: translateY(4px);
 }
 
-.edit-dream-data form>div{
+.edit-dream-data div{
     overflow: hidden;
 }
-.edit-dream-data form label{
+.edit-dream-data label{
     display: inline-block;
     margin-right: 20px;
 }
 
-.edit-dream-data form p{
+.edit-dream-data p{
     color: white;
     text-transform: uppercase;
     font-family: poppins,sans-serif;
@@ -1435,7 +1435,7 @@ input:checked + .slider:before {
     background: #0abff3!important;
 }
 
-#edit-my-dream textarea#dream_story{
+#edit-my-dream textarea.dream_story{
     min-height: 300px;
 }
 

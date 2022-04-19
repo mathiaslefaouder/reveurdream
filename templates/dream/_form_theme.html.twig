@@ -1,0 +1,34 @@
+{% block _form_category_widget %}
+    {% for choice in choices %}
+        <label for="{{ name }}-{{ choice.data.id }}">
+            <input type="radio" id="{{ name }}-{{ choice.data.id }}" name="{{ full_name }}" value="{{ choice.value }}"
+                   {% if value == choice.data.id %}checked{% endif %}>
+            <div class="filter-box" id="{{ name }}-{{ choice.data.id }}">
+                {{ choice.label|raw }}
+            </div>
+
+        </label>
+    {% endfor %}
+{% endblock %}
+
+
+{% block _form_theme_widget %}
+    <p>thème : <span id="themeSelected"></span></p>
+    {% set themeSelected = data.name %}
+    {% for choice in choices %}
+        <label for="{{ name }}-{{ choice.data.id }}">
+            <input type="radio" id="{{ name }}-{{ choice.data.id }}" name="{{ full_name }}" value="{{ choice.value }}"
+                   {% if value == choice.data.id %}checked{% endif %} onclick="majTheme('{{ choice.data.name }}')">
+            <div class="filter-box" id="{{ name }}-{{ choice.data.id }}">
+                {{ choice.label|raw }}
+            </div>
+        </label>
+    {% endfor %}
+    <script>
+        function majTheme(value) {
+            document.getElementById('themeSelected').innerHTML = value
+        }
+
+        document.getElementById('themeSelected').innerHTML = '{{ themeSelected }}'
+    </script>
+{% endblock %}

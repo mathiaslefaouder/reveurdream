@@ -63,23 +63,19 @@ class DreamRepository extends ServiceEntityRepository
     }
     */
 
-
-    /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function findPreLast(User $user, Dream $dream): ?Dream
+    final public function setAllDraftExcept(User $user, Dream $dream): void
     {
-        return $this->createQueryBuilder('d')
-            ->orderBy('d.id', 'DESC')
+        $this->createQueryBuilder('d')
+            ->set('d.isDraft', true)
             ->where('d.author = :user')
             ->andWhere('d.id != :dream')
             ->setParameter('user', $user)
             ->setParameter('dream', $dream)
             ->getQuery()
-            ->setMaxResults(1)
-            ->getOneOrNullResult()
-        ;
+            ->execute()
+            ;
     }
+
 
     public function findAllNotDraft(): array
     {

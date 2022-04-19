@@ -2,12 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Dream;
+use App\Entity\Theme;
 use App\Repository\CategoryRepository;
 use App\Repository\DreamRepository;
 use App\Repository\ThemeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -18,7 +26,7 @@ class DreamController extends AbstractController
 {
 
     /**
-     * @throws \JsonException
+     * @throws \JsonException|\Doctrine\ORM\NonUniqueResultException
      */
     #[Route('', name: 'app_dream')]
     final public function index(Request $request, EntityManagerInterface $entityManager, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, SessionInterface $session, ThemeRepository $themeRepository): Response
@@ -114,8 +122,7 @@ class DreamController extends AbstractController
                     $session->set('step', null);
                     $session->set('dream', null);
 
-                    $lastDream = $dreamRepository->findPreLast($this->getUser(), $dream);
-                    $lastDream?->setIsDraft(true);
+                    $dreamRepository->setAllDraftExcept($this->getUser(), $dream);
 
                     $entityManager->flush();
                     return $this->render('dream/step_final.html.twig', [
@@ -135,11 +142,41 @@ class DreamController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'app_dream_edit')]
-    final public function edit(Request $request, EntityManagerInterface $entityManager, Dream $dream): Response
+    final public function edit(Request $request, EntityManagerInterface $entityManager, Dream $dream, DreamRepository $dreamRepository): Response
     {
+        $form = $this->createFormBuilder($dream)
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('isDraft', CheckboxType::class, ['required' => false])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'ico',
+                'query_builder' => function (CategoryRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'DESC');
+                },
+            ])
+            ->add('theme', EntityType::class, [
+                'class' => Theme::class,
+                'choice_label' => 'ico',
+                'query_builder' => function (ThemeRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.name', 'ASC');
+                },
+            ])
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            if (!$dream->getIsDraft()){
+                $dreamRepository->setAllDraftExcept($this->getUser(), $dream);
+            }
+            $entityManager->persist($dream);
+            $entityManager->flush();
+        }
 
         return $this->render('dream/edit.html.twig', [
-            "dream" => $dream
+            "dream" => $dream,
+            'form' => $form->createView()
         ]);
     }
 }

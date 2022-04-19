@@ -77,11 +77,13 @@ class DreamRepository extends ServiceEntityRepository
     }
 
 
-    public function findAllNotDraft(): array
+    public function findAllNotDraft(string $lang): ?array
     {
         return $this->createQueryBuilder('d')
             ->orderBy('d.id', 'DESC')
             ->where('d.isDraft = false')
+            ->andWhere('d.lang = :lang')
+            ->setParameter('lang', $lang)
             ->getQuery()
             ->getResult()
             ;

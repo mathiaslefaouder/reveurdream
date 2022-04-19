@@ -46,6 +46,9 @@ class Dream
     #[ORM\ManyToOne(targetEntity: Category::class ,inversedBy: 'dreams')]
     private $category;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $lang;
+
     public function __construct()
     {
         $this->likedBy = new ArrayCollection();
@@ -184,6 +187,18 @@ class Dream
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
+    }
+
+    public function setLang(?string $lang): self
+    {
+        $this->lang = $lang;
 
         return $this;
     }

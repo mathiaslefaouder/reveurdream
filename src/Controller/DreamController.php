@@ -42,22 +42,23 @@ class DreamController extends AbstractController
             $dream = new Dream();
             $ip = $request->server->get('REMOTE_ADDR');
             $ip_data = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip), false, 512, JSON_THROW_ON_ERROR);
-
             $dream->setCreatedAt((new \DateTimeImmutable()))
                 ->setIsDraft(true)
+                ->setLang($request->getLocale())
                 ->setNumberView(0)
                 ->setGps([
                     'lat' => $ip_data->geoplugin_latitude,
                     'log' => $ip_data->geoplugin_longitude
                 ]);
-            if ($this->getUser()) {
-                $dream->setAuthor($this->getUser());
-            }
         }
 
         // category
         if ($request->get('category')) {
             $cat = $categoryRepository->find($request->get('category'));
+
+            if ($this->getUser()) {
+                $dream->setAuthor($this->getUser());
+            }
             $dream->setCategory($cat);
             $session->set('step', 'category');
         } //theme
@@ -168,7 +169,7 @@ class DreamController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             if (!$dream->getIsDraft()){
-                $dreamRepository->setAllDraftExcept($this->getUser(), $dream);
+                $dreamRepository->setAllDraftExcept($this->getUser(), $dream, $request);
             }
             $entityManager->persist($dream);
             $entityManager->flush();

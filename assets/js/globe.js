@@ -76,6 +76,14 @@ function init() {
 
         }
     }, ScreenSpaceEventType.LEFT_CLICK);
+
+    scene.globe.tileLoadProgressEvent.addEventListener(function () {
+
+        if(scene.globe.tilesLoaded){
+            document.getElementById("loading-overlay").style.display = "none";
+        }
+    });
 }
+
 
 export {init}

@@ -5,3 +5,15 @@
 #cesiumContainer{
     height: 35vh;
 }
+
+#loading-overlay {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    pointer-events: none;
+    z-index: 9999;
+    background: url(../img/loading.gif) no-repeat center;
+    opacity: 1;
+}

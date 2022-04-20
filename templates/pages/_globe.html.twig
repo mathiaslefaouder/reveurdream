@@ -51,5 +51,8 @@
     window.addEventListener("DOMContentLoaded", (event) => {
         const element = document.querySelector('.cesium-viewer-bottom');
         element.parentElement.removeChild(element)
+        document.getElementById("cesiumContainer").style.width='30vw';
+        document.getElementById("cesiumContainer").style.height='60vh';
+        document.getElementById("cesiumContainer").style.overflow='hidden';
     });
 </script>

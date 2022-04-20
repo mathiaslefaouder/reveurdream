@@ -735,7 +735,6 @@ input::placeholder{
     font-weight: 300;
     font-style: normal;
     position: relative;
-    display: none;
 }
 
 .popup-dream .overlay{

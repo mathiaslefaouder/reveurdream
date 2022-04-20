@@ -5,7 +5,7 @@ function httpGet(theUrl) {
     return xmlHttp.responseText;
 }
 
-import {Ion, Viewer, Color, PinBuilder, Cartesian3, VerticalOrigin} from "cesium";
+import {Ion, Viewer, Color, PinBuilder, Cartesian3, VerticalOrigin } from "cesium";
 
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token
@@ -36,17 +36,20 @@ var viewer = new Viewer('cesiumContainer', {
         },
     }
 });
-const {scene, entities} = viewer;
+const {scene, entities, camera} = viewer;
 
 //Set the background of the scene to transparent
 scene.backgroundColor = Color.clone(Color.TRANSPARENT).withAlpha(0.0);
 
-
+scene.screenSpaceCameraController.minimumZoomDistance = 120000;
+scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
 //HDR needs to be disable for transparent backgrounds
 viewer.highDynamicRange = false;
+camera.flyTo({
+    destination : Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 *60)
+});
 
 const pinBuilder = new PinBuilder();
-
 
 let data = httpGet('/test');
 data = JSON.parse(data)

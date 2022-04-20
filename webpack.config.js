@@ -15,8 +15,10 @@ Encore
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
     .setPublicPath('/build')
+
     // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
+    .setManifestKeyPrefix('build/')
+    .enableVersioning()
 
     /*
      * ENTRY CONFIG
@@ -41,19 +43,19 @@ Encore
 
     .copyFiles({
         from: path.join(cesiumSource, cesiumWorkers),
-        to : 'Workers/[path][name].[hash:8].[ext]'
+        to: 'Workers/[path][name].[hash:8].[ext]'
     })
     .copyFiles({
         from: path.join(cesiumSource, 'Assets'),
-        to : 'Assets/[path][name].[hash:8].[ext]'
+        to: 'Assets/[path][name].[hash:8].[ext]'
     })
 
     .copyFiles({
         from: path.join(cesiumSource, 'Widgets'),
-        to : 'Widgets/[path][name].[hash:8].[ext]'
+        to: 'Widgets/[path][name].[hash:8].[ext]'
     })
 
-    .addPlugin(new HtmlWebpackPlugin({ template: 'templates/pages/_globe.html.twig'}))
+    .addPlugin(new HtmlWebpackPlugin({template: 'templates/pages/_globe.html.twig'}))
 
     // .addPlugin({
     //     CESIUM_BASE_URL: JSON.stringify('')

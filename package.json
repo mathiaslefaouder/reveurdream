@@ -5,6 +5,7 @@
         "@symfony/webpack-encore": "^1.7.0",
         "core-js": "^3.0.0",
         "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^5.5.0",
         "regenerator-runtime": "^0.13.2",
         "webpack-notifier": "^1.6.0"
     },
@@ -15,5 +16,8 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "cesium": "^1.92.0"
     }
 }

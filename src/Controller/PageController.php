@@ -49,4 +49,11 @@ class PageController extends AbstractController
     {
         return $this->render('pages/why.html.twig');
     }
+
+
+    #[Route('/test', name: 'app_test')]
+    final public function test(): Response
+    {
+        return $this->json(['name' => 'test']);
+    }
 }

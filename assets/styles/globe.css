@@ -1,0 +1,7 @@
+.cesium-infoBox-camera {
+    display: none !important;
+}
+
+#cesiumContainer{
+    height: 35vh;
+}

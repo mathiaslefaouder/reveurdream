@@ -1,4 +1,8 @@
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const cesiumSource = 'node_modules/cesium/Source';
+const cesiumWorkers = '../Build/Cesium/Workers';
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -33,6 +37,27 @@ Encore
     .copyFiles({
         from: './assets/fonts'
     })
+
+
+    .copyFiles({
+        from: path.join(cesiumSource, cesiumWorkers),
+        to : 'Workers/[path][name].[hash:8].[ext]'
+    })
+    .copyFiles({
+        from: path.join(cesiumSource, 'Assets'),
+        to : 'Assets/[path][name].[hash:8].[ext]'
+    })
+
+    .copyFiles({
+        from: path.join(cesiumSource, 'Widgets'),
+        to : 'Widgets/[path][name].[hash:8].[ext]'
+    })
+
+    .addPlugin(new HtmlWebpackPlugin({ template: 'templates/pages/_globe.html.twig'}))
+
+    // .addPlugin({
+    //     CESIUM_BASE_URL: JSON.stringify('')
+    // })
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()

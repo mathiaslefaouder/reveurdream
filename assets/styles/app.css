@@ -160,11 +160,12 @@ form input{
     line-height: 1em;
     background: transparent;
     margin-bottom: 1em;
-    min-height: 45px;
+    box-sizing: content-box;
 }
 input[type=submit]{
     cursor: pointer;
-    text-transform: uppercase;
+    text-transform: uppercase!important;
+    font-size: 1.25em;
 }
 input[type=submit]:hover{
     background: #0abff3!important;
@@ -253,24 +254,66 @@ header .nav-bar>ul>li>*:hover{
 /************** LANGUES *****************/
 
 .lang-switch{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 20px;  
+    position: relative; 
+    align-items: center;   
+}
+
+.lang-switch span{
     color: white;
     font-size: 16px;
     font-family: sofia-pro-soft, sans-serif;
     border: 1px solid #435488;
     display: block;
-    float: right;
     padding: 6px;
     height: 18px;
     width: 18px;
     line-height: 1em;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 20px;  
     cursor: pointer;
-    margin-right: 20px;
+    background-color: #060e25;
 }
 
-.lang-switch:hover{
+.lang-other{
+    margin-top: 10px;
+}
+
+.lang-switch span:hover{
     background-color: #435488;
+}
+
+.lang-dropdown{
+    display: none;
+    position: absolute;
+    top: 32px;    
+}
+@media screen and (min-width: 769px){
+    .lang-switch:hover .lang-dropdown{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .lang-dropdown{
+        display: flex;
+        position: relative;
+        top: unset;
+    }
+    .lang-switch span {
+        margin: 0 6px;
+    }
+    .lang-switch {
+        flex-direction: row;
+    }
+    .lang-other {
+        margin-top: 0px;
+    }
 }
 
 
@@ -356,10 +399,28 @@ header .nav-bar>ul>li>*:hover{
 /**********************************************************************************************************/
 
 main{
-    min-height: calc(100vh - 194px);
+    min-height: calc(100vh - 203px);
 }
-
-
+@media screen and (min-width: 2561px){
+    main{
+        min-height: calc(100vh - 392px);
+    }  
+}
+@media screen and (min-width: 1921px){
+    main{
+        min-height: calc(100vh - 320px);
+    }  
+}
+@media screen and (max-width: 1680px){
+    main{
+        min-height: calc(100vh - 202px);
+    }  
+}
+@media screen and (max-width: 1366px){
+    main{
+        min-height: calc(100vh - 179px);
+    }  
+}
 
 .page .wrapper{
     max-width: 1400px;
@@ -529,7 +590,7 @@ input::placeholder{
     text-align: center;
     position: relative;
     max-width: 50vw;
-    margin-right: 5vw;
+    margin-left: 5vw;
 }
 
 .right-col>.globe{
@@ -661,6 +722,7 @@ input::placeholder{
 @media screen and (max-width: 1024px){
     .right-col {
         margin-right: 0;
+        margin-top: 60px;
     }
     .right-col>.globe{
         max-width: 92%;
@@ -677,7 +739,10 @@ input::placeholder{
 
 }
 @media screen and (max-width: 768px){
-    .filters-column{
+    .right-col {
+        margin-top: 40px;
+    }
+       .filters-column{
         right: unset;
         top: unset;
         position: relative;
@@ -712,7 +777,9 @@ input::placeholder{
         right: 0px;
         z-index: 9;
     }
-
+    .right-col {
+        margin-top: 1.5em;
+    }
     .right-col>.globe{
         max-width: 96%;
         margin-bottom: 0vh;
@@ -747,8 +814,6 @@ input::placeholder{
     left: 0;
     z-index: 9;
 }
-
-
 
 .popup-dream h2{
     font-family: Bodoni MT, serif;
@@ -824,6 +889,45 @@ input::placeholder{
 }
 
 
+
+/*** Positionnement du globe ***/
+
+#cesiumContainer{
+    width: 31vw;
+    height: 73vh;
+}
+
+@media screen and (max-width: 1680px){
+    #cesiumContainer{
+        width: 35vw;
+        height: 73vh;
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .right-col {
+        margin-right: 5vw;
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 768px){
+    #cesiumContainer{
+        width: 85vw;
+        height: 60vh;
+    }
+}
+
+@media screen and (max-width: 360px){
+    #cesiumContainer{
+        width: 79vw;
+        height: 49vh;
+    }
+}
+
+
+
+
+
 /****** REsponsive général ******/
 
 @media screen and (max-width: 1024px){
@@ -838,9 +942,6 @@ input::placeholder{
 
     .left-col, .right-col, .right-col>img{
         max-width: 100%;
-    }
-    .right-col{
-        margin-top: 60px;
     }
 }
 
@@ -871,8 +972,7 @@ footer{
     background: transparent;
     font-family: sofia-pro-soft, sans-serif;
     font-size: 1em;
-    margin-left: 6vw;
-    text-align: left;
+    text-align: center;
 }
 
 footer .divider{
@@ -1236,7 +1336,8 @@ footer>p{
 
 @media screen and (max-width: 768px){
     #dream-step-account-creation form input{
-        width: 100%;
+        width: unset;
+        margin-top: 1em;
     }
 }
 
@@ -1505,6 +1606,10 @@ input:checked + .slider:before {
 @media screen and (max-width: 768px){
     #dream-step-account-creation form>div>div>input{
         width: 100%;
+    }
+
+    .next-step-buttons{
+        margin-top: 15px;
     }
 
     .next-step-buttons>*{

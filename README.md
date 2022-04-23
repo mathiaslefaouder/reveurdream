@@ -6,3 +6,9 @@ Symfony for Platform.sh
     <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" />
 </a>
 </p>
+
+## Database :
+`docker-compose up -d`
+
+## Serveur :
+`symfony serveur:start`

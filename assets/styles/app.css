@@ -686,6 +686,9 @@ input::placeholder{
 .filter-box:hover{
     background: #0abff3;
 }
+.filter-box.selectedFilter{
+    background: #0abff3;
+}
 .filter-box:hover svg path{
     fill: white;
 }

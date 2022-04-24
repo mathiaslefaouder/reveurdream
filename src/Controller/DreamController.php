@@ -79,6 +79,7 @@ class DreamController extends AbstractController
             $dream->setIsDraft(false);
             $session->set('step', null);
             $session->set('dream', null);
+            $entityManager->flush();
             return $this->redirectToRoute('app_index');
         } else {
             switch ($session->get('step')) {

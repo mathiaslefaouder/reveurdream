@@ -5,7 +5,7 @@ function httpGet(url) {
     return xmlHttp.responseText;
 }
 
-import {Cartesian3, Color, defined, Ion, ScreenSpaceEventType, Viewer} from "cesium";
+import {Cartesian3, Color, defined, Ion, ScreenSpaceEventType, Viewer, Cartesian2} from "cesium";
 
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token
@@ -59,7 +59,8 @@ datas.dreams.forEach(dream => {
         billboard: {
             image: '/img/epingle-'+dream.theme_short+'.png',
             width: 250,
-            height: 400
+            height: 400,
+            pixelOffset: new Cartesian2(0, -25)
         },
         show: true,
         theme: dream.theme_short,

@@ -5,6 +5,13 @@ function httpGet(url) {
     return xmlHttp.responseText;
 }
 
+async function httpGetAsync(url) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", url, true); // false for synchronous request
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+}
+
 import {Cartesian3, Color, defined, Ion, ScreenSpaceEventType, Viewer, Cartesian2} from "cesium";
 
 // Your access token can be found at: https://cesium.com/ion/tokens.
@@ -74,6 +81,7 @@ datas.dreams.forEach(dream => {
             var x = document.getElementById("dream-"+dream.id);
             if (x.style.display === "none") {
                 x.style.display = "block";
+                httpGetAsync('/dream-inc-view?id='+dream.id);
             } else {
                 x.style.display = "none";
             }

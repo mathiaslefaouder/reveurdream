@@ -54,18 +54,4 @@ class PageController extends AbstractController
             'dreams' => $dreamRepository->dataForMap($request->getLocale())
         ]);
     }
-
-    #[Route('/dream-data-map', name: 'app_dream_data_map')]
-    final public function dataMap(DreamRepository $dreamRepository, Request $request, ThemeRepository $themeRepository, CategoryRepository $categoryRepository): Response
-    {
-        $dreams = $dreamRepository->dataForMap($request->getLocale());
-        $category = $categoryRepository->findAll();
-        $themes = $themeRepository->findAll();
-
-        return $this->json([
-            'dreams' => $dreams,
-            'category' => $category,
-            'themes' => $themes,
-        ]);
-    }
 }

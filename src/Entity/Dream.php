@@ -49,6 +49,9 @@ class Dream
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $lang;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $lunaryPhase;
+
     public function __construct()
     {
         $this->likedBy = new ArrayCollection();
@@ -199,6 +202,18 @@ class Dream
     public function setLang(?string $lang): self
     {
         $this->lang = $lang;
+
+        return $this;
+    }
+
+    public function getLunaryPhase(): ?string
+    {
+        return $this->lunaryPhase;
+    }
+
+    public function setLunaryPhase(?string $lunaryPhase): self
+    {
+        $this->lunaryPhase = $lunaryPhase;
 
         return $this;
     }

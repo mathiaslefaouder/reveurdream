@@ -14,3 +14,4 @@ import './styles/globe.css';
 // start the Stimulus application
 import './bootstrap';
 import {includes} from "core-js/internals/array-includes";
+

@@ -7,7 +7,8 @@ use App\Entity\Theme;
 use App\Repository\CategoryRepository;
 use App\Repository\DreamRepository;
 use App\Repository\ThemeRepository;
-use App\Service\LunaryPhase;
+use App\Service\LocalizationService;
+use App\Service\LunaryPhaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,12 +24,14 @@ class PageController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/', name: 'app_index')]
-    final public function index(Request $request, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, ThemeRepository $themeRepository): Response
+    final public function index(Request $request, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, ThemeRepository $themeRepository, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
         return $this->render('pages/index.html.twig', [
             'dreams' => $dreamRepository->findAllNotDraft($request->getLocale()),
             'categories' => $categoryRepository->findAll(),
             'themes' => $themeRepository->findAll(),
+            'lunaryPhase' => $lunaryPhaseService->phase(),
+            'hemisphere' => $localizationService->getHemisphere($request),
         ]);
     }
 

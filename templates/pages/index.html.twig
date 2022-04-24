@@ -4,8 +4,7 @@
     <section id="home">
         <div class="wrapper">
             <div class="left-col">
-                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}<img
-                            src="{{ asset('build/phase.png') }}"> dans l’Hémisphère Nord</p>
+                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} dans {{hemisphere}}</p>
                 <div id="left-col-home">
                     <h1>Contez<br/> votre rêve</h1>
                     <p class="sub-h1">et découvrez les songes similaires.</p>

@@ -8,6 +8,8 @@ use App\Entity\Theme;
 use App\Repository\CategoryRepository;
 use App\Repository\DreamRepository;
 use App\Repository\ThemeRepository;
+use App\Service\LocalizationService;
+use App\Service\LunaryPhaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,7 +31,7 @@ class DreamController extends AbstractController
      * @throws \JsonException|\Doctrine\ORM\NonUniqueResultException
      */
     #[Route('', name: 'app_dream')]
-    final public function index(Request $request, EntityManagerInterface $entityManager, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, SessionInterface $session, ThemeRepository $themeRepository): Response
+    final public function index(Request $request, EntityManagerInterface $entityManager, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, SessionInterface $session, ThemeRepository $themeRepository, LocalizationService $localizationService, LunaryPhaseService $lunaryPhaseService): Response
     {
         if ($request->get('cancel')) {
             $session->set('step', null);
@@ -41,10 +43,11 @@ class DreamController extends AbstractController
         } else {
             $dream = new Dream();
             $ip = $request->server->get('REMOTE_ADDR');
-            $ip_data = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip), false, 512, JSON_THROW_ON_ERROR);
+            $ip_data = $localizationService->ip_data($ip);
             $dream->setCreatedAt((new \DateTimeImmutable()))
                 ->setIsDraft(true)
                 ->setLang($request->getLocale())
+                ->setLunaryPhase($lunaryPhaseService->phase()['phaseName'])
                 ->setNumberView(0)
                 ->setGps([
                     'lat' => $ip_data->geoplugin_latitude,

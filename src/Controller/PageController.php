@@ -27,11 +27,9 @@ class PageController extends AbstractController
     final public function index(Request $request, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, ThemeRepository $themeRepository, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
         return $this->render('pages/index.html.twig', [
-            'dreams' => $dreamRepository->findAllNotDraft($request->getLocale()),
-            'categories' => $categoryRepository->findAll(),
-            'themes' => $themeRepository->findAll(),
             'lunaryPhase' => $lunaryPhaseService->phase(),
             'hemisphere' => $localizationService->getHemisphere($request),
+            'dreams' => $dreamRepository->dataForMap($request->getLocale())
         ]);
     }
 
@@ -42,21 +40,32 @@ class PageController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/contact', name: 'app_contact')]
-    final public function contact(): Response
+    final public function contact(DreamRepository $dreamRepository, Request $request): Response
     {
-        return $this->render('pages/contact.html.twig');
+        return $this->render('pages/contact.html.twig',[
+            'dreams' => $dreamRepository->dataForMap($request->getLocale())
+        ]);
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/why', name: 'app_why')]
-    final public function why(): Response
+    final public function why(DreamRepository $dreamRepository, Request $request): Response
     {
-        return $this->render('pages/why.html.twig');
+        return $this->render('pages/why.html.twig',[
+            'dreams' => $dreamRepository->dataForMap($request->getLocale())
+        ]);
     }
 
-
-    #[Route('/test', name: 'app_test')]
-    final public function test(): Response
+    #[Route('/dream-data-map', name: 'app_dream_data_map')]
+    final public function dataMap(DreamRepository $dreamRepository, Request $request, ThemeRepository $themeRepository, CategoryRepository $categoryRepository): Response
     {
-        return $this->json(['name' => 'test']);
+        $dreams = $dreamRepository->dataForMap($request->getLocale());
+        $category = $categoryRepository->findAll();
+        $themes = $themeRepository->findAll();
+
+        return $this->json([
+            'dreams' => $dreams,
+            'category' => $category,
+            'themes' => $themes,
+        ]);
     }
 }

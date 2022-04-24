@@ -24,6 +24,12 @@ class Theme
     #[ORM\Column(type: 'text', nullable: true)]
     private $ico;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $svgPin;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $short;
+
     public function __construct()
     {
         $this->dreams = new ArrayCollection();
@@ -84,6 +90,30 @@ class Theme
     public function setIco(?string $ico): self
     {
         $this->ico = $ico;
+
+        return $this;
+    }
+
+    public function getSvgPin(): ?string
+    {
+        return $this->svgPin;
+    }
+
+    public function setSvgPin(?string $svgPin): self
+    {
+        $this->svgPin = $svgPin;
+
+        return $this;
+    }
+
+    public function getShort(): ?string
+    {
+        return $this->short;
+    }
+
+    public function setShort(string $short): self
+    {
+        $this->short = $short;
 
         return $this;
     }

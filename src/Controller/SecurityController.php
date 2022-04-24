@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\DreamRepository;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -99,13 +100,14 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/login', name: 'app_login')]
-    final public function login(AuthenticationUtils $authenticationUtils): Response
+    final public function login(AuthenticationUtils $authenticationUtils, DreamRepository $dreamRepository, Request $request): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
+            'dreams' => $dreamRepository->dataForMap($request->getLocale())
         ]);
     }
 

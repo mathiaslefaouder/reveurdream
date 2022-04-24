@@ -23,4 +23,9 @@
         </div>
     </section>
 
+    <script>
+        //remove link svg
+        let child = document.querySelector("svg > g > a")
+        document.querySelector("svg > g").removeChild(child)
+    </script>
 {% endblock %}

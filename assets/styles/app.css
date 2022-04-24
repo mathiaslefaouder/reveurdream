@@ -844,6 +844,7 @@ input::placeholder{
     border: 2px solid #e0e6f6;
     border-radius: 30px;
     padding: 28px 28px 60px;
+    min-width: 40vw;
 }
 .popup-dream-text-icons svg{
     height: 20px;

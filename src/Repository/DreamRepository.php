@@ -88,4 +88,19 @@ class DreamRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function dataForMap(string $lang)
+    {
+        return $this->createQueryBuilder('d')
+            ->select('d.id', 'd.title', 'd.description', 'd.gps', 'd.createdAt', 'c.name AS category', 'c.ico as cat_ico', 't.name as theme', 't.ico as theme_ico', 't.short as theme_short')
+            ->innerJoin('d.category', 'c')
+            ->innerJoin('d.theme', 't')
+        ->orderBy('d.gps', 'ASC')
+        ->where('d.isDraft = false')
+        ->andWhere('d.lang = :lang')
+        ->setParameter('lang', $lang)
+        ->getQuery()
+        ->getResult()
+        ;
+    }
 }

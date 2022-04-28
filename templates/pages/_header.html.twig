@@ -13,10 +13,18 @@
                     <li><a href="{{ url('app_logout') }}">{{ 'header.logout'|trans }}</a></li>
                 {% endif %}
             </ul>
-            <div class="lang-switch"><span class="lang-active" id="lang-fr">{{ app.request.locale|upper }}</span>
+            <div class="lang-switch"><span class="lang-active">{{ app.request.locale|upper }}</span>
                 <div class="lang-dropdown">
-                    <span class="lang-other" id="lang-en">EN</span>
-                    <span class="lang-other" id="lang-en">ES</span>
+                    {% if  app.request.locale|upper == 'FR' %}
+                        <a class="lang-other" href="{{ path('app_index', {_locale: 'en'}) }}">EN</a>
+                        <a class="lang-other" href="{{ path('app_index', {_locale: 'es'}) }}">ES</a>
+                    {% elseif app.request.locale|upper == 'ES'  %}
+                        <a class="lang-other" href="{{ path('app_index', {_locale: 'en'}) }}">EN</a>
+                        <a class="lang-other" href="{{ path('app_index', {_locale: 'fr'}) }}">FR</a>
+                    {%else %}
+                        <a class="lang-other" href="{{ path('app_index', {_locale: 'fr'}) }}">FR</a>
+                        <a class="lang-other" href="{{ path('app_index', {_locale: 'es'}) }}">ES</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>

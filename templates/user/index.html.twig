@@ -19,7 +19,7 @@
 
                     {% for dream in dreams %}
                         <div class="dream">
-                            <img class="phase" src="{{ asset('build/phase.png') }}">
+                            <span class="phase">{{ lunaryPhase.svg|raw}}</span>
                             <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
                             <span class="dream_categories">{% if dream.category %}{{ dream.category.ico|raw }}{% endif %}</span>
                             <span class="dream_title">{{ dream.title }}</span>

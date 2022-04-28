@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\UserType;
 use App\Repository\DreamRepository;
 use App\Repository\UserRepository;
+use App\Service\LunaryPhaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
-    final public function index(DreamRepository $dreamRepository, Request  $request, EntityManagerInterface $entityManager, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    final public function index(DreamRepository $dreamRepository, Request  $request, EntityManagerInterface $entityManager, LunaryPhaseService $lunaryPhaseService,UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $pwd = $userRepository->find($this->getUser()->getId())->getPassword();
         $form = $this->createForm(UserType::class, $this->getUser());
@@ -34,6 +35,7 @@ class UserController extends AbstractController
         }
         return $this->render('user/index.html.twig', [
             'form' => $form->createView(),
+            'lunaryPhase' => $lunaryPhaseService->phase(),
             'dreams' => $dreamRepository->findBy(['author' => $this->getUser()], ['id' => 'DESC'])
         ]);
     }

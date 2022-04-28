@@ -12,9 +12,9 @@
                 <h3>Racontez...</h3>
                 <form action="{{ path('app_dream') }}" method="post">
                     <input type="text" name="dream_title" id="dream_title" class="blue-button"
-                           placeholder="Titre de mon rêve" value="{{ dream.title }}">
+                           placeholder="Titre de mon rêve" value="{{ dream.title }}" required>
                     <div class="dream_text">
-                        <textarea id="dream_story" class="blue-button" name="dream_story"
+                        <textarea id="dream_story" class="blue-button" name="dream_story" required
                                   placeholder="Le rêve en lui même... (500 caractères max.)" maxlength="500"
                                   onkeyup="textCounter(this,'counter',500);"> {{ dream.description }}</textarea>
                         <p><input disabled maxlength="3" size="3" value="500" id="counter"> caractères restants</p>

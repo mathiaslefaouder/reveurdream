@@ -34,7 +34,7 @@
 
                                 <label class="labl">
                                     <input type="radio" name="category"
-                                           value="{{ category.id }}" {% if dream is not null and dream.category is not null and dream.category.id == category.id %} checked="checked"{% endif %}>
+                                           value="{{ category.id }}" {% if dream is not null and dream.category is not null and dream.category.id == category.id %} checked="checked"{% endif %} required>
                                     <div class="filter-box dream-cat" id="cat-{{ category.id }}">
                                         {{ category.ico |raw }}
                                     </div>

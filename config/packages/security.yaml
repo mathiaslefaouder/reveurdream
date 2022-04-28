@@ -14,6 +14,17 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        facebook:
+            pattern: ^/connect/facebook/
+            provider: app_user_provider
+            custom_authenticators:
+                - App\Security\FacebookAuthenticator
+            logout:
+                path: app_logout
+
         main:
             lazy: true
             pattern: ^/
@@ -24,17 +35,6 @@ security:
                 check_path: app_login
             logout:
                 path: app_logout
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        facebook:
-            pattern: ^/facebook/
-            provider: app_user_provider
-            custom_authenticators:
-                - App\Security\FacebookAuthenticator
-            logout:
-                path: app_logout
-
 
 
             # activate different ways to authenticate

@@ -16,7 +16,7 @@ security:
     firewalls:
         main:
             lazy: true
-            pattern: /login
+            pattern: ^/
             provider: app_user_provider
             form_login:
                 # "login" is the name of the route created previously

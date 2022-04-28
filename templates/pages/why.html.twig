@@ -3,7 +3,7 @@
     <section id="home">
         <div class="wrapper">
             <div class="left-col">
-                <p class="date">29 mars 2022 <img src="{{ asset('build/phase.png') }}"><span>dans l’Hémisphère Nord</span></p>
+                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} dans {{hemisphere}}</p>
                 <div class="left-col" id="left-col-pourquoi">
                     <h1>Pourquoi&nbsp;?</h1>
                     <p>Nous sommes intimement convaincus que le rêve peut nous lier à la nature, ainsi qu'à notre environnement social et culturel.<br/>

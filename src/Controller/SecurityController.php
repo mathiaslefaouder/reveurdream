@@ -55,9 +55,9 @@ class SecurityController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('contact@reveur-dream.fr', 'Reveur Dream'))
+                    ->from(new Address('contact@reveur-dream.com', 'Reveur Dream'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmation de création de votre compte reveurdream.com')
                     ->htmlTemplate('security/confirmation_email.html.twig')
             );
 
@@ -90,13 +90,13 @@ class SecurityController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $exception->getReason());
 
-            return $this->redirectToRoute('app_register');
+            return $this->redirectToRoute('app_valide');
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_valide');
     }
 
     #[Route('/login', name: 'app_login')]

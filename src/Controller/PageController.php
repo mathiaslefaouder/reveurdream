@@ -48,9 +48,22 @@ class PageController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/why', name: 'app_why')]
-    final public function why(DreamRepository $dreamRepository, Request $request): Response
+    final public function why(DreamRepository $dreamRepository, Request $request, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
-        return $this->render('pages/why.html.twig',[
+        return $this->render('pages/why.html.twig', [
+            'lunaryPhase' => $lunaryPhaseService->phase(),
+            'hemisphere' => $localizationService->getHemisphere($request),
+            'dreams' => $dreamRepository->dataForMap($request->getLocale())
+        ]);
+    }
+
+
+    #[Route('/{_locale<%app.supported_locales%>}/valide', name: 'app_valide')]
+    final public function valide(DreamRepository $dreamRepository, Request $request, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
+    {
+        return $this->render('pages/valider.html.twig', [
+            'lunaryPhase' => $lunaryPhaseService->phase(),
+            'hemisphere' => $localizationService->getHemisphere($request),
             'dreams' => $dreamRepository->dataForMap($request->getLocale())
         ]);
     }

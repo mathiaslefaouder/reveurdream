@@ -1,11 +1,7 @@
-<h1>Hi! Please confirm your email!</h1>
-
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
-</p>
-
-<p>
-    Cheers!
-</p>
+<h2 style="text-align: center;">Création de votre compte Reveurdream</h2> <img
+        style="text-align: center; margin: 10px auto;"
+        src="{{ asset('build/logo.png') }}"> <p>Votre compte sur <a href="{{ url('app_index') }}"></a> est créé.</p> <p>
+    Pour confirmer votre
+    adresse email et valider votre inscription, merci de cliquer <a href="{{ signedUrl }}">sur ce lien (valable 1
+        heure) </a></p> <p>Nous
+    avons hâte de lire votre dernier rêve&nbsp;!</p> <p>A bientôt,<br/> L'équipe reveurdream.com</p>

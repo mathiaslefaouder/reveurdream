@@ -12,7 +12,7 @@ async function httpGetAsync(url) {
     return xmlHttp.responseText;
 }
 
-import {Cartesian3, Color, defined, Ion, ScreenSpaceEventType, Viewer, Cartesian2} from "cesium";
+import {Cartesian3, Color, defined, Ion, ScreenSpaceEventType, Viewer, Cartesian2, ArcGisMapServerImageryProvider} from "cesium";
 
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token
@@ -20,6 +20,12 @@ Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYzNkM
 
 // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
 var viewer = new Viewer('cesiumContainer', {
+    imageryProvider: new ArcGisMapServerImageryProvider({
+        url:
+            "https://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/",
+    }),
+
+    maximumRenderTimeChange: Infinity,
     animation: false,
     baseLayerPicker: false,
     fullscreenButton: false,
@@ -68,7 +74,6 @@ datas.dreams.forEach(dream => {
             image: '/img/epingle-'+dream.theme_short+'.png',
             width: 250,
             height: 400,
-            pixelOffset: new Cartesian2(0, -25)
         },
         show: true,
         theme: dream.theme_short,

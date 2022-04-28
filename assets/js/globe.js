@@ -24,7 +24,7 @@ var viewer = new Viewer('cesiumContainer', {
         url:
             "https://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/",
     }),
-
+    resolutionScale: 2.0,
     maximumRenderTimeChange: Infinity,
     animation: false,
     baseLayerPicker: false,

@@ -61,7 +61,7 @@ class PageController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/valide', name: 'app_valide')]
     final public function valide(DreamRepository $dreamRepository, Request $request, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
-        return $this->render('pages/valider.html.twig', [
+        return $this->render('security/valide.html.twig', [
             'lunaryPhase' => $lunaryPhaseService->phase(),
             'hemisphere' => $localizationService->getHemisphere($request),
             'dreams' => $dreamRepository->dataForMap($request->getLocale())

@@ -8,7 +8,7 @@
             <!-- Step 4 -->
             <div class="dream-phase" id="dream-step4">
                 <h2>Contez votre rêve</h2>
-                <p>Phase 4/4</p>
+                <p>Phase 3/3</p>
                 <h3>Racontez...</h3>
                 <form action="{{ path('app_dream') }}" method="post">
                     <input type="text" name="dream_title" id="dream_title" class="blue-button"
@@ -21,7 +21,7 @@
                     </div>
                     <div class="next-step-buttons">
                         <a class="blue-button" id="back-to-step-2" href="{{ url('app_dream') }}">Précédent</a>
-                        {% if app.user %}<a class="blue-button" id="back-to-step-2" href="{{ url('app_user')}}">Enregistrer</a>{% endif %}
+                        {% if app.user %} <input class="blue-button"  type="submit" name="register" value="Enregistrer" style="width: 200px; display: inline">{% endif %}
                         <input class="blue-button"  type="submit" value="Publier" style="width: 200px; display: inline">
                     </div>
                 </form>

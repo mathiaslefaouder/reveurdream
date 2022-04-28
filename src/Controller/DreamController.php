@@ -74,6 +74,14 @@ class DreamController extends AbstractController
                 ->setDescription($request->get('dream_story'));
             $session->set('step', 'content');
 
+            if ($request->get('Enregistrer')){
+                $session->set('step', null);
+                $session->set('dream', null);
+                $entityManager->flush();
+                $this->redirectToRoute('app_dream_edit', ['id' => $dream->getId()]);
+
+            }
+
         } //publish
         elseif ($request->get('publish')) {
             $dream->setIsDraft(false);

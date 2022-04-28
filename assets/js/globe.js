@@ -53,7 +53,7 @@ const {scene, screenSpaceEventHandler, camera, entities} = viewer;
 
 //Set the background of the scene to transparent
 scene.backgroundColor = Color.clone(Color.TRANSPARENT).withAlpha(0.0);
-scene.screenSpaceCameraController.minimumZoomDistance = 120000;
+scene.screenSpaceCameraController.minimumZoomDistance = 6000;
 scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
 scene.globe.enableLighting = true;
 scene.globe.dynamicAtmosphereLighting = true;

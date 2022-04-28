@@ -29,10 +29,11 @@ class ApiController extends AbstractController
     }
 
     #[Route('/dream-inc-view', name: 'api_dream_incremente_view')]
-    final public function incrementeView(DreamRepository $dreamRepository, Request $request, EntityManagerInterface $entityManager): void
+    final public function incrementeView(DreamRepository $dreamRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
         $dream = $dreamRepository->find($request->get('id'));
         $dream->setNumberView($dream->getNumberView() + 1);
         $entityManager->flush();
+        return new Response('ok');
     }
 }

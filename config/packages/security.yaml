@@ -28,6 +28,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         facebook:
+            pattern: ^/facebook/
             provider: app_user_provider
             custom_authenticators:
                 - App\Security\FacebookAuthenticator

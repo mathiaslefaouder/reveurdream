@@ -60,6 +60,7 @@ camera.flyTo({
 
 let datas = httpGet('/dream-data-map');
 datas = JSON.parse(datas)
+console.log(datas)
 datas.dreams.forEach(dream => {
     entities.add({
         position: Cartesian3.fromDegrees(parseFloat(dream.gps.log), parseFloat(dream.gps.lat)),
@@ -71,17 +72,20 @@ datas.dreams.forEach(dream => {
         },
         show: true,
         theme: dream.theme_short,
+        dream_id: dream.id,
         category: dream.category.toLowerCase(),
     })
 
 
     screenSpaceEventHandler.setInputAction(function (mouse) {
         var pickedObject = scene.pick(mouse.position);
+        console.log(pickedObject)
+        console.log(pickedObject.id)
         if (defined(pickedObject)) {
-            var x = document.getElementById("dream-"+dream.id);
+            var x = document.getElementById("dream-"+pickedObject.id._dream_id);
             if (x.style.display === "none") {
                 x.style.display = "block";
-                httpGetAsync('/dream-inc-view?id='+dream.id);
+                httpGetAsync('/dream-inc-view?id='+pickedObject.id._dream_id);
             } else {
                 x.style.display = "none";
             }

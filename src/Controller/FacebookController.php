@@ -14,7 +14,7 @@ class FacebookController extends AbstractController
     /**
      * Link to this controller to start the "connect" process
      *
-     * @Route("//connect/facebook", name="connect_facebook_start")
+     * @Route("/connect/facebook", name="connect_facebook_start")
      */
     public function connectAction(ClientRegistry $clientRegistry)
     {

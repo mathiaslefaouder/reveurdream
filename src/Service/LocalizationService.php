@@ -13,7 +13,15 @@ class  LocalizationService {
     }
 
     function ip_data($ip){
-        return json_decode(file_get_contents("http://ip-api.com/json/" . $ip), false, 512, JSON_THROW_ON_ERROR);
+        $ip = "77.131.18.20";
+        $url = "http://ip-api.com/json/".$ip;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return json_decode($result, false, 512, JSON_THROW_ON_ERROR);
     }
 
     function getHemisphere($request){

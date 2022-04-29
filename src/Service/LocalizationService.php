@@ -13,12 +13,12 @@ class  LocalizationService {
     }
 
     function ip_data($ip){
-        return json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip), false, 512, JSON_THROW_ON_ERROR);
+        return json_decode(file_get_contents("http://ip-api.com/json/" . $ip), false, 512, JSON_THROW_ON_ERROR);
     }
 
     function getHemisphere($request){
         $ip_data = $this->ip_data($request->server->get('REMOTE_ADDR'));
-        $country = $this->countryRepository->findOneBy(['code' => $ip_data->geoplugin_countryCode]);
+        $country = $this->countryRepository->findOneBy(['code' => $ip_data->countryCode]);
 
        $hemisphere =  $country !== null ? $country->getHemisphere():  'northern';
         return match ($request->getLocale()) {

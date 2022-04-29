@@ -17,7 +17,7 @@ class  LocalizationService
     function ip_data($ip)
     {
 
-        $url = "http://ip-api.com/json/" . $ip;
+        $url = "http://ip-api.com/json/" . '77.131.18.20';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -30,7 +30,7 @@ class  LocalizationService
     function getHemisphere($request)
     {
         $ip_data = $this->ip_data($request->server->get('REMOTE_ADDR'));
-        $country = $this->countryRepository->findOneBy(['code' => $ip_data->countryCode]);
+        $country = $this->countryRepository->findOneBy(['code' => $ip_data['countryCode']]);
 
         $hemisphere = $country !== null ? $country->getHemisphere() : 'northern';
         return match ($request->getLocale()) {

@@ -50,8 +50,8 @@ class DreamController extends AbstractController
                 ->setLunaryPhase($lunaryPhaseService->phase()['phaseName'])
                 ->setNumberView(0)
                 ->setGps([
-                    'lat' => $ip_data->lat,
-                    'log' => $ip_data->lon
+                    'lat' => $ip_data['lat'],
+                    'log' => $ip_data['lon']
                 ]);
         }
 

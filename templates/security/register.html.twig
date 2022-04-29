@@ -3,9 +3,20 @@
 {% block title %}Me connecter à mon compte{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+    <style>
+        #dream-step-account-creation li{
+            color: #fff;
+        }
+    </style>
+      {% for flash_error in app.flashes('verify_email_error') %}
+
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+      {% endfor %}
+
+
 
     <section class="postyourdream">
 

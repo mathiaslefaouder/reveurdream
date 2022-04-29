@@ -17,7 +17,7 @@ class  LocalizationService
     function ip_data($ip)
     {
 
-        $url = "http://ip-api.com/json/" . '77.131.18.20';
+        $url = "http://ip-api.com/json/" . $ip;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

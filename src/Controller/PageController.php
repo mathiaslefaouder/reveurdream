@@ -26,10 +26,27 @@ class PageController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/', name: 'app_index')]
     final public function index(Request $request, DreamRepository $dreamRepository, CategoryRepository $categoryRepository, ThemeRepository $themeRepository, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
+        $dreams = $dreamRepository->dataForMap($request->getLocale());
+        $groupes = [];
+        foreach ($dreams as $dream){
+            $dream['coord'] = $dream['gps']['lat'].$dream['gps']['log'];
+            $groupes[$dream['coord']]['lat'] = $dream['gps']['lat'];
+            $groupes[$dream['coord']]['lng'] = $dream['gps']['log'];
+            empty($groupes[$dream['coord']]['id']) ? $groupes[$dream['coord']]['id'] = $dream['id'].'-':  $groupes[$dream['coord']]['id'] .= $dream['id'].'-';
+            $groupes[$dream['coord']]['theme_short'][] = $dream['theme_short'];
+            $groupes[$dream['coord']]['category'][] = strtolower($dream['category']);
+            $groupes[$dream['coord']]['dreams'][] = $dream;
+            if (count($groupes[$dream['coord']]['dreams']) ==  1){
+                $groupes[$dream['coord']]['pin'] = '/img/epingle-'.$dream['theme_short'].'.png';
+            }else{
+                $groupes[$dream['coord']]['pin'] = '/img/epingle_bleufonce.png';
+            }
+        }
+
         return $this->render('pages/index.html.twig', [
             'lunaryPhase' => $lunaryPhaseService->phase(),
             'hemisphere' => $localizationService->getHemisphere($request),
-            'dreams' => $dreamRepository->dataForMap($request->getLocale())
+            'dreams' => array_values($groupes)
         ]);
     }
 

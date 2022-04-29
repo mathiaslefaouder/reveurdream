@@ -30,7 +30,11 @@ class  LocalizationService
     function getHemisphere($request)
     {
         $ip_data = $this->ip_data($request->server->get('REMOTE_ADDR'));
-        $country = $this->countryRepository->findOneBy(['code' => $ip_data['countryCode']]);
+        if (!empty($ip_data['countryCode'])){
+            $country = $this->countryRepository->findOneBy(['code' => $ip_data['countryCode']]);
+        }else{
+            $country = $this->countryRepository->findOneBy(['code' => 'FR']);
+        }
 
         $hemisphere = $country !== null ? $country->getHemisphere() : 'northern';
         return match ($request->getLocale()) {

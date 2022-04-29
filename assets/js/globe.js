@@ -68,24 +68,23 @@ let datas = httpGet('/dream-data-map');
 datas = JSON.parse(datas)
 console.log(datas)
 datas.dreams.forEach(dream => {
+    console.log(dream)
     entities.add({
-        position: Cartesian3.fromDegrees(parseFloat(dream.gps.log), parseFloat(dream.gps.lat)),
+        position: Cartesian3.fromDegrees(parseFloat(dream.lng), parseFloat(dream.lat)),
         billboard: {
-            image: '/img/epingle-'+dream.theme_short+'.png',
+            image: dream.pin,
             width: 250,
             height: 400,
         },
         show: true,
         theme: dream.theme_short,
         dream_id: dream.id,
-        category: dream.category.toLowerCase(),
+        category: dream.category,
     })
 
 
     screenSpaceEventHandler.setInputAction(function (mouse) {
         var pickedObject = scene.pick(mouse.position);
-        console.log(pickedObject)
-        console.log(pickedObject.id)
         if (defined(pickedObject)) {
             var x = document.getElementById("dream-"+pickedObject.id._dream_id);
             if (x.style.display === "none") {

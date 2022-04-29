@@ -37,8 +37,9 @@
                 </svg>
             </div>
             <div class="menu-panel">
-                <nav class="nav-bar-mobile">
+                <nav class="nav-bar-mobile lang-switch">
                     <ul>
+                        <li><a href="{{ url('app_why') }}">{{ 'header.why'|trans }}</a></li>
                         {% if not app.user %}
                             <li><a href="{{ url('app_register') }}">{{ 'header.registration'|trans }}</a></li>
                             <li><a href="{{ url('app_login') }}">{{ 'header.login'|trans }}</a></li>

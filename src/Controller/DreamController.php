@@ -185,6 +185,7 @@ class DreamController extends AbstractController
             }
             $entityManager->persist($dream);
             $entityManager->flush();
+            return $this->redirectToRoute('app_user');
         }
 
         return $this->render('dream/edit.html.twig', [

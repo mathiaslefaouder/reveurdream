@@ -45,31 +45,4 @@ class ApiController extends AbstractController
         $entityManager->flush();
         return new Response('ok');
     }
-
-    #[Route('/globe', name: 'globe')]
-    final public function globe(DreamService $dreamService, Request $request): Response
-    {
-        $dreams = $dreamService->getData($request->getLocale());
-
-        $response = $this->render('pages/_globe.html.twig',[
-            'dreams' => array_values($dreams)
-        ]);
-
-        $response->setSharedMaxAge(3600);
-        $response->setPublic();
-
-        return $response;
-    }
-
-    #[Route('/admin/http-cache/{uri<.*>}', methods: ['PURGE'])]
-    public function purgeHttpCache(KernelInterface $kernel, Request $request, string $uri, StoreInterface $store): Response
-    {
-        if ('prod' === $kernel->getEnvironment()) {
-            return new Response('KO', 400);
-        }
-
-        $store->purge($request->getSchemeAndHttpHost() . '/' . $uri);
-
-        return new Response('Done');
-    }
 }

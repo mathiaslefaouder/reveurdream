@@ -12,8 +12,6 @@ function getSvgUrl(svg) {
 
 function svgUrlToPng(svgUrl, callback) {
     const svgImage = document.createElement('img');
-    // imgPreview.style.position = 'absolute';
-    // imgPreview.style.top = '-9999px';
     document.body.appendChild(svgImage);
     svgImage.onload = function () {
         const canvas = document.createElement('canvas');
@@ -23,7 +21,7 @@ function svgUrlToPng(svgUrl, callback) {
         canvasCtx.drawImage(svgImage, 0, 0);
         const imgData = canvas.toDataURL('image/png');
         callback(imgData);
-        // document.body.removeChild(imgPreview);
+        document.body.removeChild(svgImage);
     };
     svgImage.src = svgUrl;
 }
@@ -223,3 +221,5 @@ function resetSelectedFilterClass(typeClass) {
     });
 }
 
+
+refreshPins();

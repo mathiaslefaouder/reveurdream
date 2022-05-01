@@ -27,9 +27,12 @@ class PageController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/', name: 'app_index')]
     final public function index(Request $request, DreamService $dreamService, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
+        $dreams = $dreamService->getData($request->getLocale());
+
         return $this->render('pages/index.html.twig', [
             'lunaryPhase' => $lunaryPhaseService->phase(),
             'hemisphere' => $localizationService->getHemisphere($request),
+            'dreams' => array_values($dreams)
         ]);
     }
 
@@ -40,18 +43,24 @@ class PageController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/contact', name: 'app_contact')]
-    final public function contact(Request $request, DreamService $dreamService): Response
+    final public function contact(DreamService $dreamService, Request $request): Response
     {
+        $dreams = $dreamService->getData($request->getLocale());
+
         return $this->render('pages/contact.html.twig', [
+            'dreams' => array_values($dreams)
         ]);
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/why', name: 'app_why')]
     final public function why(Request $request, DreamService $dreamService, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
+        $dreams = $dreamService->getData($request->getLocale());
+
         return $this->render('pages/why.html.twig', [
             'lunaryPhase' => $lunaryPhaseService->phase(),
             'hemisphere' => $localizationService->getHemisphere($request),
+            'dreams' => array_values($dreams)
         ]);
     }
 
@@ -59,9 +68,12 @@ class PageController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/valide', name: 'app_valide')]
     final public function valide(DreamService $dreamService, Request $request, LunaryPhaseService $lunaryPhaseService, LocalizationService $localizationService): Response
     {
+        $dreams = $dreamService->getData($request->getLocale());
+
         return $this->render('security/valide.html.twig', [
             'lunaryPhase' => $lunaryPhaseService->phase(),
             'hemisphere' => $localizationService->getHemisphere($request),
+            'dreams' => array_values($dreams)
         ]);
     }
 }

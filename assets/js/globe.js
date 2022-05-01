@@ -1,31 +1,17 @@
-function svgToPng(svg, callback) {
-    const url = getSvgUrl(svg);
-    svgUrlToPng(url, (imgData) => {
-        callback(imgData);
-        URL.revokeObjectURL(url);
+async function createSvg(value) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 200;
+    canvas.height = 360;
+
+    const image = new Image();
+    image.src = 'data:image/svg+xml;base64,' + window.btoa(value);
+    await new Promise((resolve, reject) => {
+        image.onload = () => resolve(canvas);
     });
-}
 
-function getSvgUrl(svg) {
-    return URL.createObjectURL(new Blob([svg], {type: 'image/svg+xml'}));
+    canvas.getContext('2d').drawImage(image, 0, 15);
+    return canvas;
 }
-
-function svgUrlToPng(svgUrl, callback) {
-    const svgImage = document.createElement('img');
-    document.body.appendChild(svgImage);
-    svgImage.onload = function () {
-        const canvas = document.createElement('canvas');
-        canvas.width = svgImage.clientWidth;
-        canvas.height = svgImage.clientHeight;
-        const canvasCtx = canvas.getContext('2d');
-        canvasCtx.drawImage(svgImage, 0, 0);
-        const imgData = canvas.toDataURL('image/png');
-        callback(imgData);
-        document.body.removeChild(svgImage);
-    };
-    svgImage.src = svgUrl;
-}
-
 
 function httpGet(url) {
     var xmlHttp = new XMLHttpRequest();
@@ -48,7 +34,8 @@ import {
     Ion,
     ScreenSpaceEventType,
     Viewer,
-    SceneMode,
+    HeightReference,
+    Cartesian2,
     ArcGisMapServerImageryProvider
 } from "cesium";
 
@@ -201,9 +188,7 @@ function refreshPins() {
             if (count > 1) {
                 svg = '<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve"> <style type="text/css"> .st0{fill:#1C1F3C;} .st1{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;} .st2{fill:#FFFFFF;} </style> <path class="st0" d="M343.6,407c0,40-46.1,73.1-46.1,73.1s-46.1-33-46.1-73.1c0-25.5,20.6-46.1,46.1-46.1S343.6,381.5,343.6,407z"/> <circle class="st1" cx="297.5" cy="407" r="34.4"/> <g><text x="284" y="427" font-family="Verdana" font-size="55" fill="white">' + count + ' </text> </g> </svg> ';
             }
-            svgToPng(svg, (imgData) => {
-                element.billboard.image = imgData;
-            });
+                element.billboard.image = createSvg(svg);
         }
     )
 }

@@ -38,11 +38,16 @@ class LunaryPhaseService
             'texturize' => false,
         ];
 
-        $data = $this->client->request('GET', 'https://www.icalendar37.net/lunar/api/', [
-            'query' => $conf,
-        ]);
-        $data = json_decode($data->getContent(), true);
+        try {
+            $response = $this->client->request('GET', 'https://www.icalendar37.net/lunar/api/', [
+                'query' => $conf,
+                'verify_host' => false,
+            ]);
+        } catch (TransportExceptionInterface $e) {
+            throw $e;
+        }
+        $data = json_decode($response->getContent(), true);
 
-        return $data['phase'][(date('d'))];
+        return $data['phase'][(date('j'))];
     }
 }

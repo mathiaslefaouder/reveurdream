@@ -11,14 +11,17 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Config\TwigConfig;
 
 class ApiController extends AbstractController
 {
     #[Route('/dream-data-map', name: 'api_dream_data_map')]
     final public function dataMap(Request $request, ThemeRepository $themeRepository, CategoryRepository $categoryRepository, DreamService $dreamService): Response
     {
-        $dreams =$dreamService->getData($request->getLocale());
+        $dreams = $dreamService->getData($request->getLocale());
         $category = $categoryRepository->findAll();
         $themes = $themeRepository->findAll();
 
@@ -41,5 +44,31 @@ class ApiController extends AbstractController
         }
         $entityManager->flush();
         return new Response('ok');
+    }
+
+    #[Route('/globe', name: 'globe')]
+    final public function globe(DreamService $dreamService, Request $request): Response
+    {
+        $dreams = $dreamService->getData($request->getLocale());
+
+        $response = new Response($this->render('pages/_globe.html.twig',[
+            'dreams' => array_values($dreams)
+        ]));
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
+    }
+
+    #[Route('/admin/http-cache/{uri<.*>}', methods: ['PURGE'])]
+    public function purgeHttpCache(KernelInterface $kernel, Request $request, string $uri, StoreInterface $store): Response
+    {
+        if ('prod' === $kernel->getEnvironment()) {
+            return new Response('KO', 400);
+        }
+
+        $store->purge($request->getSchemeAndHttpHost() . '/' . $uri);
+
+        return new Response('Done');
     }
 }

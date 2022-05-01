@@ -105,11 +105,9 @@ class SecurityController extends AbstractController
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-        $dreams =$dreamService->getData($request->getLocale());
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'dreams' => array_values($dreams),
         ]);
     }
 

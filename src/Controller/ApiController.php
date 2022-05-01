@@ -51,11 +51,12 @@ class ApiController extends AbstractController
     {
         $dreams = $dreamService->getData($request->getLocale());
 
-        $response = new Response($this->render('pages/_globe.html.twig',[
+        $response = $this->render('pages/_globe.html.twig',[
             'dreams' => array_values($dreams)
-        ]));
+        ]);
 
         $response->setSharedMaxAge(3600);
+        $response->setPublic();
 
         return $response;
     }

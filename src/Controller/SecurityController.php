@@ -7,6 +7,7 @@ use App\Form\RegistrationFormType;
 use App\Repository\DreamRepository;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
+use App\Service\DreamService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -100,14 +101,15 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/login', name: 'app_login')]
-    final public function login(AuthenticationUtils $authenticationUtils, DreamRepository $dreamRepository, Request $request): Response
+    final public function login(AuthenticationUtils $authenticationUtils, DreamService $dreamService, Request $request): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
+        $dreams =$dreamService->getData($request->getLocale());
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'dreams' => $dreamRepository->dataForMap($request->getLocale())
+            'dreams' => array_values($dreams),
         ]);
     }
 

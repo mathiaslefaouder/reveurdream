@@ -3,72 +3,72 @@ name: app
 type: php:8.1
 
 dependencies:
-  php:
-    composer/composer: "^2"
-  nodejs:
-    yarn: "1.22.17"
+    php:
+        composer/composer: "^2"
+    nodejs:
+        yarn: "1.22.17"
 
 relationships:
-  database: "database:postgresql"
+    database: "database:postgresql"
 
 runtime:
-  extensions:
-    - apcu
-    - blackfire
-    - ctype
-    - iconv
-    - mbstring
-    - sodium
-    - xsl
-    - pdo_pgsql
+    extensions:
+        - apcu
+        - blackfire
+        - ctype
+        - iconv
+        - mbstring
+        - sodium
+        - xsl
+        - pdo_pgsql
 
 
 variables:
-  php:
-    opcache.preload: /app/config/preload.php
+    php:
+        opcache.preload: /app/config/preload.php
 build:
-  flavor: none
+    flavor: none
 
 disk: 1024
 
 web:
-  locations:
-    "/":
-      root: "public"
-      expires: 1h
-      passthru: "/index.php"
+    locations:
+        "/":
+            root: "public"
+            expires: 1h
+            passthru: "/index.php"
 
 mounts:
-  "/var": { source: local, source_path: var }
+    "/var": { source: local, source_path: var }
 
 
 
 hooks:
-  build: |
-    set -x -e
-    
-    curl -fs https://get.symfony.com/cloud/configurator | bash
-    
-    symfony-build
-    yarn install
-    yarn encore production
-  deploy: |
-    set -x -e
-    
-    symfony-deploy
+    build: |
+        set -x -e
+        
+        curl -fs https://get.symfony.com/cloud/configurator | bash
+        
+        symfony-build
+        yarn install
+        yarn encore production
+    deploy: |
+        set -x -e
+        
+        symfony-deploy
 
 crons:
-  security-check:
-    # Check that no security issues have been found for PHP packages deployed in production
-    # See https://github.com/fabpot/local-php-security-checker
-    spec: '50 23 * * *'
-    cmd: if [ "$PLATFORM_BRANCH" = "main" ]; then croncape php-security-checker; fi
+    security-check:
+        # Check that no security issues have been found for PHP packages deployed in production
+        # See https://github.com/fabpot/local-php-security-checker
+        spec: '50 23 * * *'
+        cmd: if [ "$PLATFORM_BRANCH" = "main" ]; then croncape php-security-checker; fi
 
 varnish:
-  type: varnish:6.0
+    type: varnish:6.0
     relationships:
-      application: 'app:http'
+        application: 'app:http'
     configuration:
-      vcl: !include
-        type: string
-        path: config.vcl
+        vcl: !include
+            type: string
+            path: config.vcl

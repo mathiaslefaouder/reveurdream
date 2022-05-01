@@ -12,7 +12,16 @@ async function httpGetAsync(url) {
     return xmlHttp.responseText;
 }
 
-import {Cartesian3, Color, defined, Ion, ScreenSpaceEventType, Viewer, Cartesian2, ArcGisMapServerImageryProvider} from "cesium";
+import {
+    Cartesian3,
+    Color,
+    defined,
+    Ion,
+    ScreenSpaceEventType,
+    Viewer,
+    Cartesian2,
+    ArcGisMapServerImageryProvider
+} from "cesium";
 
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token
@@ -24,8 +33,7 @@ var viewer = new Viewer('cesiumContainer', {
         url:
             "https://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/",
     }),
-    resolutionScale: 2.0,
-    maximumRenderTimeChange: Infinity,
+    resolutionScale: 3.0,
     animation: false,
     baseLayerPicker: false,
     fullscreenButton: false,
@@ -68,28 +76,33 @@ let datas = httpGet('/dream-data-map');
 datas = JSON.parse(datas)
 console.log(datas)
 datas.dreams.forEach(dream => {
-    console.log(dream)
+    let svg = ''
+    if (dream.dreams.length > 1) {
+        svg = '<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve"> <style type="text/css"> .st0{fill:#1C1F3C;} .st1{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;} .st2{fill:#FFFFFF;} </style> <path class="st0" d="M343.6,407c0,40-46.1,73.1-46.1,73.1s-46.1-33-46.1-73.1c0-25.5,20.6-46.1,46.1-46.1S343.6,381.5,343.6,407z"/> <circle class="st1" cx="297.5" cy="407" r="34.4"/> <g><text x="284" y="428" font-family="Verdana" font-size="55" fill="white">' + dream.dreams.length + ' </text> </g> </svg> ';
+
+    } else {svg = dream.dreams[0].theme_pin_ico
+    }
     entities.add({
         position: Cartesian3.fromDegrees(parseFloat(dream.lng), parseFloat(dream.lat)),
         billboard: {
-            image: dream.pin,
-            width: 250,
-            height: 400,
+            image: "data:image/svg+xml;base64," + window.btoa(svg),
+            scale: 1.5,
         },
         show: true,
+        dreams: dream.dreams,
+        count: dream.dreams.length,
         theme: dream.theme_short,
         dream_id: dream.id,
         category: dream.category,
     })
 
-
     screenSpaceEventHandler.setInputAction(function (mouse) {
         var pickedObject = scene.pick(mouse.position);
         if (defined(pickedObject)) {
-            var x = document.getElementById("dream-"+pickedObject.id._dream_id);
+            var x = document.getElementById("dream-" + pickedObject.id._dream_id);
             if (x.style.display === "none") {
                 x.style.display = "block";
-                httpGetAsync('/dream-inc-view?id='+pickedObject.id._dream_id);
+                httpGetAsync('/dream-inc-view?id=' + pickedObject.id._dream_id);
             } else {
                 x.style.display = "none";
             }
@@ -111,7 +124,6 @@ let currentCategory = null;
 let currentTheme = null;
 
 let nodesCategory = document.getElementById("category").children;
-
 for (let i = 0; i < nodesCategory.length; i++) {
 
     nodesCategory[i].onclick = function () {
@@ -127,7 +139,6 @@ for (let i = 0; i < nodesCategory.length; i++) {
 }
 
 let nodesTheme = document.getElementById("theme").children;
-
 for (let i = 0; i < nodesTheme.length; i++) {
     nodesTheme[i].onclick = function () {
         resetSelectedFilterClass('.theme');
@@ -144,11 +155,30 @@ for (let i = 0; i < nodesTheme.length; i++) {
 function refreshPins() {
     entities._entities._array.forEach(
         element => {
-
-            let themeToShow = element.theme === currentTheme || currentTheme == null;
-            let categoryToShow = element.category === currentCategory || currentCategory == null;
+            let svg = '';
+            let count = 0
+            let themeToShow = element.theme.includes(currentTheme) || currentTheme == null;
+            let categoryToShow = element.category.includes(currentCategory) || currentCategory == null;
+            element.dreams.forEach(dream => {
+                if ((dream.category.toLowerCase() == currentCategory && currentTheme == null) ||
+                    (dream.theme_short == currentTheme && null == currentCategory) ||
+                    (dream.category == currentCategory == dream.theme_short == currentTheme) ||
+                    (currentCategory == null && currentTheme == null)
+                ) {
+                    document.getElementById("dream-" + dream.id).style.display = "block";
+                    count++;
+                    svg = dream.theme_pin_ico
+                } else {
+                    document.getElementById("dream-" + dream.id).style.display = "none";
+                }
+            })
 
             element.show = themeToShow && categoryToShow;
+            if (count > 1) {
+                svg = '<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve"> <style type="text/css"> .st0{fill:#1C1F3C;} .st1{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;} .st2{fill:#FFFFFF;} </style> <path class="st0" d="M343.6,407c0,40-46.1,73.1-46.1,73.1s-46.1-33-46.1-73.1c0-25.5,20.6-46.1,46.1-46.1S343.6,381.5,343.6,407z"/> <circle class="st1" cx="297.5" cy="407" r="34.4"/> <g><text x="284" y="428" font-family="Verdana" font-size="55" fill="white">' + count + ' </text> </g> </svg> ';
+            }
+
+            element.billboard.image = "data:image/svg+xml;base64," + window.btoa(svg);
         }
     )
 }
@@ -156,7 +186,7 @@ function refreshPins() {
 function resetSelectedFilterClass(typeClass) {
     let elems = document.querySelectorAll(".selectedFilter" + typeClass);
 
-    [].forEach.call(elems, function(el) {
+    [].forEach.call(elems, function (el) {
         el.classList.remove("selectedFilter");
     });
 }

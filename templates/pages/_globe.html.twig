@@ -10,7 +10,7 @@
         <div class="popup-dream-text">
             <div class="close-popup">x</div>
             {% for dream in groupes.dreams %}
-                <div>
+                <div id="dream-{{ dream.id }}">
                     <p class="popup-dream-text-date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</p>
                     <div class="popup-dream-text-icons">
                         {{ dream.cat_ico|raw }}

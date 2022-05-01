@@ -109,45 +109,40 @@ camera.flyTo({
 
 
 scene.fxaa = true;
-scene.globe.tileLoadProgressEvent.addEventListener(function () {
 
-    if (scene.globe.tilesLoaded) {
+let datas = httpGet('/dream-data-map');
+datas = JSON.parse(datas)
+datas.dreams.forEach(dream => {
 
-        let datas = httpGet('/dream-data-map');
-        datas = JSON.parse(datas)
-        datas.dreams.forEach(dream => {
+    entities.add({
+        position: Cartesian3.fromDegrees(parseFloat(dream.lng), parseFloat(dream.lat)),
+        billboard: {
+            width: 200,
+            height: 360,
+        },
+        show: true,
+        dreams: dream.dreams,
+        theme: dream.theme_short,
+        dream_id: dream.id,
+        category: dream.category,
+    })
 
-            entities.add({
-                position: Cartesian3.fromDegrees(parseFloat(dream.lng), parseFloat(dream.lat)),
-                billboard: {
-                    width: 200,
-                    height: 360,
-                },
-                show: true,
-                dreams: dream.dreams,
-                theme: dream.theme_short,
-                dream_id: dream.id,
-                category: dream.category,
-            })
+    screenSpaceEventHandler.setInputAction(function (mouse) {
+        var pickedObject = scene.pick(mouse.position);
+        if (defined(pickedObject)) {
+            var x = document.getElementById("dream-" + pickedObject.id._dream_id);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                httpGetAsync('/dream-inc-view?id=' + pickedObject.id._dream_id);
+            } else {
+                x.style.display = "none";
+            }
 
-            screenSpaceEventHandler.setInputAction(function (mouse) {
-                var pickedObject = scene.pick(mouse.position);
-                if (defined(pickedObject)) {
-                    var x = document.getElementById("dream-" + pickedObject.id._dream_id);
-                    if (x.style.display === "none") {
-                        x.style.display = "block";
-                        httpGetAsync('/dream-inc-view?id=' + pickedObject.id._dream_id);
-                    } else {
-                        x.style.display = "none";
-                    }
+        }
+    }, ScreenSpaceEventType.LEFT_CLICK);
 
-                }
-            }, ScreenSpaceEventType.LEFT_CLICK);
-
-        })
-        refreshPins();
-    }
-});
+})
+refreshPins();
 
 let currentCategory = null;
 let currentTheme = null;

@@ -64,11 +64,3 @@ crons:
         spec: '50 23 * * *'
         cmd: if [ "$PLATFORM_BRANCH" = "main" ]; then croncape php-security-checker; fi
 
-varnish:
-    type: varnish:6.0
-    relationships:
-        application: 'app:http'
-    configuration:
-        vcl: !include
-            type: string
-            path: config.vcl

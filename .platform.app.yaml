@@ -10,7 +10,7 @@ dependencies:
 
 relationships:
     database: "database:postgresql"
-    varnishstats: 'app:http+stats'
+    varnishstats: 'app:http'
 
 runtime:
     extensions:

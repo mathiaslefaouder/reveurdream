@@ -173,7 +173,7 @@ function refreshPins() {
             element.dreams.forEach(dream => {
                 if ((dream.category.toLowerCase() == currentCategory && currentTheme == null) ||
                     (dream.theme_short == currentTheme && null == currentCategory) ||
-                    (dream.category == currentCategory == dream.theme_short == currentTheme) ||
+                    (dream.category.toLowerCase()  == currentCategory == dream.theme_short == currentTheme) ||
                     (currentCategory == null && currentTheme == null)
                 ) {
                     document.getElementById("dream-" + dream.id).style.display = "block";

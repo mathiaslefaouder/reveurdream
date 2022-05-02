@@ -2,16 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\DreamRepository;
 use App\Repository\UserRepository;
 use App\Service\LunaryPhaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 #[Route('/{_locale<%app.supported_locales%>}')]
 class UserController extends AbstractController
@@ -38,5 +42,20 @@ class UserController extends AbstractController
             'lunaryPhase' => $lunaryPhaseService->phase(),
             'dreams' => $dreamRepository->findBy(['author' => $this->getUser()], ['id' => 'DESC'])
         ]);
+    }
+
+    /**
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\ORMException
+     */
+    #[Route('/user/delete', name: 'app_user_delete')]
+    final public function delete(UserRepository $userRepository, SessionInterface $session, TokenStorageInterface $tokenStorage): RedirectResponse
+    {
+        $currentUserId = $this->getUser()->getId();
+        $tokenStorage->setToken(null);
+        $session->invalidate();
+        $userRepository->remove($userRepository->find($currentUserId));
+        $session->start();
+       return $this->redirectToRoute('app_index');
     }
 }

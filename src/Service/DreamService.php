@@ -13,9 +13,9 @@ class DreamService
         $this->dreamRepository = $dreamRepository;
     }
 
-    function getData(string $local): array
+    function getData(): array
     {
-        $dreams = $this->dreamRepository->dataForMap($local);
+        $dreams = $this->dreamRepository->dataForMap();
 
         $groupes = [];
         foreach ($dreams as $dream) {

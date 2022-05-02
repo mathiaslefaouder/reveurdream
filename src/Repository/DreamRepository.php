@@ -77,19 +77,17 @@ class DreamRepository extends ServiceEntityRepository
     }
 
 
-    public function findAllNotDraft(string $lang): ?array
+    public function findAllNotDraft(): ?array
     {
         return $this->createQueryBuilder('d')
             ->orderBy('d.id', 'DESC')
             ->where('d.isDraft = false')
-            ->andWhere('d.lang = :lang')
-            ->setParameter('lang', $lang)
             ->getQuery()
             ->getResult()
             ;
     }
 
-    public function dataForMap(string $lang)
+    public function dataForMap()
     {
         return $this->createQueryBuilder('d')
             ->select('d.id', 'd.title', 'd.description', 'd.gps', 'd.createdAt', 'c.name AS category', 'c.ico as cat_ico', 't.name as theme', 't.ico as theme_ico', 't.svgPin as theme_pin_ico', 't.short as theme_short')
@@ -97,8 +95,6 @@ class DreamRepository extends ServiceEntityRepository
             ->innerJoin('d.theme', 't')
         ->orderBy('d.createdAt', 'DESC')
         ->where('d.isDraft = false')
-        ->andWhere('d.lang = :lang')
-        ->setParameter('lang', $lang)
         ->getQuery()
         ->getResult()
         ;

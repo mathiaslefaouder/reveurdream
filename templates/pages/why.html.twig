@@ -5,14 +5,14 @@
             <div class="left-col">
                 <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} dans {{hemisphere}}</p>
                 <div class="left-col" id="left-col-pourquoi">
-                    <h1>Pourquoi&nbsp;?</h1>
-                    <p>Nous sommes intimement convaincus que le rêve peut nous lier à la nature, ainsi qu'à notre environnement social et culturel.<br/>
-                        En partageant nos rêves nous contribuons à la création d'une intelligence collective nouvelle.<br/>
-                        Un artiste français porte l'idée de reveurdream.com, parce qu'il pense que le rêve peut sans doute être une source d'inspiration, de création, comme une muse insondable mais apporter aussi une meilleure compréhension de notre humanité.</p>
-                    <a href="{{ url('app_dream') }}" class="blue-button">commencer</a>
+                    <h1>{{ 'why.title'|trans}}</h1>
+                    <p>{{ 'why.line1'|trans}}<br/>
+                        {{ 'why.line2'|trans}}<br/>
+                        {{ 'why.line3'|trans}}</p>
+                    <a href="{{ url('app_dream') }}" class="blue-button">{{ 'index.begin'|trans }}</a>
                     {% if not app.user %}
                         <p class="account-connection">
-                            Vous avez déjà un compte ? <a href="{{ url('app_login') }}">Connectez-vous</a>
+                            {{ 'index.already_account'|trans }} <a href="{{ url('app_login') }}">{{ 'index.log_in'|trans }}</a>
                         </p>
                     {% endif %}
                 </div>

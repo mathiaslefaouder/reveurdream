@@ -11,6 +11,7 @@
                 {{ form_start(form) }}
                 {{ form(form) }}
                 {{ form_end(form) }}
+                <a id="delete_user" onclick="confirm('Supprimer mon compte ?')" href="{{ url('app_user_delete') }}">Supprimer mon compte</a>
             </div>
 
             <div class="my-dreams">

@@ -60,6 +60,7 @@ class SecurityController extends AbstractController
                     ->to($user->getEmail())
                     ->subject('Confirmation de création de votre compte reveurdream.com')
                     ->htmlTemplate('security/confirmation_email.html.twig')
+                ->context(['user' => $user])
             );
 
             return $this->redirectToRoute('app_confirm');
@@ -103,7 +104,7 @@ class SecurityController extends AbstractController
     #[Route('/login', name: 'app_login')]
     final public function login(AuthenticationUtils $authenticationUtils, DreamService $dreamService, Request $request): Response
     {
-        $dreams = $dreamService->getData($request->getLocale());
+        $dreams = $dreamService->getData();
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('security/login.html.twig', [

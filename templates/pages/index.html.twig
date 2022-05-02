@@ -4,14 +4,14 @@
     <section id="home">
         <div class="wrapper">
             <div class="left-col">
-                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} dans {{hemisphere}}</p>
+                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} {{ 'index.in'|trans }} {{hemisphere}}</p>
                 <div id="left-col-home">
-                    <h1>Contez<br/> votre rêve</h1>
-                    <p class="sub-h1">et découvrez les songes similaires.</p>
-                    <a href="{{ url('app_dream') }}" class="blue-button">commencer</a>
+                    <h1>{{ 'index.tell'|trans}}<br> {{ 'index.your_dream'|trans}}</h1>
+                    <p class="sub-h1">{{ 'index.discover'|trans}}</p>
+                    <a href="{{ url('app_dream') }}" class="blue-button">{{ 'index.begin'|trans }}</a>
                     {% if not app.user %}
                         <p class="account-connection">
-                            Vous avez déjà un compte ? <a href="{{ url('app_login') }}">Connectez-vous</a>
+                            {{ 'index.already_account'|trans }} <a href="{{ url('app_login') }}">{{ 'index.log_in'|trans }}</a>
                         </p>
                     {% endif %}
                 </div>

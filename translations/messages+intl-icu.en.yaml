@@ -4,6 +4,24 @@ header:
   login: Login
   account: 'My account'
   logout: Logout
+  home: 'See the dreams'
 
 head:
   title: 'I share my dream'
+index:
+  in: 'in'
+  already_account: 'Already registred?'
+  log_in: 'Log-in'
+  begin: 'Begin'
+  tell: 'Contez'
+  your_dream: 'votre rêve'
+  discover: 'et découvrez les songes similaires.'
+globe:
+  filter: 'Filter the dreams'
+footer:
+  notice: 'Legal notice'
+why:
+  title: 'Pourquoi?'
+  line1: "Nous sommes intimement convaincus que le rêve peut nous lier à la nature, ainsi qu'à notre environnement social et culturel."
+  line2: "En partageant nos rêves nous contribuons à la création d'une intelligence collective nouvelle."
+  line3: "Un artiste français porte l'idée de reveurdream.com, parce qu'il pense que le rêve peut sans doute être une source d'inspiration, de création, comme une muse insondable mais apporter aussi une meilleure compréhension de notre humanité."

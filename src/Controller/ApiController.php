@@ -21,7 +21,7 @@ class ApiController extends AbstractController
     #[Route('/dream-data-map', name: 'api_dream_data_map')]
     final public function dataMap(Request $request, ThemeRepository $themeRepository, CategoryRepository $categoryRepository, DreamService $dreamService): Response
     {
-        $dreams = $dreamService->getData($request->getLocale());
+        $dreams = $dreamService->getData();
         $category = $categoryRepository->findAll();
         $themes = $themeRepository->findAll();
 

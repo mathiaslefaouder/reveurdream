@@ -6,7 +6,7 @@
             <div class="left-col">
                 <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} {{ 'index.in'|trans }} {{hemisphere}}</p>
                 <div id="left-col-home">
-                    <h1>{{ 'index.tell'|trans}}<br> {{ 'index.your_dream'|trans}}</h1>
+                    <h1>{{ 'index.dream'|trans|raw}}</h1>
                     <p class="sub-h1">{{ 'index.discover'|trans}}</p>
                     <a href="{{ url('app_dream') }}" class="blue-button">{{ 'index.begin'|trans }}</a>
                     {% if not app.user %}

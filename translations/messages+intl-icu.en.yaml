@@ -1,27 +1,37 @@
 header:
-  why: 'Why publish your dream?'
-  registration: Registration
-  login: Login
-  account: 'My account'
-  logout: Logout
-  home: 'See the dreams'
+    why: 'Why publish your dream?'
+    registration: Registration
+    login: Login
+    account: 'My account'
+    logout: Logout
+    home: 'See the dreams'
 
 head:
-  title: 'I share my dream'
+    title: 'I share my dream'
 index:
-  in: 'in'
-  already_account: 'Already registred?'
-  log_in: 'Log-in'
-  begin: 'Begin'
-  tell: 'Contez'
-  your_dream: 'votre rêve'
-  discover: 'et découvrez les songes similaires.'
+    in: 'in'
+    already_account: 'Already registred?'
+    log_in: 'Log-in'
+    begin: 'Begin'
+    dream: 'Contez<br>votre rêve'
+    discover: 'et découvrez les songes similaires.'
 globe:
-  filter: 'Filter the dreams'
+    filter: 'Filter the dreams'
 footer:
-  notice: 'Legal notice'
+    notice: 'Legal notice'
 why:
-  title: 'Pourquoi?'
-  line1: "Nous sommes intimement convaincus que le rêve peut nous lier à la nature, ainsi qu'à notre environnement social et culturel."
-  line2: "En partageant nos rêves nous contribuons à la création d'une intelligence collective nouvelle."
-  line3: "Un artiste français porte l'idée de reveurdream.com, parce qu'il pense que le rêve peut sans doute être une source d'inspiration, de création, comme une muse insondable mais apporter aussi une meilleure compréhension de notre humanité."
+    title: 'Pourquoi?'
+    text: "Nous sommes intimement convaincus que le rêve peut nous lier à la nature, ainsi qu'à notre environnement social et culturel. 
+  <br> En partageant nos rêves nous contribuons à la création d'une intelligence collective nouvelle.
+  <br> Un artiste français porte l'idée de reveurdream.com, parce qu'il pense que le rêve peut sans doute être une source d'inspiration, de création, comme une muse insondable mais apporter aussi une meilleure compréhension de notre humanité."
+register:
+    title: 'Inscrivez-vous'
+    pseudo: 'Pseudo'
+    email: 'Email'
+    password: 'Mot de passe'
+    password_confirm: 'Confirmez le mot de passe'
+    password_mismatch: 'Les mots de passe ne correspondent pas'
+    password_min_length: 'Le mot de passe doit contenir au moins 6 caractères'
+    submit: 'Valider'
+    previous: 'Précédent'
+

@@ -20,22 +20,22 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, ['label' => false,  'required' => true, 'attr' => ['placeholder' => 'Pseudo']])
-            ->add('email', EmailType::class, ['label' => false, 'required' => true, 'attr' => ['placeholder' => 'Adresse email']])
+            ->add('username', TextType::class, ['label' => false,  'required' => true, 'attr' => ['placeholder' => 'register.pseudo']])
+            ->add('email', EmailType::class, ['label' => false, 'required' => true, 'attr' => ['placeholder' => 'register.email']])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Mot de passe incorect.',
+                'invalid_message' => 'register.password_mismatch',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => false, 'attr' => ['placeholder' => 'Mot de passe']],
-                'second_options' => ['label' => false, 'attr' => ['placeholder' =>'Répéter mot de passe']],
+                'first_options'  => ['label' => false, 'attr' => ['placeholder' => 'register.password']],
+                'second_options' => ['label' => false, 'attr' => ['placeholder' =>'register.password_confirm']],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Mot de passe incorrect',
+                        'message' => 'register.password_mismatch',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit être au minimum de {{ limit }} caractères',
+                        'minMessage' => 'register.password_min_length',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

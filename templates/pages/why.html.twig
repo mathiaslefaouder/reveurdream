@@ -6,9 +6,7 @@
                 <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} dans {{hemisphere}}</p>
                 <div class="left-col" id="left-col-pourquoi">
                     <h1>{{ 'why.title'|trans}}</h1>
-                    <p>{{ 'why.line1'|trans}}<br/>
-                        {{ 'why.line2'|trans}}<br/>
-                        {{ 'why.line3'|trans}}</p>
+                    <p>{{ 'why.text'|trans|raw}}</p>
                     <a href="{{ url('app_dream') }}" class="blue-button">{{ 'index.begin'|trans }}</a>
                     {% if not app.user %}
                         <p class="account-connection">

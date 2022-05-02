@@ -26,15 +26,15 @@
 
                 <h2>Contez votre rêve</h2>
                 <p>Inscription et publication</p>
-                <h1>Inscrivez-vous</h1>
+                <h1>{{ 'register.title'|trans }}</h1>
                 {{ form_start(registrationForm) }}
 
                 {{ form_row(registrationForm.username) }}
                 {{ form_row(registrationForm.email) }}
                 {{ form_row(registrationForm.password) }}
                 <div class="next-step-buttons">
-                    <a class="blue-button" href="{{ url('app_index') }}">Précédent</a>
-                    <input type="submit" name="submit" id="account-submit" class="blue-button" value="Valider">
+                    <a class="blue-button" href="{{ url('app_index') }}">{{ 'register.previous'|trans }}</a>
+                    <input type="submit" name="submit" id="account-submit" class="blue-button" value="{{ 'register.submit'|trans }}">
                 </div>
 
                 {{ form_end(registrationForm) }}

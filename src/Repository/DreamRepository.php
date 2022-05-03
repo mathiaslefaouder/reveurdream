@@ -95,6 +95,7 @@ class DreamRepository extends ServiceEntityRepository
             ->innerJoin('d.theme', 't')
         ->orderBy('d.createdAt', 'DESC')
         ->where('d.createdAt > :date')
+        ->andWhere('d.isDraft = false')
         ->setParameter('date', new \DateTime('-1 day'))
         ->getQuery()
         ->getResult()

@@ -21,26 +21,35 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
-    final public function index(DreamRepository $dreamRepository, Request  $request, EntityManagerInterface $entityManager, LunaryPhaseService $lunaryPhaseService,UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    final public function index(DreamRepository $dreamRepository, Request $request, EntityManagerInterface $entityManager, LunaryPhaseService $lunaryPhaseService, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
     {
         $pwd = $userRepository->find($this->getUser()->getId())->getPassword();
         $form = $this->createForm(UserType::class, $this->getUser());
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             if ($form->getData()->getPassword() === null) {
                 $form->getData()->setPassword($pwd);
             } else {
                 $form->getData()->getPassword()->setPassword($userPasswordHasher->hashPassword($form->getData(), $form->getData()->getPassword()));
             }
-            $entityManager->persist( $form->getData());
+            $entityManager->persist($form->getData());
             $entityManager->flush();
 
+        }
+
+        $dreams = $dreamRepository->findBy(['author' => $this->getUser()], ['id' => 'DESC']);
+        $date = new \DateTime(' -1 day');
+        foreach ($dreams as $dream) {
+            if (!$dream->getIsDraft() && $dream->getCreatedAt() < $date) {
+                $dream->setIsDraft(true);
+                $entityManager->flush();
+            }
         }
         return $this->render('user/index.html.twig', [
             'form' => $form->createView(),
             'lunaryPhase' => $lunaryPhaseService->phase(),
-            'dreams' => $dreamRepository->findBy(['author' => $this->getUser()], ['id' => 'DESC'])
+            'dreams' => $dreams,
         ]);
     }
 

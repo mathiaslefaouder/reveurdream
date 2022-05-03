@@ -49,7 +49,7 @@ class Dream
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $lang;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private $lunaryPhase;
 
     public function __construct()

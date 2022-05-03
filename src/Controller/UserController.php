@@ -56,6 +56,8 @@ class UserController extends AbstractController
         $session->invalidate();
         $userRepository->remove($userRepository->find($currentUserId));
         $session->start();
-       return $this->redirectToRoute('app_index');
+
+        $this->addFlash('success', 'Votre compte a bien été supprimé');
+        return $this->redirectToRoute('app_index');
     }
 }

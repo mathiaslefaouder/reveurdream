@@ -11,7 +11,7 @@
                 {{ form_start(form) }}
                 {{ form(form) }}
                 {{ form_end(form) }}
-                <a id="delete_user" onclick="confirm('Supprimer mon compte ?')" href="{{ url('app_user_delete') }}">Supprimer mon compte</a>
+                <a id="delete_user" onclick="deleteUser()" >Supprimer mon compte</a>
             </div>
 
             <div class="my-dreams">
@@ -20,7 +20,7 @@
 
                     {% for dream in dreams %}
                         <div class="dream">
-                            <span class="phase">{{ lunaryPhase.svg|raw}}</span>
+                            <span class="phase">{{ dream.lunaryPhase|raw}}</span>
                             <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
                             <span class="dream_categories">{% if dream.category %}{{ dream.category.ico|raw }}{% endif %}</span>
                             <span class="dream_title">{{ dream.title }}</span>
@@ -36,6 +36,11 @@
     </section>
 
     <script>
+        function deleteUser(){
+            if(confirm('Voulez-vous vraiment supprimer votre compte ?')){
+                window.location.href = '{{ path('app_user_delete') }}';
+            }
+        }
         /* Connexion */
         $(".account-connection").click(function () {
             $("#left-col-home").hide();

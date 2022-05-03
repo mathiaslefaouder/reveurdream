@@ -58,9 +58,14 @@ class UserController extends AbstractController
      * @throws \Doctrine\ORM\ORMException
      */
     #[Route('/user/delete', name: 'app_user_delete')]
-    final public function delete(UserRepository $userRepository, SessionInterface $session, TokenStorageInterface $tokenStorage): RedirectResponse
+    final public function delete(UserRepository $userRepository, EntityManagerInterface $entityManager, DreamRepository $dreamRepository, SessionInterface $session, TokenStorageInterface $tokenStorage): RedirectResponse
     {
         $currentUserId = $this->getUser()->getId();
+        $dreams = $dreamRepository->findBy(['author' => $currentUserId]);
+        foreach ($dreams as $dream){
+            $dream->setAuthor(null);
+        }
+        $entityManager->flush();
         $tokenStorage->setToken(null);
         $session->invalidate();
         $userRepository->remove($userRepository->find($currentUserId));

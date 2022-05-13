@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route('/{_locale<%app.supported_locales%>}')]
 class UserController extends AbstractController
@@ -58,7 +59,7 @@ class UserController extends AbstractController
      * @throws \Doctrine\ORM\ORMException
      */
     #[Route('/user/delete', name: 'app_user_delete')]
-    final public function delete(UserRepository $userRepository, EntityManagerInterface $entityManager, DreamRepository $dreamRepository, SessionInterface $session, TokenStorageInterface $tokenStorage): RedirectResponse
+    final public function delete(UserRepository $userRepository, TranslatorInterface $translator ,EntityManagerInterface $entityManager, DreamRepository $dreamRepository, SessionInterface $session, TokenStorageInterface $tokenStorage): RedirectResponse
     {
         $currentUserId = $this->getUser()->getId();
         $dreams = $dreamRepository->findBy(['author' => $currentUserId]);
@@ -72,7 +73,8 @@ class UserController extends AbstractController
         $userRepository->remove($userRepository->find($currentUserId));
         $session->start();
 
-        $this->addFlash('success', 'Votre compte a bien été supprimé');
+
+        $this->addFlash('success', $translator->trans('user.delete_success'));
         return $this->redirectToRoute('app_index');
     }
 }

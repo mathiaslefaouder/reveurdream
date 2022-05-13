@@ -36,7 +36,8 @@
 
     <script>
         function deleteUser(){
-            if(confirm('Voulez-vous vraiment supprimer votre compte ?')){
+            let text = "{{'user.delete_confirm'|trans}}"
+            if(confirm(text)){
                 window.location.href = '{{ path('app_user_delete') }}';
             }
         }

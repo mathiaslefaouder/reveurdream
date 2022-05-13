@@ -66,14 +66,15 @@ class DreamRepository extends ServiceEntityRepository
     final public function setAllDraftExcept(User $user, Dream $dream): void
     {
         $this->createQueryBuilder('d')
-            ->set('d.isDraft', true)
+            ->update('App:Dream', 'd')
+            ->set('d.isDraft', 'true')
             ->where('d.author = :user')
             ->andWhere('d.id != :dream')
             ->setParameter('user', $user)
-            ->setParameter('dream', $dream)
+            ->setParameter('dream', $dream->getId())
             ->getQuery()
             ->execute()
-            ;
+                    ;
     }
 
 

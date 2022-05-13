@@ -43,7 +43,7 @@ class DreamController extends AbstractController
         } else {
             $dream = new Dream();
             $ip = $request->server->get('REMOTE_ADDR');
-            $ip = '176.143.97.214';
+//            $ip = '176.143.97.214';
             $ip_data = $localizationService->ip_data($ip);
             $dream->setCreatedAt((new \DateTimeImmutable()))
                 ->setIsDraft(true)
@@ -74,13 +74,13 @@ class DreamController extends AbstractController
             $dream->setTitle($request->get('dream_title'))
                 ->setDescription($request->get('dream_story'));
             $session->set('step', 'content');
-
-            if ($request->get('Enregistrer')){
+            if ($request->get('register')){
+                $dream->setIsDraft(true);
+                $entityManager->persist($dream);
+                $entityManager->flush();
                 $session->set('step', null);
                 $session->set('dream', null);
-                $entityManager->flush();
-                $this->redirectToRoute('app_dream_edit', ['id' => $dream->getId()]);
-
+                return $this->redirectToRoute('app_user');
             }
 
         } //publish
@@ -88,7 +88,9 @@ class DreamController extends AbstractController
             $dream->setIsDraft(false);
             $session->set('step', null);
             $session->set('dream', null);
+            $dreamRepository->setAllDraftExcept($this->getUser(), $dream);
             $entityManager->flush();
+
             return $this->redirectToRoute('app_index');
         } else {
             switch ($session->get('step')) {

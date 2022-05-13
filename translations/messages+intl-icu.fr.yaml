@@ -69,7 +69,8 @@ dream:
 
                     <p>Modifier votre rêve si besoin<br/>
                         Garder une trace de votre rêve (au delà des 24h)<br/>
-                        Liker les rêves des autres</p>'
+                        Liker les rêves des autres<br>
+                        Enregistrer mon rêve comme brouillon</p>'
     register_no: "Publier sans s'inscrire"
     register_yes: "Publier en s'inscrivant"
     theme: 'Quel était le thème<br/> de ce songe ?'
@@ -91,6 +92,8 @@ user:
     welcome: 'Bienvenue'
     edit_info: 'Modifier mes infos'
     delete: 'Supprimer mon compte'
+    delete_success: 'Votre compte a été supprimé'
+    delete_confirm: 'Êtes-vous sûr de vouloir supprimer votre compte ?'
 mail:
     creation:
         title: 'Création de votre compte Reveurdream'

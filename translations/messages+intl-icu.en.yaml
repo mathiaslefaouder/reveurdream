@@ -68,7 +68,8 @@ dream:
                         If you wish, <b>you can register before publishing.</b></p>
                     <p>Modify your dream if needed<br/>
                         Keep track of your dream (beyond 24 hours)<br/>
-                        Like other people's dreams</p>"
+                        Like other people's dreams<br>
+                        Save my dream as a draft</p>"
     register_no: "Publish without registering"
     register_yes: "Publish by subscribing"
     theme: 'What was the theme <br/> of your dream ?'
@@ -90,6 +91,8 @@ user:
     welcome: 'Welcome'
     edit_info: 'Edit my info'
     delete: 'Delete my account'
+    delete_success: 'Your account has been deleted'
+    delete_confirm: 'Are you sure you want to delete your account?'
 mail:
     creation:
         title: 'Create your Reveurdream account'

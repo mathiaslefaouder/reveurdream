@@ -28,8 +28,44 @@
                     <div class="dream-options">
                         <div class="dream-options-icons">
                             {% for theme in themes %}
+                                {% if theme.id == '1' and app.request.locale == 'en' %}
+                                    {% set name = 'Social, Family, Friendship, Love'%}
+                                {% elseif theme.id == '1'  and app.request.locale == 'es' %}
+                                    {% set name = 'Social, Familia, Amistad, Amor'%}
+                                {% elseif theme.id == '1'   %}
+                                    {% set name = theme.name%}
+
+                                {% elseif theme.id == '2'  and app.request.locale == 'en' %}
+                                    {% set name = 'Personal, Imagination'%}
+                                {% elseif theme.id == '2'  and app.request.locale == 'es' %}
+                                    {% set name = 'Personalidad, Imaginación'%}
+                                {% elseif theme.id == '2'   %}
+                                    {% set name = theme.name%}
+
+                                {% elseif theme.id == '3'  and app.request.locale == 'en' %}
+                                    {% set name = 'Work, Profession'%}
+                                {% elseif theme.id == '3'  and app.request.locale == 'es' %}
+                                    {% set name = 'Trabajo, Profesión'%}
+                                {% elseif theme.id == '3'   %}
+                                    {% set name = theme.name%}
+
+                                {% elseif theme.id == '4'  and app.request.locale == 'en' %}
+                                    {% set name = 'Travels'%}
+                                {% elseif theme.id == '4'  and app.request.locale == 'es' %}
+                                    {% set name = 'Viajes'%}
+                                {% elseif theme.id == '4'   %}
+                                    {% set name = theme.name%}
+
+                                {% elseif theme.id == '5'  and app.request.locale == 'en' %}
+                                    {% set name = 'Animals'%}
+                                {% elseif theme.id == '5'  and app.request.locale == 'es' %}
+                                    {% set name = 'Animales'%}
+                                {% elseif theme.id == '5'   %}
+                                    {% set name = theme.name%}
+
+                                {%endif%}
                                 <style>#cat-{{ theme.id}}:after {
-                                        content: "{{theme.name}}";
+                                        content:  "{{name}}" ;
                                     }</style>
 
                                 <label class="labl">

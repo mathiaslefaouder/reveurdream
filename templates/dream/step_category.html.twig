@@ -28,8 +28,22 @@
                     <div class="dream-options">
                         <div class="dream-options-icons">
                             {% for category in categories %}
+                                {% if category.name == 'Reve' and app.request.locale == 'en' %}
+                                    {% set name = 'Dream'%}
+                                {% elseif category.name == 'Reve' and app.request.locale == 'es' %}
+                                    {% set name = 'Sueño'%}
+                                {% elseif category.name == 'Reve'  %}
+                                    {% set name = 'Rêve'%}
+
+                                {% elseif category.name == 'Cauchemar' and app.request.locale == 'en'  %}
+                                    {% set name = 'Nightmare'%}
+                                {% elseif category.name == 'Cauchemar' and app.request.locale == 'es'  %}
+                                    {% set name = 'Pesadilla'%}
+                                {% elseif category.name == 'Cauchemar' and app.request.locale == 'fr'  %}
+                                    {% set name = 'Cauchemar'%}
+                                {%endif%}
                                 <style>#cat-{{ category.id}}:after {
-                                        content: "{{category.name}}";
+                                        content: "{{name}}" !important;
                                     }</style>
 
                                 <label class="labl">

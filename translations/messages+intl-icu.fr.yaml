@@ -13,8 +13,8 @@ index:
     already_account: 'Vous avez déjà un compte ?'
     log_in: 'Connectez-vous '
     begin: 'Commencer'
-    dream: 'Partagez <br> votre rêve'
-    discover: 'et découvrez les songes similaires.'
+    dream: 'Partagez <br>'
+    discover: 'et découvrez les rêves similaires.'
 globe:
     filter: 'filtrer les rêves'
 footer:
@@ -73,7 +73,7 @@ dream:
                         Enregistrer mon rêve comme brouillon</p>'
     register_no: "Publier sans s'inscrire"
     register_yes: "Publier en s'inscrivant"
-    theme: 'Quel était le thème<br/> de ce songe ?'
+    theme: 'Quel était le thème<br/> de ce rêve ?'
     view: 'vues'
     register_save: 'Enregistrer mon rêve comme brouillon'
 category:

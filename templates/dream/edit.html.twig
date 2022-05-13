@@ -8,47 +8,47 @@
 
     <section class="page">
         <div class="wrapper">
-            <h1>Editer un rêve</h1>
+            <h1>{{ 'dream.edit'|trans}}</h1>
             {{ form_start(form) }}
             <div class="edit-dream-data">
-                <h3>Infos sur le rêve</h3>
-                <p>type de songe</p>
+                <h3>{{ 'dream.info'|trans}}</h3>
+                <p>{{'dream.type'|trans}}</p>
                 <div>
                     {{ form_widget(form.category) }}
 
                 </div>
                 {{ form_widget(form.theme) }}
 
-                <p>Visibilité du rêve</p>
+                <p>{{ 'dream.visu'|trans}}</p>
                 <div class="edit-dream-visibility">
-                    Visible
+                    {{ 'dream.visible'|trans}}
                     <label class="switch">
                         {% block _form_isDraft_row %}
                             {{ form_widget(form.isDraft) }}
                         {% endblock %}
                         <span class="slider round"></span>
                     </label>
-                    <span style="color: #45568b">Invisible</span>
+                    <span style="color: #45568b">{{ 'dream.invi'|trans}}</span>
                 </div>
 
-                <a href="" class="similar-dreams">voir des rêves similaires</a>
+                <a href="" class="similar-dreams">{{'dream.similaire'|trans}}</a>
             </div>
 
             <div class="edit-dream">
-                <h3>Le rêve en lui-même</h3>
+                <h3>{{'dream.dream'|trans}}</h3>
                 <div id="edit-my-dream">
                     <div>
                         {% block _form_title_row %}
-                            {{ form_widget(form.title, {'attr': {'class':"blue-button", 'placeholder':"Titre de mon rêve"}} ) }}
+                            {{ form_widget(form.title, {'attr': {'class':"blue-button", 'placeholder':"dream.title"}} ) }}
                         {% endblock %}
                         {% block _form_description_row %}
-                            {{ form_widget(form.description, {'attr': {'class':"blue-button dream_story", 'placeholder':"Le rêve en lui même... (500 caractères max.)", 'maxlength':"500",  'onkeyup':"textCounter(this,'counter',500);"}} ) }}
+                            {{ form_widget(form.description, {'attr': {'class':"blue-button dream_story", 'placeholder':"dream.edit_area", 'maxlength':"500",  'onkeyup':"textCounter(this,'counter',500);"}} ) }}
                         {% endblock %}
-                        <p><input disabled maxlength="3" size="3" value="500" id="counter"> caractères restants</p>
+                        <p><input disabled maxlength="3" size="3" value="500" id="counter"> {{'dream.caracteres'}}</p>
                     </div>
                     <div class="edit-dream-validation">
-                        <input class="blue-button" type="submit" value="Valider les modifications">
-                        <a class="blue-button" href="{{ url('app_user') }}">Annuler</a>
+                        <input class="blue-button" type="submit" value="dream.submit">
+                        <a class="blue-button" href="{{ url('app_user') }}">{{'dream.cancel'}}</a>
                     </div>
                 </div>
             </div>

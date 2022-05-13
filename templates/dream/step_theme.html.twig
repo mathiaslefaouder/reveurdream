@@ -20,9 +20,9 @@
     <section class="page postyourdream">
         <div class="wrapper">
             <div class="dream-phase" id="dream-step2">
-                <h2>Contez votre rêve</h2>
+                <h2>{{'dream.share'|trans}}</h2>
                 <p>Phase 2/3</p>
-                <h3>Quel était le thème<br/> de ce songe&nbsp;?</h3>
+                <h3>{{'dream.theme'|trans|raw}}</h3>
 
                 <form action="{{ path('app_dream') }}" method="post">
                     <div class="dream-options">
@@ -43,8 +43,8 @@
                         </div>
                     </div>
                     <div class="next-step-buttons">
-                        <a class="blue-button" id="back-to-step-1" href="{{ url('app_dream') }}">Précédent</a>
-                        <input class="blue-button" type="submit" value="suivant">
+                        <a class="blue-button" id="back-to-step-1" href="{{ url('app_dream') }}">{{ 'register.previous'|trans }}</a>
+                        <input class="blue-button" type="submit" value="{{'dream.next'|trans}}">
                     </div>
                 </form>
             </div>

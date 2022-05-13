@@ -20,26 +20,26 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, ['label'=> 'Pseudo'])
-            ->add('email', EmailType::class, ['disabled' => true, 'label' => 'Adresse email'])
+            ->add('email', EmailType::class, ['disabled' => true, 'label' => 'login.mail'])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'Mot de passe incorect.',
+                'invalid_message' => 'login.incorrect_password',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => false,
                 'empty_data' => 'no modif',
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => "confimer nouveau mot de passe"],
+                'first_options'  => ['label' => 'register.password'],
+                'second_options' => ['label' => "register.password_confirm"],
                 'constraints' => [
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Votre mot de passe doit être au minimum de {{ limit }} caractères',
+                        'minMessage' => 'register.password_min_length',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
 
             ])
-            ->add('save', SubmitType::class, ['label' => 'Valider les modifications'])
+            ->add('save', SubmitType::class, ['label' => 'login.valider'])
         ;
     }
 

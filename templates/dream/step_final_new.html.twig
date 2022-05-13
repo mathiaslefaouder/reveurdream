@@ -6,14 +6,12 @@
     <section class="page postyourdream">
         <div class="wrapper">
             <div class="dream-phase" id="dream-step-account-publication">
-                <h2>Contez votre rêve</h2>
-                <p>Confirmation</p>
-                <h3>Merci d’avoir partagé<br/>ce moment !</h3>
-                <p>Retrouvez votre rêve pendant sur la Terre, et voyez si d’autres personnes ont eu des rêves similaires. Ce rêve s’affichera à la place de votre précédent, que vous pouvez toujours consulter dans votre compte.</p>
-                <p>Vous aller recevoir un email afin de confirmer votre inscription. Vous pourrez ensuite utiliser votre compte et y retrouver votre rêve.</p>
-                <p>Si vous ne recevez pas d’email de confirmation, merci de vérifier dans vos spam ou <a href="{{ url('app_contact') }}">contactez-nous</a>.</p>
+                <h2>{{'dream.share'|trans}}</h2>
+                <p>{{'dream.confirm'|trans}}</p>
+                <p>{{'dream.final'|trans}}</p>
+                <p>{{'dream.final_new_text'|trans|raw}}<a href="{{ url('app_contact') }}">{{'dream.contact_us'|trans}}</a>.</p>
                 <div class="next-step-buttons">
-                    <a class="blue-button" href="{{ url('app_index') }}">Retour à l'accueil</a>
+                    <a class="blue-button" href="{{ url('app_index') }}">{{'dream.back_home'|trans}}</a>
                 </div>
             </div>
         </div>

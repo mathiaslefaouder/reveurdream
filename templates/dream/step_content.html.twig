@@ -7,22 +7,22 @@
         <div class="wrapper">
             <!-- Step 4 -->
             <div class="dream-phase" id="dream-step4">
-                <h2>Contez votre rêve</h2>
+                <h2>{{'dream.share'|trans}}</h2>
                 <p>Phase 3/3</p>
-                <h3>Racontez...</h3>
+                <h3>{{'dream.raconter'|trans}}</h3>
                 <form action="{{ path('app_dream') }}" method="post">
                     <input type="text" name="dream_title" id="dream_title" class="blue-button"
-                           placeholder="Titre de mon rêve" value="{{ dream.title }}" required>
+                           placeholder="{{ 'dream.title_dream'|trans}}" value="{{ dream.title }}" required>
                     <div class="dream_text">
                         <textarea id="dream_story" class="blue-button" name="dream_story" required
-                                  placeholder="Le rêve en lui même... (500 caractères max.)" maxlength="500"
+                                  placeholder="{{'dream.edit_area'|trans}}" maxlength="500"
                                   onkeyup="textCounter(this,'counter',500);"> {{ dream.description }}</textarea>
-                        <p><input disabled maxlength="3" size="3" value="500" id="counter"> caractères restants</p>
+                        <p><input disabled maxlength="3" size="3" value="500" id="counter"> {{'dream.caracteres'|trans}}</p>
                     </div>
                     <div class="next-step-buttons">
-                        <a class="blue-button" id="back-to-step-2" href="{{ url('app_dream') }}">Précédent</a>
-                        {% if app.user %} <input class="blue-button"  type="submit" name="register" value="Enregistrer" style="width: 200px; display: inline">{% endif %}
-                        <input class="blue-button"  type="submit" value="Publier" style="width: 200px; display: inline">
+                        <a class="blue-button" id="back-to-step-2" href="{{ url('app_dream') }}">{{ 'register.previous'|trans }}</a>
+                        {% if app.user %} <input class="blue-button"  type="submit" name="register" value="{{'dream.save'|trans}}" style="width: 200px; display: inline">{% endif %}
+                        <input class="blue-button"  type="submit" value="{{ 'dream.publish'|trans}}" style="width: 200px; display: inline">
                     </div>
                 </form>
             </div>

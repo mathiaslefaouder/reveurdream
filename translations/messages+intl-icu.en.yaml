@@ -2,7 +2,7 @@ header:
     why: 'Why publish your dream?'
     registration: Registration
     login: Login
-    account: 'My account'
+    account: 'My dreams'
     logout: Logout
     home: 'See the dreams'
 
@@ -13,23 +13,92 @@ index:
     already_account: 'Already registred?'
     log_in: 'Log-in'
     begin: 'Begin'
-    dream: 'Contez<br>votre rêve'
-    discover: 'et découvrez les songes similaires.'
+    dream: 'Share <br>your dream'
+    discover: 'and discover similar dreams.'
 globe:
     filter: 'Filter the dreams'
 footer:
     notice: 'Legal notice'
 why:
-    title: 'Pourquoi?'
-    text: "Nous sommes intimement convaincus que le rêve peut nous lier à la nature, ainsi qu'à notre environnement social et culturel.<br> En partageant nos rêves nous contribuons à la création d'une intelligence collective nouvelle.<br> Un artiste français porte l'idée de reveurdream.com, parce qu'il pense que le rêve peut sans doute être une source d'inspiration, de création, comme une muse insondable mais apporter aussi une meilleure compréhension de notre humanité.<br><span id='author'>Anne-Sophie Bordry</span>"
+    title: 'Why ?'
+    text: "We are intimately convinced that dreams can link us to nature, as well as to our social and cultural environment.<br> By sharing our dreams we contribute to the creation of a new collective intelligence.<br> A French artist carries the idea of reveurdream.com, because he thinks that the dream can undoubtedly be a source of inspiration, of creation, like an unfathomable muse but also bring a better understanding of our humanity.<br><span id='author'>Anne-Sophie Bordry</span>"
 register:
-    title: 'Inscrivez-vous'
+    title: 'Sign up'
     pseudo: 'Pseudo'
     email: 'Email'
-    password: 'Mot de passe'
-    password_confirm: 'Confirmez le mot de passe'
-    password_mismatch: 'Les mots de passe ne correspondent pas'
-    password_min_length: 'Le mot de passe doit contenir au moins 6 caractères'
-    submit: 'Valider'
-    previous: 'Précédent'
-
+    password: 'Password'
+    password_confirm: 'Confirm the password'
+    password_mismatch: 'Passwords do not match'
+    password_min_length: 'Password must contain at least 6 characters'
+    submit: 'Submit'
+    previous: 'Previous'
+dream:
+    edit: 'Edit dream'
+    info: 'Dream info'
+    type: 'type of dream'
+    visu: 'Visibility of the dream'
+    visible: 'Visible'
+    invi: 'Hidden'
+    similaire: 'seeing similar dreams'
+    dream: 'The dream itself'
+    title: 'Title of my dream'
+    edit_area: 'The dream itself... (500 characters max.)'
+    caracteres: ' characters left'
+    submit: 'Validate changes'
+    cancel: 'Cancel'
+    share: 'Share your dream'
+    next: 'next'
+    raconter: 'Tell us...'
+    title_dream: 'Title of my dream'
+    publish: 'Publish'
+    save: 'Save'
+    confirm: 'Confirmation'
+    thanks: 'Thank you for sharing<br/>this moment!'
+    final: 'Find your dream on Earth, and see if other people have had similar dreams.'
+    back_home: "Back to Home"
+    final_new_text: 'Find your dream hanging on Earth, and see if other people have had similar dreams. This dream will be displayed instead of your previous one, which you can always consult in your account.</p>
+                <p>You will receive an email to confirm your registration. You can then use your account and find your dream there.</p>
+                <p>If you do not receive a confirmation email, please check your spam or '
+    contact_us: 'contact us'
+    register: 'Publication and registration'
+    resgister_text: "
+                    <h3>A minute !</h3>
+                   <p>Your dream will remain visible for 24 hours on Earth before being hidden from the public.<br/>
+                        If you wish, <b>you can register before publishing.</b></p>
+                    <p class='step5-text'>What can you do with your account?</p>
+                    <p>Modify your dream if needed<br/>
+                        Keep track of your dream (beyond 24 hours)<br/>
+                        Like other people's dreams<br/>
+                        See similar dreams</p>"
+    register_no: "Publish without registering"
+    register_yes: "Publish by subscribing"
+    theme: 'what was the theme <br/> of your dream ?'
+    reset_time: 'This link will expire in'
+    view: 'views'
+category:
+    dream: 'Was it a dream  '
+    nightmare: 'or a nightmare'
+user:
+    reset_passord_text: 'If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password. This link will expire in'
+    reset_password_not_sent: "If you don't receive an email please check your spam folder or "
+    reset_password_try_again: 'try again'
+    reset_text: '<h1>Hi!</h1><p>To reset your password, please visit the following link</p>'
+    reset_time: 'This link will expire in '
+    reset_password: 'Reset your password'
+    cheers: 'Cheers'
+    reset_password_sent: 'Password reset request sent'
+    welcome: 'Welcome'
+    edit_info: 'Edit my info'
+    delete: 'Delete my account'
+mail:
+    creation:
+        title: 'Create your Reveurdream account'
+        hi: 'Hello'
+login:
+    forgot_password: 'Forgot your password ?'
+    click: 'Click here'
+    with: 'Connect with'
+    connect: 'Connect'
+    mail: 'Mail address'
+    incorrect_password: 'Incorrect password'
+    valider: 'Commit changes'

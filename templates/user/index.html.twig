@@ -5,17 +5,17 @@
 {% block body %}
     <section class="page">
         <div class="wrapper">
-            <h1>Bienvenue, {{ app.user.username }}</h1>
+            <h1>{{'user.welcome'|trans}}, {{ app.user.username }}</h1>
             <div class="edit-user-data">
-                <h3>Modifier mes infos</h3>
+                <h3>{{'user.edit_info'|trans}}</h3>
                 {{ form_start(form) }}
                 {{ form(form) }}
                 {{ form_end(form) }}
-                <a id="delete_user" onclick="deleteUser()" >Supprimer mon compte</a>
+                <a id="delete_user" onclick="deleteUser()" >{{'user.delete'|trans}}</a>
             </div>
 
             <div class="my-dreams">
-                <h3>Mes rêves</h3>
+                <h3>{{'header.account'|trans}}</h3>
                 <div class="dreams">
 
                     {% for dream in dreams %}
@@ -24,10 +24,9 @@
                             <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
                             <span class="dream_categories">{% if dream.category %}{{ dream.category.ico|raw }}{% endif %}</span>
                             <span class="dream_title">{{ dream.title }}</span>
-                            <span class="dream_invisible">{% if dream.isDraft %} invisible {% else %} visible {% endif %}</span>
-                            <span class="dream_views"> | {{ dream.numberView }} vues</span>
-                            <a class="dream_edit" href="{{ url('app_dream_edit', {'id' : dream.id}) }}">Editer le
-                                rêve</a>
+                            <span class="dream_invisible">{% if dream.isDraft %} {{'dream.invi'|trans}} {% else %}  {{'dream.visible'|trans}} {% endif %}</span>
+                            <span class="dream_views"> | {{ dream.numberView }}  {{'dream.view'|trans}}</span>
+                            <a class="dream_edit" href="{{ url('app_dream_edit', {'id' : dream.id}) }}">{{'dream.edit'|trans}}</a>
                         </div>
                     {% endfor %}
                 </div>

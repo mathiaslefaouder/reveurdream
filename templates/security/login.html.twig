@@ -37,15 +37,15 @@
         <div class="wrapper">
 
             <div class="left-col" id="left-col-connexion">
-                <h1>Connexion</h1>
+                <h1>{{'header.login'|trans}}</h1>
                 <form action="{{ path('app_login') }}" method="post">
-                    <input type="email" name="_username" id="user_login" class="blue-button" value="{{ last_username }}"size="20" autocapitalize="off" placeholder="Adresse mail" />
-                    <input type="password" name="_password" id="user_pass" class="blue-button" value="" size="20" placeholder="Mot de passe" />
+                    <input type="email" name="_username" id="user_login" class="blue-button" value="{{ last_username }}"size="20" autocapitalize="off" placeholder="{{'login.mail'|trans}}" />
+                    <input type="password" name="_password" id="user_pass" class="blue-button" value="" size="20" placeholder="{{  'register.password'|trans }}" />
 
-                    <input type="submit" value="Se connecter">
+                    <input type="submit" value="{{'login.connect'|trans}}">
                 </form>
-                <p class="account-password-lost">Mot de passe oublié&nbsp;? <a href="{{ url('app_forgot_password_request') }}">Cliquez ici</a></p>
-                <p class="account-password-lost"><a href="{{ url('connect_facebook_start') }}">Connect with Facebook Cliquez ici</a></p>
+                <p class="account-password-lost">{{'login.forgot_password'|trans}} <a href="{{ url('app_forgot_password_request') }}">{{'login.click'|trans}}</a></p>
+                <p class="account-password-lost"><a href="{{ url('connect_facebook_start') }}">{{'login.with'|trans}} Facebook</a></p>
             </div>
 
             <div class="right-col">

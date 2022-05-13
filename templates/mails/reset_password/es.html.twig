@@ -1,0 +1,7 @@
+{{'user.reset_text'|trans|raw}}
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+
+<p>{{'user.reset_time'|trans}} {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>{{'user.cheers'|trans}}</p>

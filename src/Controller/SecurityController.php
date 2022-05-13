@@ -53,13 +53,23 @@ class SecurityController extends AbstractController
             }
             $entityManager->flush();
 
+            if ($request->getLocale() === 'fr') {
+                $subject = 'Confirmation de votre inscription reveurdream.com';
+                $template = 'mails/confirmation_inscription/fr.html.twig';
+            }elseif ($request->getLocale() === 'es') {
+                $subject = 'Confirmación de su inscripción reveurdream.com';
+                $template = 'mails/confirmation_inscription/es.html.twig';
+            }else{
+                $subject = 'Confirmation of your registration reveurdream.com';
+                $template = 'mails/confirmation_inscription/en.html.twig';
+            }
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('contact@reveur-dream.com', 'Reveur Dream'))
                     ->to($user->getEmail())
-                    ->subject('Confirmation de création de votre compte reveurdream.com')
-                    ->htmlTemplate('security/confirmation_email.html.twig')
+                    ->subject($subject)
+                    ->htmlTemplate($template)
                 ->context(['user' => $user])
             );
 

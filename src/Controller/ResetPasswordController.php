@@ -135,7 +135,7 @@ class ResetPasswordController extends AbstractController
         ]);
     }
 
-    private function processSendingPasswordResetEmail(string $emailFormData, MailerInterface $mailer, TranslatorInterface $translator): RedirectResponse
+    private function processSendingPasswordResetEmail(string $emailFormData, Request $request, MailerInterface $mailer, TranslatorInterface $translator): RedirectResponse
     {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
             'email' => $emailFormData,
@@ -162,11 +162,21 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('app_check_email');
         }
 
+        if ($request->getLocale() === 'fr') {
+            $subject = 'Réinitialisation de votre mot de passe';
+            $template = 'mails/reset_password/fr.html.twig';
+        }elseif ($request->getLocale() === 'es') {
+            $subject = 'Restablecer su contraseña';
+            $template = 'mails/reset_password/es.html.twig';
+        }else{
+            $subject = 'Your password reset request';
+            $template = 'mails/reset_password/en.html.twig';
+        }
         $email = (new TemplatedEmail())
-            ->from(new Address('contact@reveur-dream.fr', 'Reveur Dream'))
+            ->from(new Address('contact@reveur-dream.com', 'Reveur Dream'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
-            ->htmlTemplate('reset_password/email.html.twig')
+            ->subject($subject)
+            ->htmlTemplate($template)
             ->context([
                 'resetToken' => $resetToken,
             ])

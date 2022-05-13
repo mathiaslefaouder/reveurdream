@@ -44,11 +44,11 @@
                         {% block _form_description_row %}
                             {{ form_widget(form.description, {'attr': {'class':"blue-button dream_story", 'placeholder':"dream.edit_area", 'maxlength':"500",  'onkeyup':"textCounter(this,'counter',500);"}} ) }}
                         {% endblock %}
-                        <p><input disabled maxlength="3" size="3" value="500" id="counter"> {{'dream.caracteres'}}</p>
+                        <p><input disabled maxlength="3" size="3" value="500" id="counter"> {{'dream.caracteres'|trans}}</p>
                     </div>
                     <div class="edit-dream-validation">
-                        <input class="blue-button" type="submit" value="dream.submit">
-                        <a class="blue-button" href="{{ url('app_user') }}">{{'dream.cancel'}}</a>
+                        <input class="blue-button" type="submit" value="{{'dream.submit'|trans}}">
+                        <a class="blue-button" href="{{ url('app_user') }}">{{'dream.cancel'|trans}}</a>
                     </div>
                 </div>
             </div>

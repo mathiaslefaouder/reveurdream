@@ -64,6 +64,7 @@ class UserController extends AbstractController
         $dreams = $dreamRepository->findBy(['author' => $currentUserId]);
         foreach ($dreams as $dream){
             $dream->setAuthor(null);
+            $dream->setIsDraft(true);
         }
         $entityManager->flush();
         $tokenStorage->setToken(null);

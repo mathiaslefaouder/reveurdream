@@ -17,6 +17,7 @@
                     <div class="next-step-buttons">
                         <div class="blue-button" ><a onclick="this.closest('form').submit();return false;">{{'dream.register_no'|trans}}</a></div>
                         <div class="blue-button" onclick="location.href='{{ url('app_register') }}'" > {{'dream.register_yes'|trans}}</div>
+                        <div class="blue-button" onclick="location.href='{{ url('app_register', {'draft' : true}) }}'" > {{'dream.register_save'|trans}}</div>
                     </div>
                     <div class="next-step-buttons">
                         <a class="blue-button" id="back-to-step-4"

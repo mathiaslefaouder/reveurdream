@@ -32,6 +32,7 @@ register:
     password_min_length: 'Password must contain at least 6 characters'
     submit: 'Submit'
     previous: 'Previous'
+    text: 'Registration and publication'
 dream:
     edit: 'Edit dream'
     info: 'Dream info'
@@ -65,16 +66,15 @@ dream:
                     <h3>A minute !</h3>
                    <p>Your dream will remain visible for 24 hours on Earth before being hidden from the public.<br/>
                         If you wish, <b>you can register before publishing.</b></p>
-                    <p class='step5-text'>What can you do with your account?</p>
                     <p>Modify your dream if needed<br/>
                         Keep track of your dream (beyond 24 hours)<br/>
-                        Like other people's dreams<br/>
-                        See similar dreams</p>"
+                        Like other people's dreams</p>"
     register_no: "Publish without registering"
     register_yes: "Publish by subscribing"
-    theme: 'what was the theme <br/> of your dream ?'
+    theme: 'What was the theme <br/> of your dream ?'
     reset_time: 'This link will expire in'
     view: 'views'
+    register_save: 'Save my dream as a draft'
 category:
     dream: 'Was it a dream  '
     nightmare: 'or a nightmare'

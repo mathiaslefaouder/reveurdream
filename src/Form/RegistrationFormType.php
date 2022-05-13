@@ -31,11 +31,9 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => false, 'attr' => ['placeholder' =>'register.password_confirm']],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'register.password_mismatch',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'register.password_min_length',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

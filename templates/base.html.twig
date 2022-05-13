@@ -48,9 +48,14 @@
                 field.value = field.value.substring( 0, maxlimit );
                 return false;
             } else {
+                console.log(countfield);
+                console.log(maxlimit);
+                console.log(field.value.length);
                 countfield.value = maxlimit - field.value.length;
             }
         }
+        textCounter(document.getElementById('dream_story'), 'counter', 500);
+
     </script>
     <script>
         /* Close popup */

@@ -74,7 +74,6 @@ dream:
     register_no: "Publier sans s'inscrire"
     register_yes: "Publier en s'inscrivant"
     theme: 'Quel était le thème<br/> de ce songe ?'
-    reset_time: 'messages'
     view: 'vues'
     register_save: 'Enregistrer mon rêve comme brouillon'
 category:

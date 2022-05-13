@@ -1,105 +1,109 @@
 header:
-    why: 'Pourquoi publier son rêve ?'
-    registration: Inscription
-    login: Connexion
-    account: 'Mes rêves'
-    logout: Déconnexion
-    home: 'Voir les rêves'
+    why: '¿Por qué publicar tu sueño?'
+    registration: Registro
+    login: Iniciar sesión
+    account: 'Mis Sueños'
+    logout: Cerrar sesión
+    home: 'Ver sueños'
 
 head:
-    title: 'Je partage mon rêve'
+    title: 'Comparto mi sueño'
 index:
-    in: 'dans'
-    already_account: 'Vous avez déjà un compte ?'
-    log_in: 'Connectez-vous '
-    begin: 'Commencer'
-    dream: 'Partager <br> votre rêve'
-    discover: 'et découvrez les songes similaires.'
+    in: 'en'
+    already_account: '¿Ya tienes una cuenta?'
+    log_in: 'Iniciar sesión '
+    begin: 'Comenzar'
+    dream: 'Comparte <br> tu sueño'
+    discover: 'y descubrir sueños similares.'
 globe:
-    filter: 'filtrer les rêves'
+    filter: 'filtrar sueños'
 footer:
-    notice: 'Mentions légales'
+    notice: 'Aviso legal'
 why:
-    title: 'Pourquoi?'
-    text: "Nous sommes intimement convaincus que le rêve peut nous lier à la nature, ainsi qu'à notre environnement social et culturel.<br> En partageant nos rêves nous contribuons à la création d'une intelligence collective nouvelle.<br> Un artiste français porte l'idée de reveurdream.com, parce qu'il pense que le rêve peut sans doute être une source d'inspiration, de création, comme une muse insondable mais apporter aussi une meilleure compréhension de notre humanité.<br><span id='author'>Anne-Sophie Bordry</span>"
+    title: '¿Por qué?'
+    text: "Estamos firmemente convencidos de que los sueños pueden vincularnos a la naturaleza, así como a nuestro entorno social y cultural.<br> Al compartir nuestros sueños contribuimos a la creación de una nueva inteligencia colectiva.<br> Un artista francés lleva la idea de reveurdream.com, porque piensa que el sueño sin duda puede ser una fuente de inspiración, de creación, como una musa insondable pero también traer una mejor comprensión de nuestra humanidad.<br>< span id='author' >Anne-Sophie Bordry</span>"
 register:
-    title: 'Inscrivez-vous'
-    pseudo: 'Pseudo'
-    email: 'Email'
-    password: 'Mot de passe'
-    password_confirm: 'Confirmez le mot de passe'
-    password_mismatch: 'Les mots de passe ne correspondent pas'
-    password_min_length: 'Le mot de passe doit contenir au moins 6 caractères'
-    submit: 'Valider'
-    previous: 'Précédent'
+    title: 'Registrar'
+    pseudo: 'Aposo'
+    email: 'Correo electrónico'
+    password: 'Contraseña'
+    password_confirm: 'Confirmar contraseña'
+    password_mismatch: 'Las contraseñas no coinciden'
+    password_min_length: 'La contraseña debe tener al menos 6 caracteres'
+    submit: 'Validar'
+    previous: 'Anterior'
+    text: 'Registro y publicación'
 dream:
-    edit: 'Modifier le rêve'
-    info: 'Infos sur le rêve'
-    type: 'type de songe'
-    visu: 'Visibilité du rêve'
+    edit: 'Editar sueño'
+    info: 'Información del sueño'
+    type: 'tipo de sueño'
+    visu: 'Visibilidad del sueño'
     visible: 'Visible'
     invi: 'Invisible'
-    similaire: 'voir des rêves similaires'
-    dream: 'Le rêve en lui-même'
-    title: 'Titre de mon rêve'
-    edit_area: 'Le rêve en lui même... (500 caractères max.)'
-    caracteres: ' caractères restants'
-    submit: 'Valider les modifications'
-    cancel: 'Annuler'
-    share: 'Contez votre rêve'
-    next: 'suivant'
-    raconter: 'Racontez...'
-    title_dream: 'Titre de mon rêve'
-    publish: 'Publier'
-    save: 'Enregistrer'
-    confirm: 'Confirmation'
-    thanks: 'Merci d’avoir partagé<br/>ce moment !'
-    final: 'Retrouvez votre rêve sur la Terre, et voyez si d’autres personnes ont eu des rêves similaires.'
-    back_home: "Retour à l'accueil"
-    final_new_text: 'Retrouvez votre rêve pendant sur la Terre, et voyez si d’autres personnes ont eu des rêves similaires. Ce rêve s’affichera à la place de votre précédent, que vous pouvez toujours consulter dans votre compte.</p>
-                <p>Vous aller recevoir un email afin de confirmer votre inscription. Vous pourrez ensuite utiliser votre compte et y retrouver votre rêve.</p>
-                <p>Si vous ne recevez pas d’email de confirmation, merci de vérifier dans vos spam ou '
-    contact_us: 'contactez-nous'
-    register: 'Publication et inscription'
+    similaire: 'ver sueños similares'
+    dream: 'El sueño mismo'
+    title: 'Título de mi sueño'
+    edit_area: 'El sueño en sí... (500 caracteres máx.)'
+    caracteres: ' caracteres restantes'
+    submit: 'Confirmar cambios'
+    cancel: 'Cancelar'
+    share: 'Cuenta tu sueño'
+    next: 'siguiente'
+    raconter: 'Dime...'
+    title_dream: 'Título de mi sueño'
+    publish: 'Publicar'
+    save: 'Guardar'
+    confirm: 'Confirmación'
+    thanks: '¡Gracias por compartir<br/>este momento!'
+    final: 'Encuentra tu sueño en la Tierra y mira si otras personas han tenido sueños similares.'
+    back_home: "Volver a casa"
+    final_new_text: 'Encuentra tu sueño colgado en la Tierra, y mira si otras personas han tenido sueños similares. Este sueño se mostrará en lugar del anterior, que siempre podrás consultar en tu cuenta.</p>
+                <p>Recibirás un correo electrónico para confirmar tu registro. Luego puede usar su cuenta y encontrar su sueño allí.</p>
+                <p>Si no recibe un correo electrónico de confirmación, verifique su correo no deseado o '
+    contact_us: 'Contáctenos'
+    register: 'Publicación y registro'
     resgister_text: '
-                    <h3>Une petite minute !</h3>
-                    <p>Votre rêve restera visible 24h sur la Terre avant d’être caché pour le public.<br/>
-                        Si vous le souhaitez, <b>vous pouvez vous inscrire avant de publier.</b></p>
+                   <h3>¡Un minuto!</h3>
+                    <p>Tu sueño permanecerá visible durante 24 horas en la Tierra antes de ocultarse al público.<br/>
+                        Si lo desea, <b>puede registrarse antes de publicar.</b></p>
 
-                    <p class="step5-text">Que pouvez-vous faire avec votre compte ?</p>
-                    <p>Modifier votre rêve si besoin<br/>
-                        Garder une trace de votre rêve (au delà des 24h)<br/>
-                        Liker les rêves des autres<br/>
-                        Voir les rêves similaires</p>'
-    register_no: "Publier sans s'inscrire"
-    register_yes: "Publier en s'inscrivant"
-    theme: 'Quel était le thème<br/> de ce songe ?'
-    reset_time: 'messages'
-    view: 'vues'
+                    <p>Modifica tu sueño si es necesario<br/>
+                        Realice un seguimiento de su sueño (más allá de las 24 horas)<br/>
+                        Como los sueños de otras personas<br>
+                        Guarda mi sueño como borrador</p>'
+    register_no: "Publicar sin registrarse"
+    register_yes: "Publicar registrándose"
+    theme: '¿Cuál fue el tema<br/> de este sueño?'
+    view: 'vistas'
+    register_save: 'Guardar mi sueño como borrador'
 category:
-    dream: 'Etait-ce un rêve '
-    nightmare: 'ou un cauchemar'
+    dream: '¿Fue un sueño?'
+    nightmare: 'o una pesadilla'
 user:
-    reset_passord_text: "Si un compte correspondant à votre adresse e-mail existe, un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe. Ce lien expirera dans"
-    reset_password_not_sent: "Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier spam ou"
-    reset_password_try_again: 'réessayer'
-    reset_text: '<h1>Bonjour ! </h1><p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant</p>'
-    reset_time: 'Ce lien expirera dans'
-    reset_password: 'Réinitialisez votre mot de passe'
-    cheers: 'Cordialement'
-    reset_password_sent: 'Demande de réinitialisation de mot de passe envoyée'
-    welcome: 'Bienvenue'
-    edit_info: 'Modifier mes infos'
-    delete: 'Supprimer mon compte'
+    reset_passord_text: "Si existe una cuenta que coincide con su dirección de correo electrónico, se acaba de enviar un correo electrónico que contiene un enlace que puede usar para restablecer su contraseña. Este enlace caducará en"
+    reset_password_not_sent: "Si no recibe un correo electrónico, verifique su carpeta de correo no deseado o"
+    reset_password_try_again: 'intentar de nuevo'
+    reset_text: '<h1>¡Hola! </h1><p>Para restablecer su contraseña, haga clic en el siguiente enlace</p>'
+    reset_time: 'Este enlace caducará en'
+    reset_password: 'Restablece tu contraseña'
+    cheers: 'Saludos'
+    reset_password_sent: 'Solicitud de restablecimiento de contraseña enviada'
+    welcome: 'Bienvenido'
+    edit_info: 'Editar mi información'
+    delete: 'Eliminar mi cuenta'
+    delete_success: 'Tu cuenta ha sido eliminada'
+    delete_confirm: '¿Está seguro de que desea eliminar su cuenta?'
+    password_request: 'Enviar solicitud de restablecimiento de contraseña'
+    password_new: 'Nueva contraseña'
 mail:
     creation:
-        title: 'Création de votre compte Reveurdream'
-        hi: 'Bonjour'
+        title: 'Creando su cuenta Reveurdream'
+        hi: 'Hola'
 login:
-    forgot_password: 'Mot de passe oublié ?'
-    click: 'Cliquez ici'
-    with: 'Connexion avec'
-    connect: 'Se connecter'
-    mail: 'Adresse mail'
-    incorrect_password: 'Mot de passe incorrect'
-    valider: 'Valider les modifications'
+    forgot_password: '¿Olvidaste tu contraseña?'
+    click: 'Haga clic aquí'
+    with: 'Conexión con'
+    connect: 'Conectar'
+    mail: 'Dirección de correo electrónico'
+    incorrect_password: 'Contraseña incorrecta'
+    valider: 'Validar modificaciones'

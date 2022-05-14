@@ -49,6 +49,7 @@ class DreamController extends AbstractController
                 ->setIsDraft(true)
                 ->setLang($request->getLocale())
                 ->setLunaryPhase($lunaryPhaseService->phase($request->getLocale())['svg'])
+                ->setPhaseName($lunaryPhaseService->phase($request->getLocale())['phaseName'])
                 ->setNumberView(0)
                 ->setGps([
                     'lat' => $ip_data['lat'],

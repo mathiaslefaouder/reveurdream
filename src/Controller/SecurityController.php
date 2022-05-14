@@ -8,6 +8,7 @@ use App\Repository\DreamRepository;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use App\Service\DreamService;
+use App\Service\LunaryPhaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -120,7 +121,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'dreams' => array_values($dreams)
+            'dreams' => array_values($dreams),
         ]);
     }
 

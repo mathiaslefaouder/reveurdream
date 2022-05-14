@@ -25,18 +25,4 @@
 
                     </div>
     </section>
-    <script>
-        let child = document.querySelector("svg > g > a")
-        document.querySelector("svg > g").removeChild(child)
-        function test(text) {
-            var title = document.createElementNS("http://www.w3.org/2000/svg","title")
-            title.textContent = text
-            document.querySelector("svg > g").appendChild(title)
-        }
-
-        window.addEventListener("DOMContentLoaded", (event) => {
-            let phase = "{{ lunaryPhase.phaseName }}"
-            test(phase)
-        });
-    </script>
 {% endblock %}

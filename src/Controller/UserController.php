@@ -49,7 +49,7 @@ class UserController extends AbstractController
         }
         return $this->render('user/index.html.twig', [
             'form' => $form->createView(),
-            'lunaryPhase' => $lunaryPhaseService->phase(),
+            'lunaryPhase' => $lunaryPhaseService->phase($request->getLocale()),
             'dreams' => $dreams,
         ]);
     }

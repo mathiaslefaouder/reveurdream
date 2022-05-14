@@ -37,7 +37,7 @@ class PageController extends AbstractController
         $dreams = $dreamService->getData();
 
         return $this->render('pages/index.html.twig', [
-            'lunaryPhase' => $lunaryPhaseService->phase(),
+            'lunaryPhase' => $lunaryPhaseService->phase($request->getLocale()),
             'hemisphere' => $localizationService->getHemisphere($request),
             'dreams' => array_values($dreams)
         ]);
@@ -92,7 +92,7 @@ class PageController extends AbstractController
         $dreams = $dreamService->getData();
 
         return $this->render('pages/why.html.twig', [
-            'lunaryPhase' => $lunaryPhaseService->phase(),
+            'lunaryPhase' => $lunaryPhaseService->phase($request->getLocale()),
             'hemisphere' => $localizationService->getHemisphere($request),
             'dreams' => array_values($dreams)
         ]);
@@ -105,7 +105,7 @@ class PageController extends AbstractController
         $dreams = $dreamService->getData();
 
         return $this->render('security/valide.html.twig', [
-            'lunaryPhase' => $lunaryPhaseService->phase(),
+            'lunaryPhase' => $lunaryPhaseService->phase($request->getLocale()),
             'hemisphere' => $localizationService->getHemisphere($request),
             'dreams' => array_values($dreams)
         ]);

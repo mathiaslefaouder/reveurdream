@@ -48,7 +48,7 @@ class DreamController extends AbstractController
             $dream->setCreatedAt((new \DateTimeImmutable()))
                 ->setIsDraft(true)
                 ->setLang($request->getLocale())
-                ->setLunaryPhase($lunaryPhaseService->phase()['svg'])
+                ->setLunaryPhase($lunaryPhaseService->phase($request->getLocale())['svg'])
                 ->setNumberView(0)
                 ->setGps([
                     'lat' => $ip_data['lat'],
@@ -88,7 +88,6 @@ class DreamController extends AbstractController
             $dream->setIsDraft(false);
             $session->set('step', null);
             $session->set('dream', null);
-            $dreamRepository->setAllDraftExcept($this->getUser(), $dream);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_index');

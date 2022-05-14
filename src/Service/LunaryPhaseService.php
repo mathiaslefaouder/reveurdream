@@ -25,11 +25,11 @@ class LunaryPhaseService
      * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
      * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
      */
-    final public function phase(): array
+    final public function phase($lang): array
     {
         $conf = [
 
-            'lang' => 'fr',
+            'lang' => $lang,
             'month' => (int)(date('n')),
             'year' => (int)(date('Y')),
             'size' => 24,

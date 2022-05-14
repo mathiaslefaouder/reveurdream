@@ -93,7 +93,7 @@ user:
     delete: 'Supprimer mon compte'
     delete_success: 'Votre compte a été supprimé'
     delete_confirm: 'Êtes-vous sûr de vouloir supprimer votre compte ?'
-    password_request: 'Envoyer la demande de réinitialisation de mot de passe'
+    password_request: 'Envoyer la demande de réinitialisation'
     password_new: 'Nouveau mot de passe'
 mail:
     creation:

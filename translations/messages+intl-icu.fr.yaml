@@ -107,3 +107,4 @@ login:
     mail: 'Adresse mail'
     incorrect_password: 'Mot de passe incorrect'
     valider: 'Valider les modifications'
+    with_register: "S'inscrire avec"

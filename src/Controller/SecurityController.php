@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Entity\Dream;
+use App\Entity\Theme;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\DreamRepository;
@@ -37,7 +40,6 @@ class SecurityController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -48,11 +50,29 @@ class SecurityController extends AbstractController
             );
 
             $entityManager->persist($user);
-            if ($dream = $session->get('dream')) {
-                $dream->setAuthor($user)
-                    ->setIsDraft(false);
-            }
             $entityManager->flush();
+            if (!empty($session->get('dream'))) {
+                 $dream = new Dream();
+                 $theme = $entityManager->getRepository(Theme::class)->find($session->get('dream')->getTheme()->getId());
+                 $category = $entityManager->getRepository(Category::class)->find($session->get('dream')->getCategory()->getId());
+                $dream->setAuthor($user)
+                    ->setTitle($session->get('dream')->getTitle())
+                    ->setDescription($session->get('dream')->getDescription())
+                    ->setCreatedAt($session->get('dream')->getCreatedAt())
+                    ->setTheme($theme)
+                    ->setLunaryPhase($session->get('dream')->getLunaryPhase())
+                    ->setCategory($category)
+                    ->setPhaseName($session->get('dream')->getPhaseName())
+                    ->setGps($session->get('dream')->getGps())
+                    ->setLang($session->get('dream')->getLang())
+                    ->setNumberView(0)
+                    ->setIsDraft(false);
+
+                $entityManager->persist($dream);
+                $entityManager->flush();
+
+                $session->set('step', null);
+            }
 
             if ($request->getLocale() === 'fr') {
                 $subject = 'Confirmation de votre inscription reveurdream.com';
@@ -128,7 +148,7 @@ class SecurityController extends AbstractController
     #[Route('/confirm', name: 'app_confirm')]
     final public function confirm(SessionInterface $session): Response
     {
-        if ($session->get('dream')) {
+        if (!empty($session->get('dream'))) {
             $session->set('dream', null);
             return $this->render('dream/step_final_new.html.twig');
         }

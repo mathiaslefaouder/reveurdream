@@ -107,3 +107,4 @@ login:
     mail: 'Mail address'
     incorrect_password: 'Incorrect password'
     valider: 'Commit changes'
+    with_register: 'Sign up with'

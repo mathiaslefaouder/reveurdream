@@ -107,3 +107,4 @@ login:
     mail: 'Dirección de correo electrónico'
     incorrect_password: 'Contraseña incorrecta'
     valider: 'Validar modificaciones'
+    with_register: 'Registrarse con'

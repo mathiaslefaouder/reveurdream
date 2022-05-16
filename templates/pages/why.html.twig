@@ -3,7 +3,7 @@
     <section id="home">
         <div class="wrapper">
             <div class="left-col">
-                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}} dans {{hemisphere}}</p>
+                <p class="date">{{ 'now'|format_datetime('long', 'none', locale=app.request.getLocale()) }}  {{ lunaryPhase.svg|raw}}  {{ 'index.in'|trans }} {{hemisphere}}</p>
                 <div class="left-col" id="left-col-pourquoi">
                     <h1>{{ 'why.title'|trans}}</h1>
                     <p>{{ 'why.text'|trans|raw}}</p>

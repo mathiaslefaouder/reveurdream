@@ -38,7 +38,21 @@
                 </svg>
             </div>
             <div class="menu-panel">
-                <nav class="nav-bar-mobile lang-switch">
+                <nav class="nav-bar-mobile">
+                    <div class="lang-switch"><span class="lang-active">{{ app.request.locale|upper }}</span>
+                        <div class="lang-dropdown">
+                            {% if  app.request.locale|upper == 'FR' %}
+                                <a class="lang-other" href="{{ path('app_index', {_locale: 'en'}) }}">EN</a>
+                                <a class="lang-other" href="{{ path('app_index', {_locale: 'es'}) }}">ES</a>
+                            {% elseif app.request.locale|upper == 'ES'  %}
+                                <a class="lang-other" href="{{ path('app_index', {_locale: 'en'}) }}">EN</a>
+                                <a class="lang-other" href="{{ path('app_index', {_locale: 'fr'}) }}">FR</a>
+                            {%else %}
+                                <a class="lang-other" href="{{ path('app_index', {_locale: 'fr'}) }}">FR</a>
+                                <a class="lang-other" href="{{ path('app_index', {_locale: 'es'}) }}">ES</a>
+                            {% endif %}
+                        </div>
+                    </div>
                     <ul>
                         <li><a href="{{ url('app_why') }}">{{ 'header.why'|trans }}</a></li>
                         {% if not app.user %}

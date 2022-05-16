@@ -21,7 +21,7 @@ footer:
     notice: 'Aviso legal'
 why:
     title: '¿Por qué?'
-    text: "Estamos firmemente convencidos de que los sueños pueden vincularnos a la naturaleza, así como a nuestro entorno social y cultural.<br> Al compartir nuestros sueños contribuimos a la creación de una nueva inteligencia colectiva.<br> Un artista francés lleva la idea de reveurdream.com, porque piensa que el sueño sin duda puede ser una fuente de inspiración, de creación, como una musa insondable pero también traer una mejor comprensión de nuestra humanidad.<br>< span id='author' >Anne-Sophie Bordry</span>"
+    text: "Estamos firmemente convencidos de que los sueños pueden vincularnos a la naturaleza, así como a nuestro entorno social y cultural.<br> Al compartir nuestros sueños contribuimos a la creación de una nueva inteligencia colectiva.<br> Un artista francés lleva la idea de reveurdream.com, porque piensa que el sueño sin duda puede ser una fuente de inspiración, de creación, como una musa insondable pero también traer una mejor comprensión de nuestra humanidad.<br><span id='author'>Anne-Sophie Bordry</span>"
 register:
     title: 'Registrar'
     pseudo: 'Aposo'

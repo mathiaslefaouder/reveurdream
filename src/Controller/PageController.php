@@ -58,7 +58,7 @@ class PageController extends AbstractController
             ->add('email', EmailType::class, ['required'=> true, 'attr' => ['placeholder' => 'Email']])
             ->add('subject', TextType::class, ['required'=> true, 'attr' => ['placeholder' => 'Sujet']])
             ->add('message', TextareaType::class, ['required'=> true, 'attr' => ['placeholder' => 'Message']])
-            ->add('send', SubmitType::class, ['label' => 'Envoyer'])
+            ->add('send', SubmitType::class, ['label' => 'user.send'])
             ->getForm();
         $form->handleRequest($request);
 

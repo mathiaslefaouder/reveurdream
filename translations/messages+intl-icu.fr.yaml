@@ -98,6 +98,7 @@ user:
     connect: 'Me connecter'
     confirm_registration: "Confirmation d'inscription"
     confirm_registration_text: "Votre inscription<br/>est validée !"
+    send: 'Envoyer'
 mail:
     creation:
         title: 'Création de votre compte Reveurdream'

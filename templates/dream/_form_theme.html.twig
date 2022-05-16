@@ -14,19 +14,93 @@
 
 {% block _form_theme_widget %}
     <p>thème : <span id="themeSelected"></span></p>
-    {% set themeSelected = data.name %}
-    {% for choice in choices %}
+        {% if data %}
+            {% if data.id == '1' and app.request.locale == 'en' %}
+                {% set themeName = 'Social, Family, Friendship, Love'%}
+            {% elseif data.id == '1'  and app.request.locale == 'es' %}
+                {% set themeName = 'Social, Familia, Amistad, Amor'%}
+            {% elseif data.id == '1'   %}
+                {% set themeName = data.name%}
+
+            {% elseif data.id == '2'  and app.request.locale == 'en' %}
+                {% set themeName = 'Personal, Imagination'%}
+            {% elseif data.id == '2'  and app.request.locale == 'es' %}
+                {% set themeName = 'Personalidad, Imaginación'%}
+            {% elseif data.id == '2'   %}
+                {% set themeName = data.name%}
+
+            {% elseif data.id == '3'  and app.request.locale == 'en' %}
+                {% set themeName = 'Work, Profession'%}
+            {% elseif data.id == '3'  and app.request.locale == 'es' %}
+                {% set themeName = 'Trabajo, Profesión'%}
+            {% elseif data.id == '3'   %}
+                {% set themeName = data.name%}
+
+            {% elseif data.id == '4'  and app.request.locale == 'en' %}
+                {% set themeName = 'Travels'%}
+            {% elseif data.id == '4'  and app.request.locale == 'es' %}
+                {% set themeName = 'Viajes'%}
+            {% elseif data.id == '4'   %}
+                {% set themeName = data.name%}
+
+            {% elseif data.id == '5'  and app.request.locale == 'en' %}
+                {% set themeName = 'Animals'%}
+            {% elseif data.id == '5'  and app.request.locale == 'es' %}
+                {% set themeName = 'Animales'%}
+            {% elseif data.id == '5'   %}
+                {% set themeName = data.name%}
+
+            {%endif%}
+            {% set themeSelected = themeName %}
+        {% else %}
+            {% set themeSelected = '' %}
+        {% endif %}
+        {% for choice in choices %}
         <label for="{{ name }}-{{ choice.data.id }}">
             <input type="radio" id="{{ name }}-{{ choice.data.id }}" name="{{ full_name }}" value="{{ choice.value }}"
-                   {% if value == choice.data.id %}checked{% endif %} onclick="majTheme('{{ choice.data.name }}')">
-            <div class="filter-box" id="{{ name }}-{{ choice.data.id }}">
-                {{ choice.label|raw }}
-            </div>
-        </label>
+                   {% if value == choice.data.id %}checked{% endif %} onclick="majTheme('{{ choice.data.id }}', '{{ choice.data.name }}')">
+    <div class="filter-box" id="{{ name }}-{{ choice.data.id }}">
+        {{ choice.label|raw }}
+    </div>
+    </label>
     {% endfor %}
     <script>
-        function majTheme(value) {
-            document.getElementById('themeSelected').innerHTML = value
+        function majTheme(id, name) {
+            let local = '{{ app.request.locale }}';
+            id = parseInt(id);
+            if (id === 1 && local === 'en') {
+                document.getElementById('themeSelected').innerHTML = 'Social, Family, Friendship, Love';
+            }
+            else if (id === 1 && local === 'es') {
+                document.getElementById('themeSelected').innerHTML = 'Social, Familia, Amistad, Amor';
+            }
+            else if (id === 2 && local === 'en') {
+                document.getElementById('themeSelected').innerHTML = 'Personal, Imagination';
+            }
+            else if (id ===2 && local === 'es'){
+                document.getElementById('themeSelected').innerHTML = 'Personalidad, Imaginación';
+            }
+            else if (id === 3 && local === 'en'){
+                document.getElementById('themeSelected').innerHTML = 'Work, Profession';
+            }
+            else if (id === 3 && local === 'es'){
+                document.getElementById('themeSelected').innerHTML = 'Trabajo, Profesión';
+            }
+            else if (id === 4 && local === 'en'){
+                document.getElementById('themeSelected').innerHTML = 'Travels';
+            }
+            else if (id === 4 && local === 'es'){
+                document.getElementById('themeSelected').innerHTML = 'Viajes';
+            }
+            else if (id === 5 && local === 'en'){
+                document.getElementById('themeSelected').innerHTML = 'Animals';
+            }
+            else if (id === 5 && local === 'es'){
+                document.getElementById('themeSelected').innerHTML = 'Animales';
+            }
+            else {
+                document.getElementById('themeSelected').innerHTML = name;
+            }
         }
 
         document.getElementById('themeSelected').innerHTML = '{{ themeSelected }}'

@@ -20,7 +20,7 @@
 
                     {% for dream in dreams %}
                         <div class="dream">
-                            <span class="phase">{{ dream.lunaryPhase|raw}}</span>
+                            <span class="phase" id="d{{ dream.id }}">{{ dream.lunaryPhase|raw}}</span>
                             <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
                             <span class="dream_categories">{% if dream.category %}{{ dream.category.ico|raw }}{% endif %}</span>
                             <span class="dream_title">{{ dream.title }}</span>
@@ -28,6 +28,25 @@
                             <span class="dream_views"> | {{ dream.numberView }}  {{'dream.view'|trans}}</span>
                             <a class="dream_edit" href="{{ url('app_dream_edit', {'id' : dream.id}) }}">{{'dream.edit'|trans}}</a>
                         </div>
+                        <script>
+                            //remove link svg
+
+                            function test{{dream.id }}(text) {
+                                var title{{dream.id  }} = document.createElementNS("http://www.w3.org/2000/svg","title")
+                                title{{dream.id  }}.textContent = text
+                                let selector{{dream.id  }} = "#d{{dream.id }}  > svg > g";
+                                document.querySelector(selector{{dream.id  }}).appendChild(title{{dream.id  }})
+                            }
+
+                            window.addEventListener("DOMContentLoaded", (event) => {
+                                let selector = "#d{{dream.id }}  > svg > g > a";
+                                let selector2 = "#d{{dream.id }}  > svg > g";
+                                let child{{dream.id  }} = document.querySelector(selector )
+                                document.querySelector(selector2).removeChild(child{{dream.id  }})
+                                let phase{{dream.id  }} = "{{ dream.phaseName }}"
+                                test{{dream.id }}(phase{{dream.id  }})
+                            });
+                        </script>
                     {% endfor %}
                 </div>
             </div>

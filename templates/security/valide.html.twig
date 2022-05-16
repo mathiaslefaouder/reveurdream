@@ -8,11 +8,11 @@
             <!-- Validation compte 7 -->
             <div class="dream-phase" id="dream-step-account-validation">
                 <h2>{{'dream.share'|trans}}</h2>
-                <p>Confirmation d'inscription</p>
-                <h3>Votre inscription<br/>est validée !</h3>
+                <p>{{ 'user.confirm_registration'|trans }}</p>
+                <h3>{{ 'user.confirm_registration_text'|trans|raw }}</h3>
                 <div class="next-step-buttons">
-                    <a class="blue-button" href="{{ url('app_index') }}">Retour à l'accueil</a>
-                    <a class="blue-button" href="{{ url('app_login') }}">Me connecter</a>
+                    <a class="blue-button" href="{{ url('app_index') }}">{{ 'dream.back_home'|trans }}</a>
+                    <a class="blue-button" href="{{ url('app_login') }}">{{ 'user.connect'|trans }}</a>
                 </div>
             </div>
             <!-- Step Fin avec compte 8 -->

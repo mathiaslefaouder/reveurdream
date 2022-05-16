@@ -95,6 +95,9 @@ user:
     delete_confirm: 'Are you sure you want to delete your account?'
     password_request: 'Send password reset email'
     password_new: 'New password'
+    connect: 'Log in'
+    confirm_registration: 'Registration confirmation'
+    confirm_registration_text: 'Your registration<br/>is validated!'
 mail:
     creation:
         title: 'Create your Reveurdream account'

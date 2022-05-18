@@ -86,7 +86,7 @@ const {scene, screenSpaceEventHandler, camera, entities} = viewer;
 scene.backgroundColor = Color.clone(Color.TRANSPARENT).withAlpha(0.0);
 scene.screenSpaceCameraController.minimumZoomDistance = 6000;
 scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
-scene.globe.enableLighting = true;
+scene.globe.enableLighting = false;
 scene.globe.dynamicAtmosphereLighting = false;
 //HDR needs to be disable for transparent backgrounds
 viewer.highDynamicRange = false;

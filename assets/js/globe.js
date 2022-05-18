@@ -36,7 +36,8 @@ import {
     Viewer,
     HeightReference,
     Cartesian2,
-    ArcGisMapServerImageryProvider
+    ArcGisMapServerImageryProvider,
+    OpenStreetMapImageryProvider
 } from "cesium";
 
 // Your access token can be found at: https://cesium.com/ion/tokens.
@@ -86,7 +87,7 @@ scene.backgroundColor = Color.clone(Color.TRANSPARENT).withAlpha(0.0);
 scene.screenSpaceCameraController.minimumZoomDistance = 6000;
 scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
 scene.globe.enableLighting = true;
-scene.globe.dynamicAtmosphereLighting = true;
+scene.globe.dynamicAtmosphereLighting = false;
 //HDR needs to be disable for transparent backgrounds
 viewer.highDynamicRange = false;
 camera.flyTo({

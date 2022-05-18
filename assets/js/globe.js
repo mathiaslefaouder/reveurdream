@@ -37,13 +37,21 @@ import {
     HeightReference,
     Cartesian2,
     ArcGisMapServerImageryProvider,
-    OpenStreetMapImageryProvider
+    SceneMode
 } from "cesium";
 
 // Your access token can be found at: https://cesium.com/ion/tokens.
 // This is the default access token
 Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYzNkMmMxNi04NDM3LTQyNzEtYjBlNy05NTAxNjVjMGVhMDEiLCJpZCI6OTA1MzQsImlhdCI6MTY1MDQzNTIyMn0.P6exO2RJvDDe-6SgILWjoj92WeEaeRkPdWEeP6YhfYw';
 
+var ua = navigator.userAgent.toLowerCase();
+var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+let sceneMode
+if (isAndroid) {
+    sceneMode = SceneMode.SCENE3D;
+} else {
+    sceneMode = SceneMode.SCENE3D;
+}
 // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
 var viewer = new Viewer('cesiumContainer', {
     imageryProvider: new ArcGisMapServerImageryProvider({
@@ -51,6 +59,7 @@ var viewer = new Viewer('cesiumContainer', {
             "https://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/",
     }),
     resolutionScale: 1.0,
+    sceneMode: sceneMode,
     allowTextureFilterAnisotropic: false,
     animation: false,
     baseLayerPicker: false,
@@ -86,16 +95,12 @@ const {scene, screenSpaceEventHandler, camera, entities} = viewer;
 scene.backgroundColor = Color.clone(Color.TRANSPARENT).withAlpha(0.0);
 scene.screenSpaceCameraController.minimumZoomDistance = 6000;
 scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
-scene.globe.enableLighting = false;
-scene.globe.dynamicAtmosphereLighting = false;
 //HDR needs to be disable for transparent backgrounds
 viewer.highDynamicRange = false;
 camera.flyTo({
     destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
 });
 
-
-scene.fxaa = true;
 
 let datas = httpGet('/dream-data-map');
 datas = JSON.parse(datas)

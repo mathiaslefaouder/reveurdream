@@ -98,6 +98,7 @@ user:
     connect: 'Log in'
     confirm_registration: 'Registration confirmation'
     confirm_registration_text: 'Your registration<br/>is validated!'
+    send: 'Send'
 mail:
     creation:
         title: 'Create your Reveurdream account'

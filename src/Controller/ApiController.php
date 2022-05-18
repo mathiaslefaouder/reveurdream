@@ -40,7 +40,9 @@ class ApiController extends AbstractController
         array_pop($ids);
         foreach ($ids as $id) {
             $dream = $dreamRepository->find($id);
-            $dream->setNumberView($dream->getNumberView() + 1);
+            if ($dream->getAuthor() !== $this->getUser()){
+                $dream->setNumberView($dream->getNumberView() + 1);
+            }
         }
         $entityManager->flush();
         return new Response('ok');

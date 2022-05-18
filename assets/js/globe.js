@@ -9,7 +9,7 @@ async function createSvg(value) {
         image.onload = () => resolve(canvas);
     });
 
-    canvas.getContext('2d').drawImage(image, 0, 15);
+    canvas.getContext('2d').drawImage(image, 0, -15);
     return canvas;
 }
 
@@ -62,7 +62,6 @@ var viewer = new Viewer('cesiumContainer', {
     timeline: false,
     useDefaultRenderLoop: true,
     navigationHelpButton: false,
-    scene3DOnly: true,
     shouldAnimate: true,
     sun: false,
     skyBox: false,
@@ -163,34 +162,32 @@ for (let i = 0; i < nodesTheme.length; i++) {
     };
 }
 
-function refreshPins() {
-    entities._entities._array.forEach(
-        element => {
-            let svg = '';
-            let count = 0
-            let themeToShow = element.theme.includes(currentTheme) || currentTheme == null;
-            let categoryToShow = element.category.includes(currentCategory) || currentCategory == null;
-            element.dreams.forEach(dream => {
-                if ((dream.category.toLowerCase() == currentCategory && currentTheme == null) ||
-                    (dream.theme_short == currentTheme && null == currentCategory) ||
-                    (dream.category.toLowerCase()  == currentCategory && dream.theme_short == currentTheme) ||
-                    (currentCategory == null && currentTheme == null)
-                ) {
-                    document.getElementById("dream-" + dream.id).style.display = "block";
-                    count++;
-                    svg = dream.theme_pin_ico
-                } else {
-                    document.getElementById("dream-" + dream.id).style.display = "none";
-                }
-            })
-
-            element.show = themeToShow && categoryToShow;
-            if (count > 1) {
-                svg = '<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve"> <style type="text/css"> .st0{fill:#1C1F3C;} .st1{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;} .st2{fill:#FFFFFF;} </style> <path class="st0" d="M343.6,407c0,40-46.1,73.1-46.1,73.1s-46.1-33-46.1-73.1c0-25.5,20.6-46.1,46.1-46.1S343.6,381.5,343.6,407z"/> <circle class="st1" cx="297.5" cy="407" r="34.4"/> <g><text x="284" y="427" font-family="Verdana" font-size="55" fill="white">' + count + ' </text> </g> </svg> ';
+async function refreshPins() {
+    for (const element of entities._entities._array) {
+        let svg = '';
+        let count = 0
+        let themeToShow = element.theme.includes(currentTheme) || currentTheme == null;
+        let categoryToShow = element.category.includes(currentCategory) || currentCategory == null;
+        element.dreams.forEach(dream => {
+            if ((dream.category.toLowerCase() == currentCategory && currentTheme == null) ||
+                (dream.theme_short == currentTheme && null == currentCategory) ||
+                (dream.category.toLowerCase() == currentCategory && dream.theme_short == currentTheme) ||
+                (currentCategory == null && currentTheme == null)
+            ) {
+                document.getElementById("dream-" + dream.id).style.display = "block";
+                count++;
+                svg = dream.theme_pin_ico
+            } else {
+                document.getElementById("dream-" + dream.id).style.display = "none";
             }
-                element.billboard.image = createSvg(svg);
+        })
+
+        element.show = themeToShow && categoryToShow;
+        if (count > 1) {
+            svg = '<svg version="1.1" width="200px" height="360px" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve"> <style type="text/css"> .st0{fill:#1C1F3C;} .st1{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;} .st2{fill:#FFFFFF;} </style> <path class="st0" d="M343.6,407c0,40-46.1,73.1-46.1,73.1s-46.1-33-46.1-73.1c0-25.5,20.6-46.1,46.1-46.1S343.6,381.5,343.6,407z"/> <circle class="st1" cx="297.5" cy="407" r="34.4"/> <g><text x="284" y="427" font-family="Verdana" font-size="55" fill="white">' + count + ' </text> </g> </svg> ';
         }
-    )
+        element.billboard.image = await createSvg(svg);
+    }
 }
 
 function resetSelectedFilterClass(typeClass) {

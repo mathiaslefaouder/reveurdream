@@ -38,12 +38,14 @@ html {
 
 /***** BODY *****/
 body{
-    background-image: url(../img/bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url(../img/bg.png), linear-gradient(to bottom, #063e6d, #0e121d);
+    background-repeat: repeat;
     margin: 0;
+    background-size: cover;
 }
-
+body.central-layout{
+    background-position-x: -33vw;
+}
 
 /* Fonts */
 
@@ -59,7 +61,7 @@ h1{
     font-family: Bodoni MT, serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 6em;
+    font-size: 5.75em;
     color: white;
     line-height: 0.875em;
     margin: 0;
@@ -85,6 +87,11 @@ h1{
 
 .page h1{
     margin-bottom:1em;
+    margin-top: 0.5em;
+}
+
+a{
+    text-decoration: none!important;
 }
 
 h3{
@@ -125,6 +132,7 @@ a:-webkit-any-link {
     border-radius: 2em;
     line-height: 1em;
     display: inline-block;
+    text-decoration: none;
 }
 .blue-button:hover{
     background: #0abff3;
@@ -135,6 +143,10 @@ a:-webkit-any-link {
     transition: 0.3s;
 }
 
+a:visited{
+    text-decoration: none;
+    color: inherit;
+}
 
 
 form label{
@@ -147,7 +159,6 @@ form label{
     display: block;
 }
 form input{
-    text-transform: uppercase;
     font-family: poppins,sans-serif;
     font-weight: 700;
     font-style: normal;
@@ -160,45 +171,51 @@ form input{
     line-height: 1em;
     background: transparent;
     margin-bottom: 1em;
-    box-sizing: content-box;
+    box-sizing: border-box;
+}
+
+form>div{
+    position: relative;
 }
 input[type=submit]{
     cursor: pointer;
-    text-transform: uppercase!important;
-    font-size: 1.25em;
+    text-transform: uppercase;
+    padding: 1em 2em!important;
 }
+
+input:-internal-autofill-selected {
+    background-color: transparent!important;
+}
+
 input[type=submit]:hover{
     background: #0abff3!important;
 }
-form button{
-    text-transform: uppercase;
-    font-family: poppins,sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 1em;
+#togglePassword, #togglePassword2{
     color: white;
-    display: block;
-    border: 2px solid #0abff3;
-    padding: 0.5em 2em;
-    border-radius: 30px;
-    line-height: 1em;
-    background: transparent;
-    margin-bottom: 1em;
-    min-height: 45px;
+    position: absolute;
+    right: 20px;
+    top: 19px;
 }
-button[type=submit]{
-    cursor: pointer;
-    text-transform: uppercase;
+@media screen and (min-width: 1981px){
+    form input{
+        border-radius: 40px;
+    }
 }
-button[type=submit]:hover{
-    background: #0abff3!important;
-}
-
 @media screen and (max-width: 768px){
     .page h1{
         text-align: center;
     }
+
 }
+@media screen and (max-width: 480px){
+    .sub-h1{
+        font-size: 1.25em;
+    }
+}
+
+
+
+
 
 /**********************************************************************************************************/
 /************************************************** HEADER ************************************************/
@@ -207,6 +224,8 @@ button[type=submit]:hover{
 header{
     background-color: #060e25;
     padding: 15px;
+    height: 82px;
+    box-sizing: border-box;
 }
 
 .header-top{
@@ -215,20 +234,31 @@ header{
     align-items: center;
 }
 
-@media screen and (max-width: 768px){
-    .main-logo{
-        width: 220px;
+.main-logo{
+    width: 150px;
+    position: absolute;
+    top: 10px;
+}
+
+@media screen and (max-width: 480px){
+    .main-logo {
+        width: 120px;
+        position: absolute;
+        top: 6px;
     }
 }
+
 
 /**************** MENU ******************/
 
 header .nav-bar{
     display: flex;
     align-items: center;
+    z-index: 9;
 }
 header .nav-bar>ul{
     float: left;
+    list-style: none;
 }
 
 header .nav-bar>ul>li{
@@ -239,14 +269,23 @@ header .nav-bar>ul>li{
 header .nav-bar>ul>li>*{
     color: white;
     font-size: 16px;
+    line-height: 16px;
     font-family: sofia-pro-soft, sans-serif;
     cursor: pointer;
+    text-decoration: none;
 }
 
 header .nav-bar>ul>li>*:hover{
     color: #0abff3;
 }
 
+@media screen and (min-width: 1921px){
+    header .nav-bar>ul>li>*{
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+}
 
 
 
@@ -257,12 +296,12 @@ header .nav-bar>ul>li>*:hover{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-right: 20px;  
-    position: relative; 
-    align-items: center;   
+    margin-right: 20px;
+    position: relative;
+    align-items: center;
 }
 
-.lang-switch span{
+.lang-switch span, .lang-switch a{
     color: white;
     font-size: 16px;
     font-family: sofia-pro-soft, sans-serif;
@@ -273,25 +312,26 @@ header .nav-bar>ul>li>*:hover{
     width: 18px;
     line-height: 1em;
     text-align: center;
-    border-radius: 20px;  
+    border-radius: 20px;
     cursor: pointer;
     background-color: #060e25;
+    border: 2px solid #45568b;
 }
 
 .lang-other{
     margin-top: 10px;
 }
 
-.lang-switch span:hover{
+.lang-switch span:hover, .lang-switch a:hover{
     background-color: #435488;
 }
 
 .lang-dropdown{
     display: none;
     position: absolute;
-    top: 32px;    
+    top: 32px;
 }
-@media screen and (min-width: 769px){
+@media screen and (min-width: 1025px){
     .lang-switch:hover .lang-dropdown{
         display: flex;
         flex-direction: column;
@@ -299,17 +339,18 @@ header .nav-bar>ul>li>*:hover{
     }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1024px){
     .lang-dropdown{
         display: flex;
         position: relative;
         top: unset;
     }
-    .lang-switch span {
+    .lang-switch span, .lang-switch a {
         margin: 0 6px;
     }
     .lang-switch {
         flex-direction: row;
+        margin-right: 0;
     }
     .lang-other {
         margin-top: 0px;
@@ -317,15 +358,15 @@ header .nav-bar>ul>li>*:hover{
 }
 
 
-
-
-
 /************ MENU MOBILE *************/
 
 
 .menu-mobile{
     display: none;
+    margin-top: 10px;
 }
+
+
 
 .menu-mobile-switch svg {
     fill: white;
@@ -344,16 +385,16 @@ header .nav-bar>ul>li>*:hover{
     opacity: 1;
     position: fixed;
     transition: opacity .25s ease-in,left 0s .25s,right 0s .25s;
-    z-index: 99999;
+    z-index: 2;
     height: 100vh;
     width: 100vw;
     text-align: center;
-    margin-top: -52px;
+    margin-top: 0px;
     padding-top: 60px;
     left: 0;
 }
 
-.menu-panel a {
+.menu-panel ul li a {
     color: white;
     display: flex;
     text-transform: uppercase;
@@ -375,6 +416,7 @@ header .nav-bar>ul>li>*:hover{
         flex-direction: column;
         display: flex;
         padding-left: 0;
+        width: 100%;
     }
     header .nav-bar-mobile>ul>li {
         float: unset;
@@ -383,11 +425,25 @@ header .nav-bar>ul>li>*:hover{
     .menu-mobile, .menu-mobile-switch{
         display: block;
     }
+
+    .menu-mobile .menu-panel ul li a {
+        width: calc(100% - 53px);
+        border-top: 2px solid white;
+        text-align: center;
+        display: block;
+        border-radius: unset;
+    }
 }
 
 @media screen and (max-width: 480px){
-    .menu-panel a {
+    .menu-panel ul li a {
         font: 600 1.25em "Poppins", sans-serif;
+    }
+    .menu-mobile, .menu-mobile-switch{
+        margin-top: 0px;
+    }
+    header{
+        height: 64px;
     }
 
 }
@@ -398,61 +454,37 @@ header .nav-bar>ul>li>*:hover{
 /*************************************************** MAIN *************************************************/
 /**********************************************************************************************************/
 
-main{
-    min-height: calc(100vh - 203px);
-}
-@media screen and (min-width: 2561px){
-    main{
-        min-height: calc(100vh - 392px);
-    }  
-}
-@media screen and (min-width: 1921px){
-    main{
-        min-height: calc(100vh - 320px);
-    }  
-}
-@media screen and (max-width: 1680px){
-    main{
-        min-height: calc(100vh - 202px);
-    }  
-}
-@media screen and (max-width: 1366px){
-    main{
-        min-height: calc(100vh - 179px);
-    }  
-}
 
-.page .wrapper{
+.page .wrapper, #single-content .wrapper{
     max-width: 1400px;
-    margin: 4vh auto;
+    margin: 3vh auto;
+    padding: 0 30px;
     position: relative;
     overflow: hidden;
 }
 #home .wrapper{
-    max-width: 1400px;
-    margin: 6vh auto 2vh;
+    max-width: 100vw;
+    margin: 3vh auto 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: relative;
 }
 
+main{
+    min-height: calc(100vh - 82px - 60px - 3vh);
+}
+
+
 @media screen and (min-width: 1921px){
-    #home .wrapper{
-        max-width: 68vw;
-        margin: 10vh auto 0;
+    main{
+        min-height: calc(100vh - 100px - 100px - 3vh);
     }
-}
-
-@media screen and (max-width: 1440px){
-    .page .wrapper{
-        max-width: 1240px;
+    header {
+        height: 100px;
     }
-}
-
-@media screen and (max-width: 1280px){
-    .page .wrapper{
-        max-width: 1024px;
+    .page .wrapper, #single-content .wrapper{
+        max-width: 1920px;
     }
 }
 
@@ -467,9 +499,18 @@ main{
     .page .wrapper{
         padding: 0 20px;
     }
+    main{
+        min-height: calc(100vh - 82px - 100px - 3vh);
+    }
 }
 
+
+
 /************* LEFT COL *************/
+
+#home .left-col{
+    margin-left: 5vw;
+}
 
 
 /* Version de base */
@@ -479,7 +520,7 @@ main{
 
 .left-col{
     text-align: center;
-    max-width: 400px;
+    max-width: 440px;
 }
 
 .left-col .sub-h1+.blue-button{
@@ -507,8 +548,10 @@ p.account-connection:hover a, p.account-password-lost:hover a{
     color: #e0e6f6;
 }
 
-p.date img{
+p.date svg, p.date img{
     margin: 0 6px;
+    border: 1px solid #e0e6f6;
+    border-radius: 20px;
 }
 
 @media screen and (min-width: 1921px){
@@ -520,27 +563,39 @@ p.date img{
     .left-col .sub-h1+.blue-button{
         margin-top: 2em;
     }
+    .left-col{
+        margin-left: 0vw;
+    }
+    #home .left-col{
+        margin-left: 0vw;
+    }
+
 }
 
 @media screen and (max-width: 420px){
     p.date {
         flex-direction: column;
-        font-size: 1.25em;
+        font-size: 1.125em;
     }
-    p.date img {
+    p.date svg, p.date img {
         margin: 4px 0;
     }
     p.date span{
         font-size: 0.75em;
     }
+
 }
 
 
 /* Version connexion */
+#left-col-pourquoi{
+    margin-left: 0vw!important;
+}
 
 #left-col-connexion form{
     margin-top: 30px;
     margin-bottom: 10px;
+    position: relative;
 }
 
 #left-col-connexion input{
@@ -551,6 +606,13 @@ p.date img{
     width: 100%;
 }
 
+#left-col-connexion form input+i{
+    position: absolute;
+    top: 7.5em;
+}
+input:focus{
+    outline: none;
+}
 input::placeholder{
     color: #0abff3;
     font-family: sofia-pro-soft, sans-serif;
@@ -572,6 +634,11 @@ input::placeholder{
     #left-col-connexion input{
         margin-top: 6px;
     }
+
+    #left-col-connexion form input+i{
+        position: absolute;
+        top: 7em;
+    }
 }
 
 /* Version pourquoi */
@@ -589,8 +656,7 @@ input::placeholder{
 .right-col{
     text-align: center;
     position: relative;
-    max-width: 50vw;
-    margin-left: 5vw;
+    width: 50vw;
 }
 
 .right-col>.globe{
@@ -603,11 +669,12 @@ input::placeholder{
 .filters-column{
     display: flex;
     position: absolute;
-    right: -125px;
+    right: 0vw;
     top: -25px;
     padding: 15px 9px;
     background-color: transparent;
     cursor: pointer;
+    align-items: center;
 }
 .filters-column img{
     display: inline-block;
@@ -617,7 +684,7 @@ input::placeholder{
     border: 2px solid #0abff3;
     border-radius: 40px;
     padding: 15px 8px;
-    background-color: transparent;
+    background-color: #060e25;
     width: 40px;
     height: 26px;
 }
@@ -631,16 +698,27 @@ input::placeholder{
 .filters-column>.filters-button:hover{
     background-color: #0abff3;
 }
+.filter-box.selectedFilter{
+    background: #0abff3;
+}
 
-
+.filter-box.selectedFilter path{
+    fill: white;
+}
+@media screen and (min-width: 2560px){
+    .filters-column p {
+        font-size: 1.25em;
+    }
+}
 
 .filters{
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: -109px;
+    right: 0.8vw;
     top: 50px;
     display: none;
+    z-index: 9;
 }
 
 .filters:before{
@@ -672,21 +750,18 @@ input::placeholder{
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    align-items: center;
     z-index: 1;
     margin: 10px 0 0;
     cursor: pointer;
 }
 .filter-box svg{
     width: 26px;
+    height: 40px;
 }
 .filter-box svg path{
     fill: #45568b;
 }
 .filter-box:hover{
-    background: #0abff3;
-}
-.filter-box.selectedFilter{
     background: #0abff3;
 }
 .filter-box:hover svg path{
@@ -704,28 +779,53 @@ input::placeholder{
     width: 22px;
 }
 
-@media screen and (min-width: 1921px){
-    .filters {
-        top: 51px;
+@media screen and (min-width: 2560px){
+    .filters{
+        right: -117px;
+        top: 68px;
+    }
+    .filter-box {
+        width: 60px;
+        height: 60px;
+    }
+    .filter-box svg {
+        width: 34px;
     }
 }
 
-@media screen and (max-width: 1366px){
-    .right-col {
-        margin-right: 20px;
-    }
+@media screen and (min-width: 1921px){
     .filters {
-        right: -33px;
-        top: 50px;
-    }
-    .filters-column{
-        right: -4vw;
+        top: 66px;
+        right: 8px;
     }
 }
-@media screen and (max-width: 1024px){
+
+@media screen and (max-width: 1680px){
+    .filters {
+        right: 1vw;
+    }
+}
+@media screen and (max-width: 1440px){
+    .filters {
+        right: 1.1vw;
+    }
+}
+@media screen and (max-width: 1280px){
+    .filters {
+        right: 1.2vw;
+    }
+}
+
+
+@media screen and (max-width: 1180px){
+    .filters {
+        right: 1.6vw;
+    }
+}
+
+@media screen and (max-width: 992px){
     .right-col {
         margin-right: 0;
-        margin-top: 60px;
     }
     .right-col>.globe{
         max-width: 92%;
@@ -737,15 +837,11 @@ input::placeholder{
         right: -62px;
     }
     .filters {
-        right: -46px;
+        right: -4.7vw;
     }
-
 }
 @media screen and (max-width: 768px){
-    .right-col {
-        margin-top: 40px;
-    }
-       .filters-column{
+    .filters-column{
         right: unset;
         top: unset;
         position: relative;
@@ -762,7 +858,7 @@ input::placeholder{
     }
     .filters-bloc-1, .filters-bloc-2{
         z-index: 1;
-        margin: 6px 0 20px;
+        margin: 6px 0 16px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -773,6 +869,9 @@ input::placeholder{
     .filters:before {
         display: none;
     }
+    .right-col {
+        margin-right: 0;
+    }
 }
 @media screen and (max-width: 480px){
 
@@ -780,9 +879,7 @@ input::placeholder{
         right: 0px;
         z-index: 9;
     }
-    .right-col {
-        margin-top: 1.5em;
-    }
+
     .right-col>.globe{
         max-width: 96%;
         margin-bottom: 0vh;
@@ -793,18 +890,20 @@ input::placeholder{
         margin: 8px 0 0;
     }
     .filter-box svg {
-        width: 24px;
+        width: 22px;
+        height: 34px;
     }
 }
 
 
-/* Popup de vision d'un rêve sur le globe */
+/* Popup de vision d'un rÃªve sur le globe */
 
 .popup-dream{
     font-family: sofia-pro-soft, sans-serif;
     font-weight: 300;
     font-style: normal;
     position: relative;
+    display: none;
 }
 
 .popup-dream .overlay{
@@ -818,11 +917,13 @@ input::placeholder{
     z-index: 9;
 }
 
+
+
 .popup-dream h2{
     font-family: Bodoni MT, serif;
     font-weight: 600;
     font-style: normal;
-    font-size: 3em;
+    font-size: 2.5em;
     color: #e0e6f6;
     margin: 20px 0;
     text-align: left;
@@ -831,8 +932,24 @@ input::placeholder{
 
 .popup-dream .popup-dream-text>div{
     position: relative;
+    border-bottom: 1px solid #45568b;
+    padding: 1em 0;
 }
 
+::-webkit-scrollbar-thumb {
+    background-color: #0abff3;
+    border: 4px solid transparent;
+    border-radius: 8px;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar {
+    width: 16px;
+}
+.popup-dream .popup-dream-text>div:last-child{
+    border-bottom: 0px solid white;
+    padding: 1em 0 0;
+}
 .popup-dream .popup-dream-text{
     position: fixed;
     top: 50%;
@@ -843,17 +960,33 @@ input::placeholder{
     background: #060e25;
     border: 2px solid #e0e6f6;
     border-radius: 30px;
-    padding: 28px 28px 60px;
-    min-width: 40vw;
+    padding: 28px;
+    width: 80vw;
+    overflow-y: scroll;
+    max-height: 90%;
+}
+/* un bloc de rÃªve de la liste */
+.popup-dream .popup-dream-text>div .popup-dream-text-date{
+    display: inline-block;
+    margin: 4px 0 8px;
+    color: white;
+}
+
+.popup-dream .popup-dream-text>div .popup-dream-text-icons{
+    margin: 4px 0;
+}
+.popup-dream .popup-dream-text>div h2{
+    margin: 8px 0 0 0;
 }
 .popup-dream-text-icons svg{
     height: 20px;
     display: inline-block;
     margin: 0 10px 0 0;
+    width: 25px;
 }
 
 .popup-dream-text-icons svg path{
-    fill: white;
+    fill: #0abff3;
 }
 
 .popup-dream-text-date{
@@ -861,10 +994,11 @@ input::placeholder{
     font-weight: 400;
     font-style: normal;
     color: #e0e6f6;
+    margin-top: 0;
 }
 
 .popup-dream .popup-dream-text p{
-    color: #e0e6f6;
+    color: #8e8f97;
 }
 
 .close-popup{
@@ -872,15 +1006,16 @@ input::placeholder{
     font-weight: 400;
     font-style: normal;
     color: #e0e6f6;
-    padding: 7px 11px 14px;
-    border: 2px solid #45568b;
-    position: absolute;
-    top: -20px;
+    padding: 7px 11px 14px!important;
+    border: 2px solid #45568b!important;
+    position: absolute!important;
+    top: 20px;
     right: 0px;
     border-radius: 24px;
     line-height: 0.5em;
     font-size: 22px;
     cursor: pointer;
+    z-index: 9;
 }
 .close-popup:hover{
     border: 2px solid white;
@@ -890,49 +1025,13 @@ input::placeholder{
     .popup-dream .popup-dream-text {
         width: 70vw;
     }
-}
-
-
-
-/*** Positionnement du globe ***/
-
-#cesiumContainer{
-    width: 31vw;
-    height: 73vh;
-}
-
-@media screen and (max-width: 1680px){
-    #cesiumContainer{
-        width: 35vw;
-        height: 73vh;
-    }
-}
-
-@media screen and (max-width: 1440px){
-    .right-col {
-        margin-right: 5vw;
-        margin-left: 0;
-    }
-}
-@media screen and (max-width: 768px){
-    #cesiumContainer{
-        width: 85vw;
-        height: 60vh;
-    }
-}
-
-@media screen and (max-width: 360px){
-    #cesiumContainer{
-        width: 79vw;
-        height: 49vh;
+    .popup-dream .popup-dream-text>div h2{
+        font-size: 2em;
     }
 }
 
 
-
-
-
-/****** REsponsive général ******/
+/****** REsponsive gÃ©nÃ©ral ******/
 
 @media screen and (max-width: 1024px){
     #home .wrapper{
@@ -946,6 +1045,10 @@ input::placeholder{
 
     .left-col, .right-col, .right-col>img{
         max-width: 100%;
+    }
+    .right-col{
+        margin-top: 40px;
+        width: auto;
     }
 }
 
@@ -965,7 +1068,26 @@ input::placeholder{
 
 
 
+/* mot de passe incorrect */
 
+.alert {
+    font-family: sofia-pro-soft, sans-serif;
+    font-size: 1em;
+}
+
+main>.alert{
+    font-family: sofia-pro-soft, sans-serif;
+    font-size: 1em;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    background: #0abff3;
+    padding: 18px 0;
+}
+
+.closebtn {
+    margin-right: 20px;
+}
 /**********************************************************************************************************/
 /************************************************** FOOTER ************************************************/
 /**********************************************************************************************************/
@@ -976,7 +1098,9 @@ footer{
     background: transparent;
     font-family: sofia-pro-soft, sans-serif;
     font-size: 1em;
+    margin: 0 30px;
     text-align: center;
+    height: 60px;
 }
 
 footer .divider{
@@ -986,10 +1110,13 @@ footer .divider{
 
 footer>a{
     display: inline-block;
+    color: #8e8f97;
 }
-
+footer>a:visited{
+    color: #8e8f97!important;
+}
 footer>a:hover{
-    color: #e0e6f6;
+    color: #e0e6f6!important;
 }
 
 footer>p{
@@ -1010,6 +1137,12 @@ footer>p{
     }
 }
 
+@media screen and (min-width: 1921px){
+    footer{
+        height: 100px;
+    }
+
+}
 
 
 
@@ -1029,8 +1162,16 @@ footer>p{
     border-right: 1px solid white;
     margin-right: 4vw;
     padding-right: 4vw;
+    width: 300px;
 }
 
+.my-dreams{
+    width: calc(100% - 301px - 8vw)
+}
+
+.my-dreams .dream{
+    margin-top: 1em;
+}
 
 .my-dreams .dream{
     margin-top: 1em;
@@ -1051,13 +1192,18 @@ footer>p{
 .dream .phase{
     margin-right: 16px;
 }
+.dream .phase svg{
+    border: 2px solid #0abff3;
+    border-radius: 20px;
+}
 .my-dreams .dream_date{
     color: #e0e6f6;
     font-family: sofia-pro-soft, sans-serif;
     font-weight: 300;
     font-style: normal;
     font-size: 1.25em;
-    margin-right: 70px;
+    margin-right: 20px;
+    width: 25%;
 }
 .my-dreams .dream_title{
     color: #e0e6f6;
@@ -1066,6 +1212,11 @@ footer>p{
     font-style: normal;
     font-size: 1.25em;
     margin-right: 20px;
+    width: 50%;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .my-dreams .dream_invisible{
     color: #5c6ca1;
@@ -1073,6 +1224,9 @@ footer>p{
     font-weight: 400;
     font-style: italic;
     font-size: 1em;
+    margin-right: 4px;
+    width: 78px;
+    text-align: right;
 }
 .my-dreams .dream_views{
     color: #5c6ca1;
@@ -1080,6 +1234,7 @@ footer>p{
     font-weight: 400;
     font-style: italic;
     font-size: 1em;
+    width: 80px;
 }
 .my-dreams .dream_edit{
     color: white;
@@ -1093,23 +1248,56 @@ footer>p{
     cursor: pointer;
     margin-left: 20px;
     text-align: center;
+    width: 120px;
 }
 
-.edit-user-data input[type=submit]{
-    margin-top: 30px;
+@media screen and (max-width: 480px){
+    /*.my-dreams .dream_edit{
+        display: none;
+    }*/
+    .my-dreams .dream_invisible{
+        display: none;
+    }
+    /*.dream:hover .dream_edit{
+        display: block;
+    }*/
+}
+
+
+.edit-user-data #user input{
+    width: 100%!important;
+}
+.edit-user-data #user_save input{
+    width: 100%;
+}
+
+.edit-user-data #user_save{
+    margin-top: 20px;
+    background: transparent;
+    border: 2px solid #0abff3;
+    color: white!important;
+    font-family: poppins,sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1em;
+    text-transform: uppercase;
+    padding: 1em 2em;
+    border-radius: 2em;
+    line-height: 1em;
+    cursor: pointer;
+    width: 100%;
+}
+
+.edit-user-data #user_save:hover{
+    background: #0abff3;
 }
 
 @media screen and (max-width: 1280px){
-    .edit-user-data{
-        margin-right: 2vw;
-        padding-right: 2vw;
-    }
     .my-dreams .dream_date{
         font-size: 1em;
         margin-right: 20px;
     }
 }
-
 
 @media screen and (max-width: 1024px){
     .edit-user-data, .my-dreams{
@@ -1118,13 +1306,110 @@ footer>p{
         border: 0;
         padding: 0;
         text-align: center;
+        width: 100%;
     }
     .edit-user-data form input{
         margin: 5px auto;
     }
+    .edit-user-data #user_save{
+        width: 308px;
+    }
+    .edit-user-data #user input{
+        max-width: 310px;
+    }
+    .edit-user-data #user label{
+        margin-top: 4px;
+    }
+    .dream>*{
+        text-align: left;
+    }
+    .my-dreams .dream {
+        padding: 4px;
+    }
+}
+
+.dream_categories{
+    width: 40px;
+    margin-right: 20px;
+    display: flex;
 }
 
 
+.dream_categories svg{
+    width: 28px;
+    fill: #0abff3;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 480px){
+    .dream .phase {
+        margin-right: 10px;
+        width: 24px;
+    }
+    .dream_categories svg {
+        width: 23px;
+    }
+    .dream_categories{
+        width: 25px;
+        margin-right: 10px;
+    }
+    .my-dreams .dream_date {
+        margin-right: 10px;
+        text-align: center;
+    }
+    .my-dreams .dream_edit {
+        margin-left: 10px;
+        width: 104px;
+    }
+    .edit-user-data #user_save{
+        width: 250px;
+    }
+
+    .dream_views{
+        display: none;
+    }
+    .my-dreams .dream_title {
+        font-size: 1em;
+        margin-right: 20px;
+    }
+}
+
+
+@media screen and (min-width: 1920px){
+    .edit-user-data {
+        width: 400px;
+    }
+    .my-dreams {
+        width: calc(100% - 401px - 8vw);
+    }
+    .my-dreams .dream_views {
+        width: 125px;
+    }
+    .my-dreams .dream_edit {
+        width: 160px;
+    }
+}
+
+/* Suppression compte */
+
+#delete_user{
+    color: white;
+    font-family: poppins, sans-serif;
+    font-weight: 600;
+    font-size: 0.75em;
+    border: 2px solid #0abff3;
+    text-transform: uppercase;
+    padding: 2px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 40px auto 0;
+    text-align: center;
+    width: 120px;
+    display: block;
+}
+#delete_user:hover{
+    background: #0abff3;
+}
 
 
 
@@ -1175,6 +1460,10 @@ footer>p{
     color: #e0e6f6;
 }
 
+.labl > input:checked + div{
+    border: 0px!important;
+}
+
 .dream-options{
     display: flex;
     align-items: center;
@@ -1192,6 +1481,13 @@ footer>p{
 .dream-options .filter-box{
     margin: 0px 15px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 480px){
+    .dream-options .filter-box{
+        margin: 0px 8px;
+    }
+
 }
 
 .next-step-buttons{
@@ -1217,65 +1513,79 @@ footer>p{
     width: 100%;
 }
 
-.dream-options .filter-box.dream-cat:hover:after{
+.dream-options .filter-box#cat-1:after{
+    content: "rÃªve";
+}
+.dream-options .filter-box#cat-1:hover:after{
+    display: block;
+}
+.dream-options .filter-box#cat-2:after{
+    content: "cauchemar";
+}
+.dream-options .filter-box#cat-2:hover:after{
     display: block;
 }
 
-.dream-options .filter-box#social:after{
+/* Step 2 CatÃ©gories du rÃªve */
+
+#dream-step2 .dream-options .filter-box#cat-1:hover:after{
     display: block;
 }
-.dream-options .filter-box#social:hover:after{
-    content: "social, famille, amitié, amour";
+#dream-step2  .dream-options .filter-box#cat-1:after{
+    content: "social, famille, amitiÃ©, amour";
 }
 
-/* Step 3 Catégories du rêve */
-.dream-options .filter-box#perso:after{
+#dream-step2 .dream-options .filter-box#cat-2:hover:after{
     display: block;
 }
-.dream-options .filter-box#perso:hover:after{
+#dream-step2 .dream-options .dream-options-icons .filter-box#cat-2:after{
     content: "personnel, imagination";
 }
-.dream-options .filter-box#travail:after{
+#dream-step2 .dream-options .filter-box#cat-3:hover:after{
     display: block;
 }
-.dream-options .filter-box#travail:hover:after{
+#dream-step2 .dream-options .filter-box#cat-3:after{
     content: "travail, profession";
 }
-.dream-options .filter-box#voyages:after{
+#dream-step2 .dream-options .filter-box#cat-4:hover:after{
     display: block;
 }
-.dream-options .filter-box#voyages:hover:after{
+#dream-step2 .dream-options .filter-box#cat-4:after{
     content: "voyages";
 }
-.dream-options .filter-box#animaux:after{
+.dream-options .filter-box#cat-5:hover:after{
     display: block;
 }
-.dream-options .filter-box#animaux:hover:after{
+.dream-options .filter-box#cat-5:after{
     content: "animaux";
 }
 
-/* Step 4 Ecrire le texte du rêve */
+/* Step 4 Ecrire le texte du rÃªve */
 #dream-step4 input, #dream-step4 textarea{
     background: transparent;
     display: block;
     padding: 15px;
     margin: 10px auto;
     width: 500px;
+    box-sizing: border-box;
 }
 @media screen and (max-width: 768px){
-    #dream-step4 input, #dream-step4 textarea{
+    #dream-step4 input[type="text"], #dream-step4 textarea{
         width: 100%!important;
     }
 }
 
 #dream-step4 textarea{
-    height: 300px;
+    height: 298px;
 }
 
 .dream_text{
     position: relative;
     width: fit-content;
     margin: 0 auto;
+}
+#dream_story, #dream_title{
+    text-transform: none;
 }
 .dream_text>p, #edit-my-dream div>p{
     position: absolute;
@@ -1290,6 +1600,7 @@ footer>p{
     font-style: normal;
     font-size: 1em;
 }
+
 .dream_text>p input, #edit-my-dream div>p input{
     color: white!important;
     font-family: sofia-pro-soft, sans-serif;
@@ -1310,11 +1621,29 @@ footer>p{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 20px auto 0;
 }
 
-#dream-step-account-creation form>div>div>input{
-    width: 500px;
+#dream-step-account-creation form input{
+    padding: 0.75em 2em;
+    margin: 4px auto;
+}
+
+@media screen and (min-width: 481px){
+    #registration_form_username, #registration_form_email, #registration_form_password_first, #registration_form_password_second{
+        min-width: 380px;
+    }
+
+}
+
+#dream-step-account-creation form .next-step-buttons{
+    margin: 20px auto 60px;
+}
+
+
+#dream-step-account-creation h1{
+    margin-top: 1em;
+    margin-bottom: 0.25em;
 }
 
 @media screen and (max-width: 768px){
@@ -1323,6 +1652,24 @@ footer>p{
     }
 }
 
+/* Messages d'erreur */
+
+#dream-step-account-creation form ul{
+    margin: 3px 0 5px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+
+#dream-step-account-creation form ul li{
+    color: red;
+    font-family: sofia-pro-soft, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1em;
+    text-transform: uppercase;
+}
 
 /* Step 5 */
 
@@ -1340,8 +1687,7 @@ footer>p{
 
 @media screen and (max-width: 768px){
     #dream-step-account-creation form input{
-        width: unset;
-        margin-top: 1em;
+        width: 100%;
     }
 }
 
@@ -1360,18 +1706,20 @@ footer>p{
 /************************************ Editer UN REVE *************************************/
 /*****************************************************************************************/
 
-/* Col gauche données rêve */
+/* Col gauche donnÃ©es rÃªve */
 .edit-dream-data{
     border-right: 1px solid white;
     margin-right: 4vw;
     padding-right: 4vw;
 }
 
+
+
 .edit-dream-data #perso{
     transform: translateY(4px);
 }
 
-.edit-dream-data div{
+.edit-dream-data form>div{
     overflow: hidden;
 }
 .edit-dream-data label{
@@ -1495,9 +1843,9 @@ input:checked + .slider:before {
     font-weight: 600;
     font-size: 0.875em;
     border: 2px solid #0abff3;
-    padding: 2px 4px;
+    padding: 6px 0.75em;
     margin-top: 3em;
-    border-radius: 1em;
+    border-radius: 2em;
     display: inline-block;
 }
 
@@ -1505,7 +1853,7 @@ input:checked + .slider:before {
     background-color: #0abff3;
 }
 
-/* Col droite texte rêve */
+/* Col droite texte rÃªve */
 
 #edit-my-dream>div:first-child{
     display:flex;
@@ -1534,14 +1882,13 @@ input:checked + .slider:before {
     font-size: 1em;
     margin-right: 20px;
 }
-
 #edit-my-dream .edit-dream-validation a:hover{
     background: #0abff3!important;
 }
-
-#edit-my-dream textarea.dream_story{
-    min-height: 300px;
+#edit-my-dream #form_description{
+    min-height: 222px;
 }
+
 
 @media screen and (max-width: 1024px){
     .edit-dream-data, .edit-dream {
@@ -1558,7 +1905,11 @@ input:checked + .slider:before {
 }
 
 
-
+@media screen and (max-width: 480px){
+    .edit-dream-data label {
+        margin-right: 10px;
+    }
+}
 
 
 
@@ -1566,12 +1917,16 @@ input:checked + .slider:before {
 /************************************* PAGES SIMPLES *************************************/
 /*****************************************************************************************/
 
-#single-content .wrapper{
-    margin: 8vh auto;
-}
-
 #single-content .wrapper h1{
     text-align: center;
+    line-height: 1.25em;
+}
+#single-content .wrapper p{
+    font-family: sofia-pro-soft, sans-serif;
+    font-weight: 400;
+    color: #e0e6f6;
+    text-align: justify;
+    margin: 30px 0;
 }
 
 
@@ -1585,14 +1940,13 @@ input:checked + .slider:before {
     margin: 0.5em 0 0.25em 0;
 }
 
-#dream-step-account-creation form>div>div>input {
+#dream-step-account-creation form>input {
     width: 500px;
     padding: 1em 2em;
 }
 
 #dream-step-account-creation form input::placeholder{
     text-transform: none;
-
 }
 
 .next-step-buttons{
@@ -1601,19 +1955,15 @@ input:checked + .slider:before {
 .next-step-buttons>*{
     width: 200px;
     padding: 1em;
-    margin: 0 1em;
+    margin: 0 1em!important;
     box-sizing: border-box;
 }
 .next-step-buttons+.next-step-buttons{
     margin-top: 20px;
 }
 @media screen and (max-width: 768px){
-    #dream-step-account-creation form>div>div>input{
+    #dream-step-account-creation form>input{
         width: 100%;
-    }
-
-    .next-step-buttons{
-        margin-top: 15px;
     }
 
     .next-step-buttons>*{
@@ -1622,4 +1972,202 @@ input:checked + .slider:before {
         padding: 1em 2em;
         box-sizing: border-box;
     }
+}
+
+@media screen and (max-width: 480px){
+    .next-step-buttons>*{
+        width: 130px!important;
+        margin: 0 4px!important;
+    }
+}
+
+
+/************************* CONTACT ****************************/
+
+#single-content form{
+    text-align: center;
+    margin: 1em auto;
+    max-width: 380px;
+}
+#single-content form input{
+    margin: 1em auto;
+    box-sizing: content-box;
+    width: calc(100% - 4em);
+    max-width: unset;
+}
+#single-content form[name="form"] label{
+    display: none;
+}
+
+
+
+#form_message{
+    background: transparent;
+    padding: 15px;
+    margin: 10px auto;
+    width: calc(100% - 30px);
+    box-sizing: content-box;
+    font-family: poppins,sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1em;
+    color: white;
+    display: block;
+    border: 2px solid #0abff3;
+    border-radius: 30px;
+    min-height: 200px;
+}
+#form_message::placeholder{
+    color: #0abff3;
+}
+#form_send{
+    margin-top: 30px;
+    background: transparent;
+    border: 2px solid #0abff3;
+    color: white!important;
+    font-family: poppins,sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1em;
+    text-transform: uppercase;
+    padding: 1em 2em;
+    border-radius: 2em;
+    line-height: 1em;
+    cursor: pointer;
+}
+#form_send:hover {
+    background: #0abff3;
+}
+
+@media screen and (max-width: 768px){
+
+}
+
+@media screen and (max-width: 480px){
+
+}
+
+@media screen and (min-width: 1981px){
+    #single-content form{
+        max-width: 20vw;
+    }
+}
+
+/*****************************************************************************************/
+/**************************************** CESIUM *****************************************/
+/*****************************************************************************************/
+.right-col #cesiumContainer{
+    width: 48vw!important;
+    height: 79vh!important;
+}
+
+@media screen and (min-wudth: 3840px){
+    .right-col #cesiumContainer{
+        width: 56vw!important;
+        height: 69vh!important;
+    }
+}
+
+@media screen and (max-width: 1680px){
+    .right-col #cesiumContainer{
+        width: 50vw!important;
+        height: 80vh!important;
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .right-col #cesiumContainer{
+        height: 78vh!important;
+    }
+}
+@media screen and (max-width: 1366px){
+    .right-col #cesiumContainer{
+        width: 48vw!important;
+        height: 78vh!important;
+    }
+}
+
+@media screen and (max-width: 1280px){
+    .right-col #cesiumContainer{
+        height: 70vh;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .right-col #cesiumContainer{
+        padding-top: 2vh;
+        height: 57vh!important;
+        width: 73vw!important;
+    }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 600px) and (orientation: landscape){
+    .right-col #cesiumContainer{
+        height: 100vh!important;
+        width: 73vw!important;
+    }
+}
+@media screen and (max-width: 991px) and (max-height: 600px){
+    .right-col #cesiumContainer{
+        height: 86vh!important;
+        width: 63vw!important;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .right-col #cesiumContainer {
+        width: 78vw!important;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .right-col #cesiumContainer{
+        width: 84vw!important;
+        height: 46vh!important;
+        padding: 0;
+    }
+
+    .right-col{
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 380px){
+    .right-col #cesiumContainer {
+        width: 84vw!important;
+        height: 39vh!important;
+    }
+}
+@media screen and (max-width: 320px){
+    .right-col #cesiumContainer{
+        width: 84vw!important;
+        height: 45vh!important;
+    }
+}
+
+
+/***** RÃ©init mot de passe *****/
+
+#single-content form[name="change_password_form"] button{
+    border: 2px solid #0abff3;
+    color: white!important;
+    font-family: poppins,sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1em;
+    text-transform: uppercase;
+    padding: 1em 2em;
+    border-radius: 2em;
+    line-height: 1em;
+    display: inline-block;
+    text-decoration: none;
+    background: transparent;
+    margin-top: 2em;
+}
+#single-content form[name="change_password_form"] input{
+    margin-top: 0.25em;
+}
+
+#single-content form[name="change_password_form"] button:hover{
+    background: #0abff3;
 }

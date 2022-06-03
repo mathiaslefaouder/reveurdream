@@ -87,7 +87,7 @@ class SecurityController extends AbstractController
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('contact@reveur-dream.com', 'Reveur Dream'))
+                    ->from(new Address('contact@reveurdream.com', 'Reveur Dream'))
                     ->to($user->getEmail())
                     ->subject($subject)
                     ->htmlTemplate($template)

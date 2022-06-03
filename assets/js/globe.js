@@ -9,7 +9,7 @@ async function createSvg(value) {
         image.onload = () => resolve(canvas);
     });
 
-    canvas.getContext('2d').drawImage(image, 0, -15);
+    canvas.getContext('2d').drawImage(image, 0, 15);
     return canvas;
 }
 

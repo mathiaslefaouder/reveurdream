@@ -103,6 +103,12 @@ mail:
     creation:
         title: 'Création de votre compte Reveurdream'
         hi: 'Bonjour'
+    contact:
+        name: 'Nom'
+        mail: 'Email'
+        message: 'Message'
+        subject: 'Sujet'
+        success: 'Votre message a été envoyé'
 login:
     forgot_password: 'Mot de passe oublié ?'
     click: 'Cliquez ici'

@@ -54,10 +54,10 @@ class PageController extends AbstractController
     {
 
         $form = $this->createFormBuilder()
-            ->add('name', TextType::class, ['required'=> true, 'attr' => ['placeholder' => 'Nom']])
-            ->add('email', EmailType::class, ['required'=> true, 'attr' => ['placeholder' => 'Email']])
-            ->add('subject', TextType::class, ['required'=> true, 'attr' => ['placeholder' => 'contact.subject']])
-            ->add('message', TextareaType::class, ['required'=> true, 'attr' => ['placeholder' => 'Message']])
+            ->add('name', TextType::class, ['required'=> true, 'attr' => ['placeholder' => 'mail.contact.name']])
+            ->add('email', EmailType::class, ['required'=> true, 'attr' => ['placeholder' => 'mail.contact.mail']])
+            ->add('subject', TextType::class, ['required'=> true, 'attr' => ['placeholder' => 'mail.contact.subject']])
+            ->add('message', TextareaType::class, ['required'=> true, 'attr' => ['placeholder' => 'mail.contact.message']])
             ->add('send', SubmitType::class, ['label' => 'user.send'])
             ->getForm();
         $form->handleRequest($request);
@@ -68,15 +68,16 @@ class PageController extends AbstractController
             $contactFormData = $form->getData();
 
             $message = (new Email())
-                ->from($contactFormData['email'])
-                ->to('contact@reveur-dream.com')
+                ->from('contact@reveurdream.com')
+                ->addFrom($contactFormData['email'])
+                ->to('contact@reveurdream.com')
                 ->subject($contactFormData['subject'])
                 ->text('Sender : ' . $contactFormData['email'] . \PHP_EOL .
                     $contactFormData['message'],
                     'text/plain');
             $mailer->send($message);
 
-            $this->addFlash('success', 'Vore message a été envoyé');
+            $this->addFlash('success', 'mail.contact.success');
 
             return $this->redirectToRoute('app_contact');
         }

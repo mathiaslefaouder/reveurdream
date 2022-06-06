@@ -12,9 +12,9 @@ index:
     in: 'en'
     already_account: '¿Ya tienes una cuenta?'
     log_in: 'Iniciar sesión '
-    begin: 'Comenzar'
-    dream: 'Comparte <br> tu sueño'
-    discover: 'y descubrir sueños similares.'
+    begin: 'Empezar'
+    dream: 'Comparte <br> tu s sueño'
+    discover: 'y descubre sueños similares.'
 globe:
     filter: 'filtrar sueños'
 footer:
@@ -103,6 +103,12 @@ mail:
     creation:
         title: 'Creando su cuenta Reveurdream'
         hi: 'Hola'
+    contact:
+        name: 'Nombre'
+        mail: 'Correo electrónico'
+        message: 'Mensaje'
+        subject: 'Asunto'
+        success: '¡Gracias por contactarnos!'
 login:
     forgot_password: '¿Olvidaste tu contraseña?'
     click: 'Haga clic aquí'

@@ -118,3 +118,4 @@ login:
     incorrect_password: 'Mot de passe incorrect'
     valider: 'Valider les modifications'
     with_register: "S'inscrire avec"
+    already: 'Déjà inscrit ? Se connecter'

@@ -118,3 +118,4 @@ login:
     incorrect_password: 'Incorrect password'
     valider: 'Commit changes'
     with_register: 'Sign up with'
+    already: 'Already have an account ? Log in'

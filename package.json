@@ -18,6 +18,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "cesium": "^1.92.0"
+        "cesium": "^1.94.0"
     }
 }

@@ -118,3 +118,4 @@ login:
     incorrect_password: 'Contraseña incorrecta'
     valider: 'Validar modificaciones'
     with_register: 'Registrarse con'
+    already: 'Ya tienes una cuenta? Inicia sesión'

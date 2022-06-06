@@ -43,6 +43,7 @@
                     <input type="submit" name="submit" id="account-submit" class="blue-button" value="{{ 'register.submit'|trans }}">
                 </div>
                 <p class="account-password-lost"><a href="{{ url('connect_facebook_start') }}">{{'login.with_register'|trans}} Facebook</a></p>
+                <p class="account-password-lost"><a href="{{ url('app_login') }}">{{'login.already'|trans}}</a></p>
 
                 {{ form_end(registrationForm) }}
             </div>

@@ -51,7 +51,7 @@ class SecurityController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
-            if (!empty($session->get('dream'))) {
+            if (!empty($session->get('dream')) && $session->get('dream')->getDescription() !== null) {
                  $dream = new Dream();
                  $theme = $entityManager->getRepository(Theme::class)->find($session->get('dream')->getTheme()->getId());
                  $category = $entityManager->getRepository(Category::class)->find($session->get('dream')->getCategory()->getId());

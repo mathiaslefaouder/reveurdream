@@ -72,8 +72,7 @@ class PageController extends AbstractController
                 ->addFrom($contactFormData['email'])
                 ->to('contact@reveurdream.com')
                 ->subject($contactFormData['subject'])
-                ->text('Sender : ' . $contactFormData['email'] . \PHP_EOL .
-                    $contactFormData['message'],
+                ->text($contactFormData['message'],
                     'text/plain');
             $mailer->send($message);
 

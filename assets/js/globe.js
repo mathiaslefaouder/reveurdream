@@ -9,9 +9,9 @@ async function createSvg(value, type) {
         image.onload = () => resolve(canvas);
     });
 
-    if(type == 'perso' || type == 'animaux') {
+    if(type == 'animaux') {
         canvas.getContext('2d').drawImage(image, 83, 140);
-    }else if(type == 'voyages' || type == 'social' || type == 'travail') {
+    }else if(type == 'voyages' || type == 'social' || type == 'travail' || type == 'perso') {
         canvas.getContext('2d').drawImage(image, 0, -15);
     }
     else {

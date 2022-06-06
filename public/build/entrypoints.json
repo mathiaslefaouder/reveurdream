@@ -2,20 +2,28 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_internals_arr-d49be3.js",
-        "/build/app.js"
+        "/build/runtime.53a95366.js",
+        "/build/863.e052de0a.js",
+        "/build/app.f45a0536.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/app.1ebef410.css"
       ]
     },
     "globe": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-35cd56.js",
-        "/build/globe.js"
+        "/build/runtime.53a95366.js",
+        "/build/190.16f811b2.js",
+        "/build/globe.0873d7b5.js"
       ]
     }
+  },
+  "integrity": {
+    "/build/runtime.53a95366.js": "sha384-kkjS0MOxdZCxoWCCvY92GcuURZz+iuKOrgZQWJ9aYosHCbQj/QQqhHLXbicxgxbi",
+    "/build/863.e052de0a.js": "sha384-cExqhulRe9w08jyzi+q/TG3ZaAKqVGgO1JdChbG6K0Q4QdJOYE/rl5iLAVLJFg8q",
+    "/build/app.f45a0536.js": "sha384-fOxp0FWAPD72wiveF2J30V2HkFqRQ7BaEvtuGqo15B7JW6iZn8eqS5RqWb6dx45B",
+    "/build/app.1ebef410.css": "sha384-CdQ4GiqUHakEOnx7jQrq4xUk+r2Gg5DM7IzOk0fnEDDxWda1vbET5xBRHUiCBUgT",
+    "/build/190.16f811b2.js": "sha384-Z/FkAtYkQlM4w9kuw/yPJYtZva5x8zY62Ft+L2yttcpZs4b/uAC6eK5bQCAqlhVK",
+    "/build/globe.0873d7b5.js": "sha384-+plDu+HoJKyqCeqXR5XHsf6kjffrAN2+lpiF8BuWf9rtY9K6YPlc3X3KiIpA0tOe"
   }
 }

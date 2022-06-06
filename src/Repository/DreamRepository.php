@@ -94,7 +94,7 @@ class DreamRepository extends ServiceEntityRepository
             ->select('d.id', 'd.title', 'd.description', 'd.gps', 'd.createdAt', 'c.name AS category', 'c.ico as cat_ico', 't.name as theme', 't.ico as theme_ico', 't.svgPin as theme_pin_ico', 't.short as theme_short', 'a.id as author')
             ->innerJoin('d.category', 'c')
             ->innerJoin('d.theme', 't')
-            ->innerJoin('d.author', 'a')
+            ->leftJoin('d.author', 'a')
         ->orderBy('d.createdAt', 'DESC')
         ->where('d.createdAt > :date')
         ->andWhere('d.isDraft = false')

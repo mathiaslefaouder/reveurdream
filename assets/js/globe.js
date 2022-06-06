@@ -8,7 +8,7 @@ async function createSvg(value, type) {
     await new Promise((resolve, reject) => {
         image.onload = () => resolve(canvas);
     });
-    console.log(type)
+
     if(type == 'animaux'|| type == 'perso') {
         canvas.getContext('2d').drawImage(image, 83, 140);
     }else{
@@ -173,8 +173,8 @@ for (let i = 0; i < nodesTheme.length; i++) {
     };
 }
 
-async function refreshPins() {
-    for (const element of entities._entities._array) {
+function refreshPins() {
+    for (let element of entities._entities._array) {
         let svg = '';
         let count = 0
         let theme_short = ''
@@ -200,7 +200,7 @@ async function refreshPins() {
             svg = '<svg version="1.1" width="200px" height="360px" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 595.3 841.9" style="enable-background:new 0 0 595.3 841.9;" xml:space="preserve"> <style type="text/css"> .st0{fill:#1C1F3C;} .st1{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;} .st2{fill:#FFFFFF;} </style> <path class="st0" d="M343.6,407c0,40-46.1,73.1-46.1,73.1s-46.1-33-46.1-73.1c0-25.5,20.6-46.1,46.1-46.1S343.6,381.5,343.6,407z"/> <circle class="st1" cx="297.5" cy="407" r="34.4"/> <g><text x="284" y="427" font-family="Verdana" font-size="55" fill="white">' + count + ' </text> </g> </svg> ';
             theme_short = null;
         }
-        element.billboard.image = await createSvg(svg, theme_short);
+        element.billboard.image = createSvg(svg, theme_short);
     }
 }
 

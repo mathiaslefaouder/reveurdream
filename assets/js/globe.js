@@ -99,8 +99,8 @@ const {scene, screenSpaceEventHandler, camera, entities} = viewer;
 scene.backgroundColor = Color.clone(Color.TRANSPARENT).withAlpha(0.0);
 viewer.highDynamicRange = false;
 scene.screenSpaceCameraController.minimumZoomDistance = 6000;
-
-if (isAndroid) {
+scene.globe.showGroundAtmosphere = false
+if (false) {
     scene.screenSpaceCameraController.maximumZoomDistance = 3578137;
 //HDR needs to be disable for transparent backgrounds
     camera.flyTo({

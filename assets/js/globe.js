@@ -52,7 +52,7 @@ Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYzNkM
 var ua = navigator.userAgent.toLowerCase();
 var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
 let sceneMode
-if (isAndroid) {
+if (false) {
     sceneMode = SceneMode.SCENE2D;
 } else {
     sceneMode = SceneMode.SCENE3D;
@@ -96,15 +96,27 @@ var viewer = new Viewer('cesiumContainer', {
 });
 const {scene, screenSpaceEventHandler, camera, entities} = viewer;
 
-//Set the background of the scene to transparent
 scene.backgroundColor = Color.clone(Color.TRANSPARENT).withAlpha(0.0);
-scene.screenSpaceCameraController.minimumZoomDistance = 6000;
-scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
-//HDR needs to be disable for transparent backgrounds
 viewer.highDynamicRange = false;
-camera.flyTo({
-    destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
-});
+scene.screenSpaceCameraController.minimumZoomDistance = 6000;
+
+if (isAndroid) {
+    scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
+//HDR needs to be disable for transparent backgrounds
+    camera.flyTo({
+        destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
+    });
+
+} else {
+    scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 1.5;
+//HDR needs to be disable for transparent backgrounds
+    camera.flyTo({
+        destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
+    });
+
+}
+// Ini
+//Set the background of the scene to transparent
 
 
 let datas = httpGet('/dream-data-map');
@@ -216,6 +228,7 @@ function resetSelectedFilterClass(typeClass) {
 
     [].forEach.call(elems, function (el) {
         el.classList.remove("selectedFilter");
+        el.classList.add("filter-box-none");
     });
 }
 

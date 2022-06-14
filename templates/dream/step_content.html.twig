@@ -24,6 +24,11 @@
                         {% if app.user %} <input class="blue-button"  type="submit" name="register" value="{{'dream.save'|trans}}" style="width: 200px; display: inline">{% endif %}
                         <input class="blue-button"  type="submit" value="{{ 'dream.publish'|trans}}" style="width: 200px; display: inline">
                     </div>
+                    {% if not app.user %}
+                        <p class="account-connection">
+                            {{ 'index.already_account'|trans }} <a href="{{ url('app_login') }}">{{ 'index.log_in'|trans }}</a>
+                        </p>
+                    {% endif %}
                 </form>
             </div>
 

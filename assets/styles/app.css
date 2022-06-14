@@ -875,6 +875,13 @@ input::placeholder{
 }
 @media screen and (max-width: 480px){
 
+    .filter-box-none:hover{
+        background: none;
+    }
+    .filter-box-none:hover svg path{
+        fill: #45568b;
+    }
+
     .filters{
         right: 0px;
         z-index: 9;

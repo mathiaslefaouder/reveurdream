@@ -108,7 +108,7 @@ if (isAndroid) {
     });
 
 } else {
-    scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 1.5;
+    scene.screenSpaceCameraController.maximumZoomDistance = 6378137;
 //HDR needs to be disable for transparent backgrounds
     camera.flyTo({
         destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
@@ -164,6 +164,7 @@ for (let i = 0; i < nodesCategory.length; i++) {
         if (currentCategory !== nodesCategory[i].id) {
             currentCategory = nodesCategory[i].id;
             nodesCategory[i].classList.add("selectedFilter");
+            nodesCategory[i].classList.remove("filter-box-none");
         } else {
             currentCategory = null;
         }

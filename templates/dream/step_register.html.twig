@@ -18,6 +18,12 @@
                         <div class="blue-button" ><a onclick="this.closest('form').submit();return false;">{{'dream.register_no'|trans}}</a></div>
                         <div class="blue-button" onclick="location.href='{{ url('app_register') }}'" > {{'dream.register_yes'|trans}}</div>
                     </div>
+
+                    {% if not app.user %}
+                        <div class="next-step-buttons" style="color: #e0e6f6">
+                            <a href="{{ url('app_login') }}"> {{ 'index.already_account'|trans }} {{ 'index.log_in'|trans }}</a>
+                        </div>
+                    {% endif %}
                     <div class="next-step-buttons">
                         <a class="blue-button" id="back-to-step-4"
                            href="{{ url('app_dream') }}">{{ 'register.previous'|trans }}</a>

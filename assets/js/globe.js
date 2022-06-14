@@ -101,10 +101,10 @@ viewer.highDynamicRange = false;
 scene.screenSpaceCameraController.minimumZoomDistance = 6000;
 
 if (isAndroid) {
-    scene.screenSpaceCameraController.maximumZoomDistance = 1378137;
+    scene.screenSpaceCameraController.maximumZoomDistance = 4378137;
 //HDR needs to be disable for transparent backgrounds
     camera.flyTo({
-        destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
+        destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 40)
     });
 
 } else {

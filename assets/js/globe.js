@@ -101,14 +101,14 @@ viewer.highDynamicRange = false;
 scene.screenSpaceCameraController.minimumZoomDistance = 6000;
 
 if (isAndroid) {
-    scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
+    scene.screenSpaceCameraController.maximumZoomDistance = 6378137;
 //HDR needs to be disable for transparent backgrounds
     camera.flyTo({
         destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
     });
 
 } else {
-    scene.screenSpaceCameraController.maximumZoomDistance = 6378137;
+    scene.screenSpaceCameraController.maximumZoomDistance = 6378137 * 2;
 //HDR needs to be disable for transparent backgrounds
     camera.flyTo({
         destination: Cartesian3.fromDegrees(2.3491, 48.8579, 150000.0 * 60)
@@ -179,6 +179,7 @@ for (let i = 0; i < nodesTheme.length; i++) {
         if (currentTheme !== nodesTheme[i].id) {
             currentTheme = nodesTheme[i].id;
             nodesTheme[i].classList.add("selectedFilter");
+            nodesTheme[i].classList.remove("filter-box-none");
         } else {
             currentTheme = null;
         }

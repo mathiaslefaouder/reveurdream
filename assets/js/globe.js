@@ -205,7 +205,9 @@ function refreshPins() {
                 count++;
                 svg = dream.theme_pin_ico
                 theme_short = dream.theme_short
-                owner = dream.is_author
+                if (!owner){
+                    owner = dream.is_author
+                }
             } else {
                 document.getElementById("dream-" + dream.id).style.display = "none";
             }

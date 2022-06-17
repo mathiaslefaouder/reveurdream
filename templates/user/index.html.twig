@@ -24,8 +24,8 @@
                             <span class="dream_date">{{ dream.createdAt|format_datetime('long', 'none', locale=app.request.getLocale()) }}</span>
                             <span class="dream_categories">{% if dream.category %}{{ dream.category.ico|raw }}{% endif %}</span>
                             <span class="dream_title">{{ dream.title }}</span>
-                            <span class="dream_invisible">{% if dream.isDraft %} {{'dream.invi'|trans}} {% else %}  {{'dream.visible'|trans}} {% endif %}</span>
-                            <span class="dream_views"> | {{ dream.numberView }}  {{'dream.view'|trans}}</span>
+                            <span class="dream_invisible">{% if dream.isDraft %} {{'dream.invi'|trans}} {% else %}  {{'dream.visible'|trans}} {% endif %} | </span>
+                            <span class="dream_views"> {{ dream.numberView }}  {{'dream.view'|trans}}</span>
                             <a class="dream_edit" href="{{ url('app_dream_edit', {'id' : dream.id}) }}">{{'dream.edit'|trans}}</a>
                         </div>
                         <script>

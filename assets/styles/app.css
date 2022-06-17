@@ -1373,7 +1373,7 @@ footer>p{
     }
 
     .dream_views{
-        display: none;
+        /*display: none;*/
     }
     .my-dreams .dream_title {
         font-size: 1em;

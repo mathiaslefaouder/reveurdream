@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\DreamRepository;
+use App\Repository\ResetPasswordRequestRepository;
 use App\Repository\UserRepository;
 use App\Service\LunaryPhaseService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +33,7 @@ class UserController extends AbstractController
             if ($form->getData()->getPassword() === null) {
                 $form->getData()->setPassword($pwd);
             } else {
-                $form->getData()->getPassword()->setPassword($userPasswordHasher->hashPassword($form->getData(), $form->getData()->getPassword()));
+                $form->getData()->setPassword($userPasswordHasher->hashPassword($form->getData(), $form->getData()->getPassword()));
             }
             $entityManager->persist($form->getData());
             $entityManager->flush();
@@ -59,9 +60,15 @@ class UserController extends AbstractController
      * @throws \Doctrine\ORM\ORMException
      */
     #[Route('/user/delete', name: 'app_user_delete')]
-    final public function delete(UserRepository $userRepository, TranslatorInterface $translator ,EntityManagerInterface $entityManager, DreamRepository $dreamRepository, SessionInterface $session, TokenStorageInterface $tokenStorage): RedirectResponse
+    final public function delete(UserRepository $userRepository, ResetPasswordRequestRepository $passwordRequestRepository, TranslatorInterface $translator ,EntityManagerInterface $entityManager, DreamRepository $dreamRepository, SessionInterface $session, TokenStorageInterface $tokenStorage): RedirectResponse
     {
         $currentUserId = $this->getUser()->getId();
+        $toDelete = $passwordRequestRepository->findBy(['user' => $this->getUser()]);
+        if (!empty($toDelete)){
+            foreach ($toDelete as $item) {
+                $passwordRequestRepository->remove($item);
+            }
+        }
         $dreams = $dreamRepository->findBy(['author' => $currentUserId]);
         foreach ($dreams as $dream){
             $dream->setAuthor(null);

@@ -120,8 +120,8 @@ login:
     with_register: "S'inscrire avec"
     already: 'Déjà inscrit ? Se connecter'
 filtre:
-    dream: 'reve'
-    cauchemar: 'cauchemar'
+    dream: 'Rêve'
+    cauchemar: 'Cauchemar'
     social: 'Social, famille, personnes'
     perso: 'Personnel'
     work: 'Travail'

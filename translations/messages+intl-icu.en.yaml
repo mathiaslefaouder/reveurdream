@@ -119,3 +119,11 @@ login:
     valider: 'Commit changes'
     with_register: 'Sign up with'
     already: 'Already have an account ? Log in'
+filtre:
+    dream: 'dream'
+    cauchemar: 'nightmare'
+    social: 'Social, family, people'
+    perso: 'Personal'
+    work: 'Work'
+    travel: 'Travel'
+    animal: 'Animals'

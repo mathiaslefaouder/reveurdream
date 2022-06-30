@@ -119,3 +119,11 @@ login:
     valider: 'Valider les modifications'
     with_register: "S'inscrire avec"
     already: 'Déjà inscrit ? Se connecter'
+filtre:
+    dream: 'reve'
+    cauchemar: 'cauchemar'
+    social: 'Social, famille, personnes'
+    perso: 'Personnel'
+    work: 'Travail'
+    travel: 'Voyages'
+    animal: 'Animaux'

@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PageController extends AbstractController
 {
@@ -50,7 +51,7 @@ class PageController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/contact', name: 'app_contact')]
-    final public function contact(MailerInterface $mailer, Request $request): Response
+    final public function contact(MailerInterface $mailer, Request $request, TranslatorInterface $translator): Response
     {
 
         $form = $this->createFormBuilder()
@@ -76,7 +77,7 @@ class PageController extends AbstractController
                     'text/plain');
             $mailer->send($message);
 
-            $this->addFlash('success', 'mail.contact.success');
+            $this->addFlash('success',  $translator->trans('mail.contact.success'));
 
             return $this->redirectToRoute('app_contact');
         }
